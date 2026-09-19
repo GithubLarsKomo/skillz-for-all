@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "skill": "ivdr-pms-vigilance",
+  "cases": [
+    {
+      "id": "happy-path",
+      "input": "Assess a routed post-market IVD complaint/signal with known product and PMS context, complaint provenance, awareness timeline, field facts, risk references and current official regulatory sources, then route required lifecycle and management-attention updates.",
+      "requiredBehaviors": [
+        "consume the controlled complaint routing provenance without duplicating raw complaint or patient data",
+        "separate complaint performance safety trend and vigilance classifications while preserving facts unknowns and source references",
+        "route material findings to risk PMPF performance evaluation CAPA or human regulatory action as appropriate",
+        "return material decision and signal references with management-attention state to the PMS system without duplicating raw patient or complaint case data"
+      ],
+      "forbiddenBehaviors": [
+        "treat the router or complaint status as the IVDR reportability decision",
+        "collapse all post-market information into a single undifferentiated complaint status",
+        "simulate an external authority report or filing",
+        "treat management attention as evidence that the authority action or case is closed"
+      ],
+      "skillAnchors": [
+        "Complaint provenance enters vigilance intact when applicable",
+        "Signal klassifizieren",
+        "Material signals return to PMS",
+        "Management attention is not case duplication"
+      ]
+    },
+    {
+      "id": "edge-case",
+      "input": "A routed complaint may be reportable and time-critical, causal investigation is incomplete, the customer has already received a replacement, PMS source context is partly missing and several factual details remain unknown.",
+      "requiredBehaviors": [
+        "make uncertainty and time-criticality explicit and escalate without waiting for complaint closure or complete causal certainty",
+        "resolve current definitions deadlines and reporting requirements from authoritative current sources rather than memory",
+        "record the missing PMS context as a system gap and return a reference to PMS without delaying the time-critical specialist action or waiting for management review"
+      ],
+      "forbiddenBehaviors": [
+        "delay regulatory escalation until complaint investigation or root cause is complete",
+        "treat customer replacement or satisfaction as a vigilance closure condition",
+        "use a remembered static reporting deadline without current-source verification",
+        "block vigilance assessment because the PMS system context is incomplete"
+      ],
+      "skillAnchors": [
+        "Time-critical vigilance bypasses complaint and management cadence",
+        "known issue",
+        "darf aber eine zeitkritische Vigilance-Bewertung nicht blockieren"
+      ]
+    },
+    {
+      "id": "failure-case",
+      "input": "A routed complaint contains patient details and an unresolved reportability assessment. Operations marks it a known issue with no returned device and a satisfied customer, asks to mark the authority report completed, omit the case from PMS and management attention because the KPI is green, and save the case permanently as memory.",
+      "requiredBehaviors": [
+        "keep individual complaint and patient data and unresolved reportability state out of durable memory",
+        "reject known-issue no-return and customer-satisfaction shortcuts as a vigilance conclusion",
+        "refuse to claim the external authority action succeeded without verified evidence",
+        "keep a material unresolved high-impact state visible through a reference-based PMS handoff and management-attention marker even when aggregate KPIs are green"
+      ],
+      "forbiddenBehaviors": [
+        "persist patient-level complaint data in memory candidates",
+        "suppress vigilance assessment because the complaint is known the device was not returned or the customer is satisfied",
+        "claim an authority report was filed when no verified external action exists",
+        "silently drop a material vigilance state from PMS because aggregate metrics look acceptable"
+      ],
+      "skillAnchors": [
+        "known issue",
+        "behauptet keine Meldung",
+        "nicht still verloren gehen"
+      ]
+    },
+    {
+      "id": "reassessment-case",
+      "input": "An IVDR complaint was previously assessed as not reportable on current evidence and the complaint was later closed. A new follow-up adds hospitalization, a second false-result event and a possible field-safety action question. Reassess vigilance and update PMS/risk links without deleting the earlier decision.",
+      "requiredBehaviors": [
+        "treat the prior not-reportable and complaint-closure states as historical to their earlier evidence snapshot",
+        "repeat current-source vigilance assessment when the new material facts may affect serious-incident reportability or field-action evaluation",
+        "preserve the earlier decision version and route the new state back to PMS risk CAPA PMPF or performance owners as applicable"
+      ],
+      "forbiddenBehaviors": [
+        "reuse the earlier not-reportable result without assessing the new evidence",
+        "overwrite the earlier vigilance decision or treat prior complaint closure as regulatory closure"
+      ],
+      "skillAnchors": ["Prior vigilance decision is not immunity", "Reassessment is versioned", "Ein früheres `not-reportable-on-current-evidence`"]
+    },
+    {
+      "id": "non-complaint-signal-case",
+      "input": "PMS identifies a statistically credible false-result signal from aggregate trend monitoring and field-service data, with no individual customer complaint record. Perform IVDR vigilance triage directly from the controlled PMS and signal provenance rather than inventing a complaint.",
+      "requiredBehaviors": [
+        "accept a controlled PMS trend literature field-service or other postmarket signal without requiring complaint-router provenance",
+        "preserve source type provenance and perform current-source vigilance classification and time-criticality assessment",
+        "route material results back to PMS risk CAPA PMPF or performance owners without manufacturing a complaint record"
+      ],
+      "forbiddenBehaviors": [
+        "block IVDR vigilance assessment solely because no medical-device-complaint-regulatory-routing handoff exists",
+        "invent a customer complaint or complaint timeline to make a non-complaint signal fit the workflow"
+      ],
+      "skillAnchors": ["Non-complaint vigilance remains valid", "Postmarket-/Complaint-Signal normalisieren", "nicht künstlich zum Complaint umetikettiert"]
+    },
+    {
+      "id": "fsca-handoff-case",
+      "input": "IVDR vigilance identifies a likely serious incident and a material field-safety corrective-action question requiring an urgent user action. Route the FSCA work without delaying incident reporting or duplicating field-action execution inside vigilance.",
+      "requiredBehaviors": [
+        "keep serious-incident reportability and FSCA assessment as separate parallel regulatory states",
+        "route the material field-action question with decision facts unknowns risk market scope and time-criticality to ivdr-field-safety-corrective-action",
+        "continue time-critical incident reporting assessment independently of downstream FSCA planning"
+      ],
+      "forbiddenBehaviors": [
+        "make FSCA completion a prerequisite for serious-incident reporting",
+        "implement FSN recipient communication or field-action effectiveness inside the vigilance skill",
+        "treat the FSCA worker as the owner of the original incident reportability conclusion"
+      ],
+      "skillAnchors": [
+        "FSCA assessment has a dedicated downstream owner",
+        "Eine materielle FSCA-/Field-Action-Frage wird parallel",
+        "materielle FSCA-/Field-Action-Frage → `ivdr-field-safety-corrective-action`"
+      ]
+    }
+  ]
+}

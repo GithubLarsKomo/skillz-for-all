@@ -1,0 +1,5 @@
+interface:
+  display_name: "Icon Selector"
+  short_description: "Wählt aus einer registrierten Icon-Bibliothek das semantisch passendste vorhandene Icon und eine zulässige Farb-/Kont..."
+policy:
+  allow_implicit_invocation: true

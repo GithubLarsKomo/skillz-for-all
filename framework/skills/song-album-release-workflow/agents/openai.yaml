@@ -1,0 +1,5 @@
+interface:
+  display_name: "Song Album Release Workflow"
+  short_description: "Orchestriert Singles, EPs und Alben von einem verpflichtenden Requirements-Grilling über Konzept, Songwriting, Creati..."
+policy:
+  allow_implicit_invocation: true

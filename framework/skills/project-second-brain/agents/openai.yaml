@@ -1,0 +1,5 @@
+interface:
+  display_name: "Project Second Brain"
+  short_description: "Führt eine GitHub-versionierte, Obsidian-kompatible Projektdokumentation als verlinkten Second Brain ab dem Requireme..."
+policy:
+  allow_implicit_invocation: true

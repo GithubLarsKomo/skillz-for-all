@@ -1,0 +1,5 @@
+interface:
+  display_name: "Biopatent Deep Analysis"
+  short_description: "Analysiert ausgewählte Biotech-/IVD-Patentfamilien technisch-forensisch bis auf Claim-Element-, Sequenz-, Konstrukt-,..."
+policy:
+  allow_implicit_invocation: true

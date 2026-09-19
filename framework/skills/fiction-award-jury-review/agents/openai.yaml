@@ -1,0 +1,5 @@
+interface:
+  display_name: "Fiction Award Jury Review"
+  short_description: "Bewertet abgeschlossene Fiction-Einheiten mit getrennten, adversarialen Hugo-, Nebula- und World-Fantasy-inspirierten..."
+policy:
+  allow_implicit_invocation: true

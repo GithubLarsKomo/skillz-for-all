@@ -1,0 +1,46 @@
+schemaVersion: 2
+
+instance:
+  id: pilot
+  displayName: "Pilot AI Workbench"
+  ownerLabel: "White Label Maintainer"
+  defaultLanguage: en
+
+knowledgeStores:
+  primary:
+    provider: google-drive
+    rootFolderId: null
+    rootFolderUrl: null
+
+framework:
+  storeId: primary
+  logicalRoot: "Skillz"
+  rootFolderId: null
+  releaseVersion: "0.1.0"
+  updateMode: manual
+
+secondBrain:
+  enabled: true
+  storeId: primary
+  logicalRoot: "Second-Brain/Super-Second-Brain"
+  rootFolderId: null
+  bootstrapFileId: null
+  registryFileId: null
+  stateFileId: null
+  defaultVisibility: private
+
+distribution:
+  deploymentMode: starter
+  profile: "full-portable"
+  sourceRelease: "0.1.0"
+  claimedAt: null
+  rebindStatus: required
+
+branding:
+  productName: "Pilot AI Workbench"
+  organizationName: "White Label Maintainer"
+  supportUrl: null
+
+licensing:
+  mode: proprietary
+  licenseFile: null

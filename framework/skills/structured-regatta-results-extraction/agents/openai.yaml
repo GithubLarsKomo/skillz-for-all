@@ -1,0 +1,5 @@
+interface:
+  display_name: "Structured Regatta Results Extraction"
+  short_description: "Extrahiert große Regatta-Ergebnisbestände aus verteilten Web- und PDF-Quellen in eine validierte Athleten-CSV. Verwen..."
+policy:
+  allow_implicit_invocation: false

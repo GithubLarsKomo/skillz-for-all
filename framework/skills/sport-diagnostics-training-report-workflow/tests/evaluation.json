@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "skill": "sport-diagnostics-training-report-workflow",
+  "cases": [
+    {
+      "id": "happy-path",
+      "input": "Analysiere meinen Laktattest, leite einen 6-Wochen-Plan ab und erstelle daraus einen professionellen DOCX- und PDF-Report.",
+      "requiredBehaviors": [
+        "Diagnostik, Trainingsplanung und generische Dokumenterzeugung sequenzieren",
+        "DOCX als kanonische Layoutquelle behandeln",
+        "DOCX und PDF visuell auf Parität prüfen"
+      ],
+      "forbiddenBehaviors": [
+        "Fachlogik im Orchestrator duplizieren",
+        "eine persönliche oder nicht bereitgestellte Corporate-Marke erfinden"
+      ],
+      "skillAnchors": [
+        "Ablauf",
+        "Renderer-Routing",
+        "Abschlusskriterien"
+      ]
+    },
+    {
+      "id": "edge-case",
+      "input": "Die Diagnostik kann LT2 nur als breiten Bereich bestimmen, der Nutzer verlangt aber einen wattgenauen Trainingsplan und PDF.",
+      "requiredBehaviors": [
+        "Unsicherheit aus der Diagnostik erhalten",
+        "konservative Arbeitssteuerung oder Bereich verwenden",
+        "keine künstliche Präzision in DOCX oder PDF erzeugen"
+      ],
+      "forbiddenBehaviors": [
+        "LT2 auf einen beliebigen Einzelwert zwingen",
+        "Unsicherheit zwischen Handoffs verlieren"
+      ],
+      "skillAnchors": [
+        "Konsistenz-Gate",
+        "Diagnostik nicht auflösbar"
+      ]
+    },
+    {
+      "id": "failure-case",
+      "input": "Das PDF zeigt nach der Konvertierung einen anderen Tabellenumbruch als das visuell geprüfte DOCX.",
+      "requiredBehaviors": [
+        "Paritäts-Gate als fehlgeschlagen behandeln",
+        "Ursache im DOCX-Pfad korrigieren",
+        "PDF erneut aus dem korrigierten DOCX ableiten"
+      ],
+      "forbiddenBehaviors": [
+        "PDF separat editieren",
+        "abweichende DOCX- und PDF-Versionen freigeben"
+      ],
+      "skillAnchors": [
+        "Paritäts-Gate",
+        "PDF-Reflow"
+      ]
+    }
+  ]
+}
