@@ -1,0 +1,98 @@
+name: Import validated full-portable release
+
+on:
+  push:
+    branches:
+      - import/full-portable-v0.1.0
+    paths:
+      - ".github/workflows/import-full-portable.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Reassemble and verify release
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .import/payload.part* | base64 -d > /tmp/full-portable-v0.1.0.zip
+          echo "99b7a1f0a72c1ba02c6b1e35891061193056684cc1135ea2f3b7bc9658a18125  /tmp/full-portable-v0.1.0.zip" | sha256sum -c -
+          rm -rf /tmp/skillz-for-all-release
+          mkdir -p /tmp/skillz-for-all-release
+          unzip -q /tmp/full-portable-v0.1.0.zip -d /tmp/skillz-for-all-release
+          RELEASE_ROOT="/tmp/skillz-for-all-release/full-portable-v0.1.0"
+          test -d "$RELEASE_ROOT"
+          python "$RELEASE_ROOT/tools/validate_white_label_release.py" "$RELEASE_ROOT"
+          test "$(find "$RELEASE_ROOT/framework/skills" -mindepth 1 -maxdepth 1 -type d | wc -l | tr -d ' ')" = "341"
+          if grep -RniE 'euroimmun|revvity|komorowski|ratzeburg-ai\.de' "$RELEASE_ROOT"; then
+            echo "Forbidden company/source-owner content found in validated payload."
+            exit 1
+          fi
+
+      - name: Materialize public repository tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          RELEASE_ROOT="/tmp/skillz-for-all-release/full-portable-v0.1.0"
+          find . -mindepth 1 -maxdepth 1 ! -name .git ! -name .github ! -name .import -exec rm -rf {} +
+          cp -a "$RELEASE_ROOT"/. .
+          cat > README.md <<'EOF'
+          # Skillz for All
+
+          A public, provider-neutral distribution of the Skillz framework and Second-Brain architecture.
+
+          This repository contains the validated **full-portable** distribution: the generic skill library, shared contracts and schemas, a Google-Drive-first Second-Brain starter, Child-Brain templates, and third-party handoff material.
+
+          ## Included
+
+          - 341 portable skills
+          - provider-neutral Knowledge Store, promotion and lint contracts
+          - Super Second Brain starter with an empty registry
+          - Child Brain project-memory template
+          - Google Drive-first Claim → Rebind handoff
+          - release manifests and SHA-256 integrity data
+          - self-validation tooling
+
+          Company-internal, source-owner-specific and branded private wrappers are excluded. Generic skills that previously contained mixed private routing are retained through neutral distribution overlays.
+
+          ## Start here
+
+          Read [00-START-HERE.md](00-START-HERE.md) and then [handoff/THIRD-PARTY-DEPLOYMENT.md](handoff/THIRD-PARTY-DEPLOYMENT.md).
+
+          Validate a checkout with:
+
+          ```bash
+          python tools/validate_white_label_release.py .
+          ```
+
+          The Starter Super Brain is intentionally empty. Recipients claim the package into their own Knowledge Store and bind their own Drive object IDs before use.
+          EOF
+          rm -rf .import
+
+      - name: Validate materialized tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/validate_white_label_release.py .
+          test "$(find framework/skills -mindepth 1 -maxdepth 1 -type d | wc -l | tr -d ' ')" = "341"
+          if grep -RniE 'euroimmun|revvity|komorowski|ratzeburg-ai\.de' . \
+              --exclude-dir=.git \
+              --exclude='import-full-portable.yml'; then
+            echo "Forbidden company/source-owner content found in public tree."
+            exit 1
+          fi
+
+      - name: Commit public snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Import full-portable v0.1.0"
+          git push
