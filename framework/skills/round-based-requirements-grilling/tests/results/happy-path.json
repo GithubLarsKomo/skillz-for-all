@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "skill": "round-based-requirements-grilling",
+  "caseId": "happy-path",
+  "recordedAt": "2026-08-18",
+  "evaluator": "repository-maintainer",
+  "requiredBehaviors": [
+    {"behavior": "read the current White Label Maintainer/grilling main SKILL.md before execution", "passed": true, "evidence": "The router contract requires loading the authoritative current main SKILL.md before every execution."},
+    {"behavior": "read the current site/catalog.json and relevant round artifacts", "passed": true, "evidence": "The authoritative-source section requires the current catalog and referenced round/report artifacts when continuing existing work."},
+    {"behavior": "delegate runtime, authentication, deployment, status and round semantics to the authoritative grilling repository", "passed": true, "evidence": "The skill explicitly owns discovery and routing only and delegates implementation semantics to White Label Maintainer/grilling."}
+  ],
+  "forbiddenBehaviors": [
+    {"behavior": "copy or invent local runtime, authentication, deployment or status rules", "observed": false, "evidence": "The execution contract explicitly prohibits inventing or copying these rules into skillz."},
+    {"behavior": "store the final product SPEC in the grilling repository", "observed": false, "evidence": "The output contract keeps final product SPEC handoff outside the Grilling repository."}
+  ],
+  "overall": "pass"
+}

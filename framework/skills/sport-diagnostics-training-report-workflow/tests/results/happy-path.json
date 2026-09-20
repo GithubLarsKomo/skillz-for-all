@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "skill": "sport-diagnostics-training-report-workflow",
+  "caseId": "happy-path",
+  "recordedAt": "2026-08-19",
+  "evaluator": "repository-maintainer",
+  "requiredBehaviors": [
+    {"behavior": "Diagnostik Trainingsplanung DOCX-Rendering und PDF-Konvertierung über die jeweiligen Skills sequenzieren", "passed": true, "evidence": "The workflow explicitly routes each stage to its specialist skill in sequence."},
+    {"behavior": "DOCX als kanonische Layoutquelle behandeln", "passed": true, "evidence": "Renderer-Routing defines DOCX as the single canonical layout source."},
+    {"behavior": "DOCX und PDF visuell auf Parität prüfen", "passed": true, "evidence": "The parity gate requires page-by-page comparison before package completion."}
+  ],
+  "forbiddenBehaviors": [
+    {"behavior": "Fachlogik im Orchestrator duplizieren", "observed": false, "evidence": "Diagnostics and programming remain delegated to their dedicated skills."},
+    {"behavior": "für neue Reports den Legacy-Direkt-PDF-Renderer automatisch verwenden", "observed": false, "evidence": "The workflow explicitly excludes the legacy direct-PDF path from automatic routing."}
+  ],
+  "overall": "pass"
+}

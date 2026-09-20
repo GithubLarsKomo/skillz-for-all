@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "skill": "sport-training-programming",
+  "caseId": "happy-path",
+  "recordedAt": "2026-08-28",
+  "evaluator": "repository-maintainer",
+  "requiredBehaviors": [
+    {"behavior": "recognize explicit legacy use and normalize legacy inputs", "passed": true, "evidence": "The facade trigger is explicit-only and the first two workflow steps identify legacy use and normalize legacy inputs."},
+    {"behavior": "route the request to sport-training-plan-workflow", "passed": true, "evidence": "The facade requires and explicitly calls sport-training-plan-workflow as the replacement."},
+    {"behavior": "reference the replacement sport-training-plan.json without claiming ownership", "passed": true, "evidence": "The plan-reference step and handoff state that sport-training-plan.json remains owned by the replacement."}
+  ],
+  "forbiddenBehaviors": [
+    {"behavior": "execute independent periodization strength endurance or taper logic", "observed": false, "evidence": "The workflow explicitly forbids running its own fachliche planning logic."},
+    {"behavior": "declare sport-training-plan.json as a compatibility-facade output", "observed": false, "evidence": "The only declared output is sport-training-programming-compatibility-run.json."}
+  ],
+  "overall": "pass"
+}

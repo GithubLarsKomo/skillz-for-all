@@ -1,0 +1,159 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/skillz/schemas/skill.schema.json",
+  "title": "Skill frontmatter",
+  "type": "object",
+  "required": [
+    "name",
+    "description"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 20
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "candidate",
+        "stable",
+        "deprecated"
+      ]
+    },
+    "discoverability": {
+      "enum": [
+        "public",
+        "advanced",
+        "internal",
+        "compatibility"
+      ]
+    },
+    "deprecatedSince": {
+      "type": "string",
+      "format": "date"
+    },
+    "owners": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "requires": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      },
+      "uniqueItems": true
+    },
+    "outputs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "lastEvaluated": {
+      "type": "string",
+      "format": "date"
+    },
+    "replacedBy": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "distribution": {
+      "type": "object",
+      "properties": {
+        "portability": {
+          "enum": [
+            "portable",
+            "tenant-template",
+            "private"
+          ]
+        },
+        "profiles": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "uniqueItems": true
+        },
+        "externalDependencies": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "portability"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "deprecated"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "required": [
+          "replacedBy",
+          "discoverability",
+          "deprecatedSince"
+        ],
+        "properties": {
+          "discoverability": {
+            "const": "compatibility"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "discoverability": {
+            "const": "compatibility"
+          }
+        },
+        "required": [
+          "discoverability"
+        ]
+      },
+      "then": {
+        "required": [
+          "status",
+          "replacedBy",
+          "deprecatedSince"
+        ],
+        "properties": {
+          "status": {
+            "const": "deprecated"
+          }
+        }
+      }
+    }
+  ],
+  "additionalProperties": true
+}

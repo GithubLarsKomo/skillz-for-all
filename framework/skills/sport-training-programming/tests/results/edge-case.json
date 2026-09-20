@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "skill": "sport-training-programming",
+  "caseId": "edge-case",
+  "recordedAt": "2026-08-28",
+  "evaluator": "repository-maintainer",
+  "requiredBehaviors": [
+    {"behavior": "preserve unknown legacy fields as unmapped instead of inventing values", "passed": true, "evidence": "The prerequisites and unknown-field error path explicitly preserve missing or unknown legacy fields rather than fabricating mappings."},
+    {"behavior": "ask for clarification only when the missing field changes the training decision", "passed": true, "evidence": "Unknown legacy fields are clarified only when they affect fachliche planning."},
+    {"behavior": "let the replacement workflow handle uncertainty and safety rules", "passed": true, "evidence": "Replacement safety and health review results are forwarded unchanged without a legacy override."}
+  ],
+  "forbiddenBehaviors": [
+    {"behavior": "fabricate a mapping for an unknown field", "observed": false, "evidence": "The facade explicitly forbids inventing missing legacy fields."},
+    {"behavior": "reactivate legacy calculations to fill missing data", "observed": false, "evidence": "The facade explicitly performs no independent periodization, load, endurance or taper calculations."}
+  ],
+  "overall": "pass"
+}

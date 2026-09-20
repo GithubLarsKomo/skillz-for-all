@@ -1,0 +1,5 @@
+interface:
+  display_name: "Suno Classical Reconstruction Workflow"
+  short_description: "Spezialisiert den Suno-Produktionsworkflow für den erkennbaren Nachbau, die motivische Reduktion und die EDM-Transfor..."
+policy:
+  allow_implicit_invocation: true

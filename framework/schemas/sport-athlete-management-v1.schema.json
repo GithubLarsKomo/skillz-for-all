@@ -1,0 +1,315 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/White Label Maintainer/skillz/schemas/sport-athlete-management-v1.schema.json",
+  "title": "Sport Athlete Management v1 Contracts",
+  "type": "object",
+  "$defs": {
+    "commonEnvelope": {
+      "type": "object",
+      "required": ["schema_version", "athlete_id", "generated_at", "source_refs", "uncertainties", "safety_flags"],
+      "properties": {
+        "schema_version": {"const": 1},
+        "athlete_id": {"type": "string", "minLength": 1},
+        "generated_at": {"type": "string", "format": "date-time"},
+        "source_refs": {"type": "array", "items": {"type": "string"}},
+        "uncertainties": {"type": "array", "items": {"type": "string"}},
+        "safety_flags": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "objectiveMetric": {
+      "type": "object",
+      "required": ["metric_type", "measured_at", "value", "unit", "source", "metric_class", "decision_role", "quality_flag"],
+      "properties": {
+        "metric_type": {"type": "string", "minLength": 1},
+        "measured_at": {"type": "string", "format": "date-time"},
+        "value": {"type": ["number", "string", "boolean", "null"]},
+        "unit": {"type": "string"},
+        "source": {"type": "string", "minLength": 1},
+        "provider": {"type": ["string", "null"]},
+        "device": {"type": ["string", "null"]},
+        "method": {"type": ["string", "null"]},
+        "provider_metric_name": {"type": ["string", "null"]},
+        "provider_algorithm_version": {"type": ["string", "null"]},
+        "metric_class": {
+          "enum": ["direct_sensor", "provider_derived", "journal_derived", "reference_measurement", "manual_measurement"]
+        },
+        "decision_role": {
+          "enum": ["primary_evidence", "context_only", "display_only", "excluded_from_adaptation"]
+        },
+        "quality_flag": {"enum": ["valid", "questionable", "invalid", "unknown"]},
+        "baseline_eligible": {"type": "boolean"},
+        "comparable_series_id": {"type": ["string", "null"]},
+        "provenance": {"type": "object"}
+      }
+    },
+    "bodyMeasurement": {
+      "type": "object",
+      "required": ["metric_type", "measured_at", "value", "unit", "method", "source", "quality_class"],
+      "properties": {
+        "metric_type": {
+          "enum": ["body_mass", "waist_circumference", "waist_height_ratio", "body_fat", "fat_mass", "fat_free_mass", "lean_mass", "bone_mineral_density", "other"]
+        },
+        "measured_at": {"type": "string", "format": "date-time"},
+        "value": {"type": "number"},
+        "unit": {"type": "string", "minLength": 1},
+        "method": {"enum": ["scale", "bia", "dxa", "tape", "manual", "other"]},
+        "source": {"type": "string", "minLength": 1},
+        "device": {"type": ["string", "null"]},
+        "quality_class": {"enum": ["reference", "validated_consumer", "consumer_estimate", "manual_context", "unknown"]},
+        "comparable_series_id": {"type": ["string", "null"]},
+        "notes": {"type": ["string", "null"]}
+      }
+    },
+    "biometricBaseline": {
+      "type": "object",
+      "required": ["metric_type", "window_start", "window_end", "method", "center", "lower", "upper", "n_observations", "data_quality"],
+      "properties": {
+        "metric_type": {"type": "string", "minLength": 1},
+        "window_start": {"type": "string", "format": "date"},
+        "window_end": {"type": "string", "format": "date"},
+        "method": {"type": "string", "minLength": 1},
+        "center": {"type": "number"},
+        "lower": {"type": "number"},
+        "upper": {"type": "number"},
+        "n_observations": {"type": "integer", "minimum": 0},
+        "source_classes": {"type": "array", "items": {"type": "string"}},
+        "data_quality": {"enum": ["high", "medium", "low", "insufficient"]},
+        "min_observations_met": {"type": "boolean"},
+        "comparable_series_id": {"type": ["string", "null"]}
+      }
+    },
+    "biometricAnomaly": {
+      "type": "object",
+      "required": ["metric_type", "detected_at", "direction", "severity", "status", "persistence_count", "baseline_ref"],
+      "properties": {
+        "metric_type": {"type": "string", "minLength": 1},
+        "detected_at": {"type": "string", "format": "date-time"},
+        "direction": {"enum": ["high", "low", "mixed", "unknown"]},
+        "severity": {"enum": ["mild", "moderate", "marked", "unknown"]},
+        "status": {"enum": ["new", "persistent", "resolving", "resolved", "unknown"]},
+        "persistence_count": {"type": "integer", "minimum": 1},
+        "deviation": {"type": ["number", "null"]},
+        "deviation_unit": {"type": ["string", "null"]},
+        "baseline_ref": {"type": "object"},
+        "decision_role": {"const": "context_only"},
+        "notes": {"type": ["string", "null"]}
+      }
+    },
+    "athleteProfile": {
+      "allOf": [
+        {"$ref": "#/$defs/commonEnvelope"},
+        {
+          "type": "object",
+          "required": ["profile_version", "valid_from", "sport", "discipline", "age_band", "training_age_years", "availability"],
+          "properties": {
+            "profile_version": {"type": "integer", "minimum": 1},
+            "valid_from": {"type": "string", "format": "date-time"},
+            "date_of_birth": {"type": ["string", "null"], "format": "date"},
+            "age_band": {"enum": ["20-30", "50+", "other", "unknown"]},
+            "sex_at_birth": {"type": ["string", "null"]},
+            "gender": {"type": ["string", "null"]},
+            "sport": {"type": "string", "minLength": 1},
+            "discipline": {"type": "string", "minLength": 1},
+            "training_age_years": {"type": ["number", "null"], "minimum": 0},
+            "availability": {"type": "object"},
+            "equipment": {"type": "array", "items": {"type": "string"}},
+            "performance_history": {"type": "array", "items": {"type": "object"}},
+            "health_constraints": {"type": "array", "items": {"type": "object"}},
+            "preferences": {"type": "object"},
+            "optional_sex_specific_context": {"type": ["object", "null"]}
+          }
+        }
+      ]
+    },
+    "performanceModel": {
+      "allOf": [
+        {"$ref": "#/$defs/commonEnvelope"},
+        {
+          "type": "object",
+          "required": ["model_version", "outcome_goals", "performance_goals", "process_goals", "limiters", "kpis"],
+          "properties": {
+            "model_version": {"type": "integer", "minimum": 1},
+            "outcome_goals": {"type": "array", "items": {"type": "object"}},
+            "performance_goals": {"type": "array", "items": {"type": "object"}},
+            "process_goals": {"type": "array", "items": {"type": "object"}},
+            "limiters": {"type": "array", "items": {"type": "object"}},
+            "kpis": {"type": "array", "items": {"type": "object"}},
+            "trade_offs": {"type": "array", "items": {"type": "object"}}
+          }
+        }
+      ]
+    },
+    "seasonPlan": {
+      "allOf": [
+        {"$ref": "#/$defs/commonEnvelope"},
+        {
+          "type": "object",
+          "required": ["season_id", "version", "start_date", "end_date", "competitions", "macrocycles", "revision_points"],
+          "properties": {
+            "season_id": {"type": "string", "minLength": 1},
+            "version": {"type": "integer", "minimum": 1},
+            "start_date": {"type": "string", "format": "date"},
+            "end_date": {"type": "string", "format": "date"},
+            "competitions": {"type": "array", "items": {"type": "object"}},
+            "macrocycles": {"type": "array", "items": {"type": "object"}},
+            "retest_points": {"type": "array", "items": {"type": "object"}},
+            "revision_points": {"type": "array", "items": {"type": "object"}}
+          }
+        }
+      ]
+    },
+    "mesocycle": {
+      "allOf": [
+        {"$ref": "#/$defs/commonEnvelope"},
+        {
+          "type": "object",
+          "required": ["mesocycle_id", "season_id", "version", "start_date", "end_date", "primary_adaptation", "maintenance_qualities", "load_strategy", "entry_criteria", "exit_criteria"],
+          "properties": {
+            "mesocycle_id": {"type": "string", "minLength": 1},
+            "season_id": {"type": "string", "minLength": 1},
+            "version": {"type": "integer", "minimum": 1},
+            "start_date": {"type": "string", "format": "date"},
+            "end_date": {"type": "string", "format": "date"},
+            "primary_adaptation": {"type": "string", "minLength": 1},
+            "maintenance_qualities": {"type": "array", "items": {"type": "object"}},
+            "load_strategy": {"type": "object"},
+            "entry_criteria": {"type": "array", "items": {"type": "object"}},
+            "exit_criteria": {"type": "array", "items": {"type": "object"}},
+            "re_evaluation": {"type": ["object", "null"]}
+          }
+        }
+      ]
+    },
+    "plannedSession": {
+      "type": "object",
+      "required": ["planned_session_id", "session_type", "objective", "planned_start", "planned_duration_min", "intensity_rule", "stop_rule"],
+      "properties": {
+        "planned_session_id": {"type": "string", "minLength": 1},
+        "session_type": {"type": "string", "minLength": 1},
+        "objective": {"type": "string", "minLength": 1},
+        "planned_start": {"type": "string", "format": "date-time"},
+        "planned_duration_min": {"type": "number", "minimum": 0},
+        "planned_rpe": {"type": ["number", "null"], "minimum": 0, "maximum": 10},
+        "intensity_rule": {"type": "string", "minLength": 1},
+        "stop_rule": {"type": "string", "minLength": 1},
+        "flexibility": {"enum": ["key", "movable", "optional"]},
+        "items": {"type": "array", "items": {"type": "object"}}
+      }
+    },
+    "microcycle": {
+      "allOf": [
+        {"$ref": "#/$defs/commonEnvelope"},
+        {
+          "type": "object",
+          "required": ["microcycle_id", "mesocycle_id", "version", "start_date", "end_date", "focus", "sessions"],
+          "properties": {
+            "microcycle_id": {"type": "string", "minLength": 1},
+            "mesocycle_id": {"type": "string", "minLength": 1},
+            "version": {"type": "integer", "minimum": 1},
+            "start_date": {"type": "string", "format": "date"},
+            "end_date": {"type": "string", "format": "date"},
+            "focus": {"type": "string", "minLength": 1},
+            "sessions": {"type": "array", "items": {"$ref": "#/$defs/plannedSession"}},
+            "load_target": {"type": "object"}
+          }
+        }
+      ]
+    },
+    "dailyCheckin": {
+      "allOf": [
+        {"$ref": "#/$defs/commonEnvelope"},
+        {
+          "type": "object",
+          "required": ["local_date", "sleep_quality_1_5", "fatigue_1_5", "soreness_1_5", "stress_1_5", "motivation_1_5"],
+          "properties": {
+            "local_date": {"type": "string", "format": "date"},
+            "sleep_duration_min": {"type": ["integer", "null"], "minimum": 0},
+            "sleep_quality_1_5": {"type": ["integer", "null"], "minimum": 1, "maximum": 5},
+            "fatigue_1_5": {"type": ["integer", "null"], "minimum": 1, "maximum": 5},
+            "soreness_1_5": {"type": ["integer", "null"], "minimum": 1, "maximum": 5},
+            "stress_1_5": {"type": ["integer", "null"], "minimum": 1, "maximum": 5},
+            "motivation_1_5": {"type": ["integer", "null"], "minimum": 1, "maximum": 5},
+            "pain_0_10": {"type": ["number", "null"], "minimum": 0, "maximum": 10},
+            "pain_locations": {"type": "array", "items": {"type": "object"}},
+            "illness_symptoms": {"type": "array", "items": {"type": "string"}},
+            "objective_metrics": {"type": "array", "items": {"$ref": "#/$defs/objectiveMetric"}},
+            "body_measurements": {"type": "array", "items": {"$ref": "#/$defs/bodyMeasurement"}},
+            "biometric_baselines": {"type": "array", "items": {"$ref": "#/$defs/biometricBaseline"}},
+            "biometric_anomalies": {"type": "array", "items": {"$ref": "#/$defs/biometricAnomaly"}},
+            "passive_data_sync_status": {"type": ["object", "null"]}
+          }
+        }
+      ]
+    },
+    "completedSession": {
+      "allOf": [
+        {"$ref": "#/$defs/commonEnvelope"},
+        {
+          "type": "object",
+          "required": ["completed_session_id", "started_at", "completed_at", "duration_min", "session_rpe", "completion_status"],
+          "properties": {
+            "completed_session_id": {"type": "string", "minLength": 1},
+            "planned_session_id": {"type": ["string", "null"]},
+            "started_at": {"type": "string", "format": "date-time"},
+            "completed_at": {"type": "string", "format": "date-time"},
+            "duration_min": {"type": "number", "minimum": 0},
+            "session_rpe": {"type": "number", "minimum": 0, "maximum": 10},
+            "session_load": {"type": "number", "minimum": 0},
+            "completion_status": {"enum": ["completed", "modified", "stopped", "not_started"]},
+            "external_load": {"type": "object"},
+            "pain_during": {"type": ["number", "null"], "minimum": 0, "maximum": 10},
+            "pain_after": {"type": ["number", "null"], "minimum": 0, "maximum": 10},
+            "deviations": {"type": "array", "items": {"type": "string"}}
+          }
+        }
+      ]
+    },
+    "adaptationDecision": {
+      "allOf": [
+        {"$ref": "#/$defs/commonEnvelope"},
+        {
+          "type": "object",
+          "required": ["adaptation_decision_id", "decision_level", "action", "safety_state", "trigger", "input_snapshot", "rationale", "confidence", "human_override"],
+          "properties": {
+            "adaptation_decision_id": {"type": "string", "minLength": 1},
+            "decision_level": {"enum": ["acute", "tactical", "strategic"]},
+            "action": {"enum": ["proceed", "reduce_volume", "reduce_intensity", "substitute", "move_session", "recovery", "progress", "delay_progression", "retest", "health_route", "medical_review", "review_required"]},
+            "safety_state": {"enum": ["GREEN", "YELLOW", "ORANGE", "RED"]},
+            "trigger": {"type": "string", "minLength": 1},
+            "input_snapshot": {"type": "object"},
+            "previous_plan": {"type": ["object", "null"]},
+            "revised_plan": {"type": ["object", "null"]},
+            "rationale": {"type": "string", "minLength": 1},
+            "responsible_signals": {"type": "array", "items": {"type": "string"}},
+            "provider_score_context": {"type": "array", "items": {"$ref": "#/$defs/objectiveMetric"}},
+            "multi_signal_confirmation": {"type": ["boolean", "null"]},
+            "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+            "human_override": {"type": "boolean"},
+            "engine_version": {"type": "string"}
+          }
+        }
+      ]
+    },
+    "athleteManagementState": {
+      "allOf": [
+        {"$ref": "#/$defs/commonEnvelope"},
+        {
+          "type": "object",
+          "required": ["state_version", "profile_ref", "performance_model_ref", "season_ref", "mesocycle_ref", "microcycle_ref", "next_training_decision"],
+          "properties": {
+            "state_version": {"type": "integer", "minimum": 1},
+            "profile_ref": {"type": "object"},
+            "performance_model_ref": {"type": "object"},
+            "season_ref": {"type": "object"},
+            "mesocycle_ref": {"type": "object"},
+            "microcycle_ref": {"type": "object"},
+            "latest_checkin_ref": {"type": ["object", "null"]},
+            "latest_completed_session_ref": {"type": ["object", "null"]},
+            "latest_adaptation_ref": {"type": ["object", "null"]},
+            "next_training_decision": {"type": "object"}
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,5 @@
+interface:
+  display_name: "Local Scraping Handoff"
+  short_description: "Erzeugt reproduzierbaren Code, den der Nutzer gegen eine lokal erreichbare oder private Scraping-Instanz (insbesonder..."
+policy:
+  allow_implicit_invocation: true

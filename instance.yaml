@@ -1,0 +1,46 @@
+schemaVersion: 2
+
+instance:
+  id: skillz-for-all
+  displayName: "Skillz for All"
+  ownerLabel: "Skillz for All maintainers"
+  defaultLanguage: en
+
+knowledgeStores:
+  primary:
+    provider: google-drive
+    rootFolderId: null
+    rootFolderUrl: null
+
+framework:
+  storeId: primary
+  logicalRoot: "Skillz"
+  rootFolderId: null
+  releaseVersion: "0.1.0"
+  updateMode: manual
+
+secondBrain:
+  enabled: true
+  storeId: primary
+  logicalRoot: "Second-Brain/Super-Second-Brain"
+  rootFolderId: null
+  bootstrapFileId: null
+  registryFileId: null
+  stateFileId: null
+  defaultVisibility: private
+
+distribution:
+  deploymentMode: starter
+  profile: "full-portable"
+  sourceRelease: "0.1.0"
+  claimedAt: null
+  rebindStatus: required
+
+branding:
+  productName: "Skillz for All"
+  organizationName: "Skillz for All maintainers"
+  supportUrl: null
+
+licensing:
+  mode: Apache-2.0
+  licenseFile: "LICENSE"

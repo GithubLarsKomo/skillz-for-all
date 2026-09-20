@@ -1,0 +1,5 @@
+interface:
+  display_name: "Contract Workflow"
+  short_description: "Orchestriert private und berufliche Vertragsarbeit als kompatiblen user-facing Einstieg von Requirements-Grilling und..."
+policy:
+  allow_implicit_invocation: true

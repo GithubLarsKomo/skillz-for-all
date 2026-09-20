@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "packageId": "skillz-for-all-deployment",
+  "releaseVersion": "0.1.0",
+  "deploymentMode": "starter",
+  "profile": "full-portable",
+  "storage": {
+    "provider": "google-drive",
+    "rebindRequired": true
+  },
+  "components": [
+    {
+      "id": "framework",
+      "required": true,
+      "logicalPath": "framework"
+    },
+    {
+      "id": "super-second-brain",
+      "required": true,
+      "logicalPath": "second-brain/super-second-brain"
+    },
+    {
+      "id": "child-brain-template",
+      "required": true,
+      "logicalPath": "templates/child-brain"
+    }
+  ],
+  "privacy": {
+    "containsSourceOwnerKnowledge": false,
+    "containsOrganizationSpecificContent": false,
+    "starterRegistryMustBeEmpty": true,
+    "secretsAllowed": false
+  },
+  "runtimeDependencyOnSourceOwner": false,
+  "licensing": {
+    "spdx": "Apache-2.0",
+    "licenseFile": "LICENSE"
+  }
+}

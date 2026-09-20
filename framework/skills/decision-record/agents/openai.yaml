@@ -1,0 +1,5 @@
+interface:
+  display_name: "Decision Record"
+  short_description: "Erfasst wesentliche technische, fachliche, rechtliche, Compliance- und Governance-Entscheidungen als unveränderliche,..."
+policy:
+  allow_implicit_invocation: true

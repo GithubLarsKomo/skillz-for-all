@@ -1,0 +1,5 @@
+interface:
+  display_name: "Engineering Learning Promotion"
+  short_description: "Extrahiert nach verifizierten Software-Deliveries, Migrationen, Incidents, Architekturentscheidungen oder Algorithmus..."
+policy:
+  allow_implicit_invocation: true

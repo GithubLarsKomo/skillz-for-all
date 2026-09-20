@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "packageId": "pilot-deployment",
+  "releaseVersion": "0.1.0",
+  "claimedBy": {
+    "instanceId": "pilot",
+    "displayName": "Pilot AI Workbench"
+  },
+  "knowledgeStore": {
+    "provider": "google-drive",
+    "tenantRootFolderId": "{{TENANT_ROOT_FOLDER_ID}}",
+    "frameworkRootFolderId": "{{FRAMEWORK_ROOT_FOLDER_ID}}",
+    "superSecondBrainRootFolderId": "{{SUPER_SECOND_BRAIN_ROOT_FOLDER_ID}}",
+    "bootstrapFileId": "{{SUPER_SECOND_BRAIN_BOOTSTRAP_FILE_ID}}",
+    "registryFileId": "{{SUPER_SECOND_BRAIN_REGISTRY_FILE_ID}}",
+    "stateFileId": "{{SUPER_SECOND_BRAIN_STATE_FILE_ID}}"
+  },
+  "claimedAt": "{{CLAIMED_AT}}",
+  "rebindStatus": "complete",
+  "sourceOwnerRuntimeDependency": false
+}

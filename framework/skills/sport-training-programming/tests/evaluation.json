@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "skill": "sport-training-programming",
+  "compatibilityMode": true,
+  "cases": [
+    {
+      "id": "happy-path",
+      "input": "An existing automation explicitly invokes sport-training-programming with a goal date, training availability and diagnostic references.",
+      "requiredBehaviors": [
+        "recognize explicit legacy use and normalize legacy inputs",
+        "route the request to sport-training-plan-workflow",
+        "reference the replacement sport-training-plan.json without claiming ownership"
+      ],
+      "forbiddenBehaviors": [
+        "execute independent periodization strength endurance or taper logic",
+        "declare sport-training-plan.json as a compatibility-facade output"
+      ],
+      "skillAnchors": [
+        "Nur explizit verwenden",
+        "Nachfolger aufrufen",
+        "Plan referenzieren"
+      ]
+    },
+    {
+      "id": "edge-case",
+      "input": "A legacy caller sends an obsolete optional field that has no current equivalent plus incomplete threshold information.",
+      "requiredBehaviors": [
+        "preserve unknown legacy fields as unmapped instead of inventing values",
+        "ask for clarification only when the missing field changes the training decision",
+        "let the replacement workflow handle uncertainty and safety rules"
+      ],
+      "forbiddenBehaviors": [
+        "fabricate a mapping for an unknown field",
+        "reactivate legacy calculations to fill missing data"
+      ],
+      "skillAnchors": [
+        "Unbekanntes Legacy-Feld",
+        "Fehlende Legacy-Felder werden nicht erfunden",
+        "keine Legacy-Override-Regel"
+      ]
+    },
+    {
+      "id": "failure-case",
+      "input": "A new normal training-plan request is routed to the deprecated facade, which calculates its own plan and returns sport-training-plan.json as its output.",
+      "requiredBehaviors": [
+        "reject implicit use of the deprecated facade",
+        "route new requests directly to sport-training-plan-workflow",
+        "reject duplicate canonical output ownership"
+      ],
+      "forbiddenBehaviors": [
+        "use the facade as a default entrypoint",
+        "produce a second canonical sport-training-plan.json"
+      ],
+      "skillAnchors": [
+        "Nicht implizit auswählen",
+        "Neuer normaler Trainingsplan-Auftrag",
+        "ausschließlich `sport-training-programming-compatibility-run.json`"
+      ]
+    }
+  ]
+}

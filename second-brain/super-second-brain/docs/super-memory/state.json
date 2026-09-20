@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 2,
+  "federationId": "pilot-super-second-brain",
+  "status": "bootstrap",
+  "knowledgeStore": {
+    "provider": "google-drive",
+    "storeId": "primary",
+    "rootFolderId": "{{SUPER_SECOND_BRAIN_ROOT_FOLDER_ID}}"
+  },
+  "visibility": "private",
+  "bootstrapFileId": "{{SUPER_SECOND_BRAIN_BOOTSTRAP_FILE_ID}}",
+  "registryFileId": "{{SUPER_SECOND_BRAIN_REGISTRY_FILE_ID}}",
+  "stateFileId": "{{SUPER_SECOND_BRAIN_STATE_FILE_ID}}",
+  "latestEvent": null,
+  "brainCounts": {
+    "total": 0,
+    "available": 0,
+    "bootstrapNeeded": 0,
+    "pending": 0,
+    "unavailable": 0,
+    "archived": 0
+  },
+  "openLoops": [],
+  "nextAction": "Create and verify the first Child Brain when durable scope exists."
+}

@@ -1,0 +1,5 @@
+interface:
+  display_name: "Sport Diagnostics Training Report Workflow"
+  short_description: "Orchestriert Sportdiagnostik, Trainingsplanung und professionelle DOCX/PDF-Reportausgabe."
+policy:
+  allow_implicit_invocation: true

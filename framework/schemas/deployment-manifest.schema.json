@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/skillz/schemas/deployment-manifest.schema.json",
+  "title": "White-label deployment manifest",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "packageId",
+    "releaseVersion",
+    "deploymentMode",
+    "profile",
+    "storage",
+    "components",
+    "privacy",
+    "runtimeDependencyOnSourceOwner"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "packageId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "releaseVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "deploymentMode": {
+      "enum": [
+        "starter",
+        "curated",
+        "trusted-migration"
+      ]
+    },
+    "profile": {
+      "type": "string",
+      "minLength": 1
+    },
+    "storage": {
+      "type": "object",
+      "required": [
+        "provider",
+        "rebindRequired"
+      ],
+      "properties": {
+        "provider": {
+          "enum": [
+            "google-drive",
+            "github",
+            "other"
+          ]
+        },
+        "rebindRequired": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": true
+    },
+    "components": {
+      "type": "array",
+      "minItems": 1
+    },
+    "privacy": {
+      "type": "object"
+    },
+    "runtimeDependencyOnSourceOwner": {
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": true
+}

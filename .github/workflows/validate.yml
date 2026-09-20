@@ -1,0 +1,60 @@
+name: Validate Skillz for All
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate release contracts
+        run: python tools/validate_white_label_release.py .
+
+      - name: Verify portable skill set
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(find framework/skills -mindepth 1 -maxdepth 1 -type d | wc -l | tr -d ' ')" = "341"
+
+      - name: Verify public privacy boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -RniE 'euroimmun|revvity|komorowski|ratzeburg-ai\.de' . \
+              --exclude-dir=.git \
+              --exclude='validate.yml'; then
+            echo "Forbidden company/source-owner content found."
+            exit 1
+          fi
+
+      - name: Verify empty starter federation
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path("second-brain/super-second-brain/docs/super-memory/registry.json")
+          d = json.loads(p.read_text(encoding="utf-8"))
+          assert d.get("brains") == [], d
+          PY
+
+      - name: Verify Apache-2.0 licensing
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f LICENSE
+          grep -q '^                                 Apache License$' LICENSE
+          grep -q 'Version 2.0, January 2004' LICENSE
+          grep -q 'mode: Apache-2.0' instance.yaml
+          grep -q 'licenseFile: "LICENSE"' instance.yaml
+          grep -q '"spdx": "Apache-2.0"' deployment-manifest.json
