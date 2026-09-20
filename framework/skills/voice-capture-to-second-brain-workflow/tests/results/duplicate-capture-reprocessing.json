@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "skill": "voice-capture-to-second-brain-workflow",
+  "caseId": "duplicate-capture-reprocessing",
+  "recordedAt": "2026-09-20",
+  "evaluator": "skill-author-static-review",
+  "requiredBehaviors": [
+    {
+      "behavior": "recognize the unchanged stable capture",
+      "passed": true,
+      "evidence": "The Idempotenz und Ledger rules state that the same unchanged capture must not create a second Brain write."
+    },
+    {
+      "behavior": "skip a second canonical write",
+      "passed": true,
+      "evidence": "An already processed capture with an unchanged fingerprint is explicitly skipped."
+    },
+    {
+      "behavior": "preserve the existing canonicalRef",
+      "passed": true,
+      "evidence": "The ledger schema retains canonicalRef and processing state so the existing canonical relationship survives reprocessing."
+    }
+  ],
+  "forbiddenBehaviors": [
+    {
+      "behavior": "create duplicate knowledge because the pipeline ran again",
+      "observed": false,
+      "evidence": "The idempotence rule expressly prohibits a second Brain write for the same unchanged capture."
+    },
+    {
+      "behavior": "assign a fresh identity to the unchanged entry",
+      "observed": false,
+      "evidence": "Stable capture identity is preserved; the upstream thought-capture contract and ledger use stable captureId/fingerprint rather than assigning a fresh identity on every run."
+    }
+  ],
+  "overall": "pass"
+}
