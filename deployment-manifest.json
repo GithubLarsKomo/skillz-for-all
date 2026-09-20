@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "packageId": "skillz-for-all-deployment",
-  "releaseVersion": "0.1.0",
+  "releaseVersion": "0.1.1",
   "deploymentMode": "starter",
   "profile": "full-portable",
   "storage": {
