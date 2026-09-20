@@ -27,3 +27,7 @@ python tools/validate_white_label_release.py .
 ```
 
 The Starter Super Brain is intentionally empty. Recipients claim the package into their own Knowledge Store and bind their own Drive object IDs before use.
+
+## License
+
+Skillz for All is licensed under the **Apache License 2.0**. See [LICENSE](LICENSE). The license applies to the public distribution in this repository; recipient-created private Brains and content are not automatically contributed back to this repository merely by using the framework.
