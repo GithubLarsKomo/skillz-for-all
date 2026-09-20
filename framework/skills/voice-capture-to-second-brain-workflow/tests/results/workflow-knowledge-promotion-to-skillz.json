@@ -23,9 +23,9 @@
   ],
   "forbiddenBehaviors": [
     {
-      "behavior": "store the workflow rule in a generic catch-all Brain as domain knowledge",
+      "behavior": "store the workflow rule in a generic catch-all domain Brain",
       "observed": false,
-      "evidence": "a generic catch-all Brain is explicitly not a fallback owner; workflow logic has a defined canonical route to Skillz."
+      "evidence": "A generic catch-all Brain is explicitly not a fallback owner; reusable workflow logic has a defined canonical route to the Skillz framework."
     },
     {
       "behavior": "copy the entire raw dictation into Skillz",
