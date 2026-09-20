@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "skill": "thought-capture-journal",
+  "caseId": "offline-capture",
+  "recordedAt": "2026-09-20",
+  "evaluator": "skill-author-static-review",
+  "requiredBehaviors": [
+    {
+      "behavior": "allow local append-only capture without network services",
+      "passed": true,
+      "evidence": "The capture contract explicitly says the capture path must work offline and must not depend on LLM, Repository-Zugriff, Workflow-Automation or an available Second-Brain service."
+    },
+    {
+      "behavior": "defer routing and promotion until downstream processing is available",
+      "passed": true,
+      "evidence": "This skill owns capture normalization only; Second-Brain transfer is explicitly delegated to voice-capture-to-second-brain-workflow after the capture is available."
+    },
+    {
+      "behavior": "preserve the raw entry for later normalization",
+      "passed": true,
+      "evidence": "The workflow preserves the original text unchanged alongside the normalized form and the quality rules say raw text must never be overwritten."
+    }
+  ],
+  "forbiddenBehaviors": [
+    {
+      "behavior": "require an LLM call during dictation",
+      "observed": false,
+      "evidence": "The offline contract explicitly disallows requiring an LLM during the capture path."
+    },
+    {
+      "behavior": "require repository access or workflow automation to be reachable before saving the thought",
+      "observed": false,
+      "evidence": "The same sentence explicitly disallows Repository access and workflow automation as prerequisites for saving a capture."
+    }
+  ],
+  "overall": "pass"
+}
