@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "skill": "thought-capture-journal",
+  "caseId": "read-only-obsidian-staging",
+  "recordedAt": "2026-09-20",
+  "evaluator": "skill-author-static-review",
+  "requiredBehaviors": [
+    {
+      "behavior": "select staging mode",
+      "passed": true,
+      "evidence": "The Capture-Modi section declares Staging as the standard when Obsidian is used only as a viewer/projection."
+    },
+    {
+      "behavior": "keep the capture file outside the Obsidian projection",
+      "passed": true,
+      "evidence": "The staging path is explicitly placed under iCloud Drive/Shortcuts/SecondBrain Capture rather than inside the Obsidian vault."
+    },
+    {
+      "behavior": "preserve a plain append-only Markdown source",
+      "passed": true,
+      "evidence": "The iPhone shortcut contract requires appending to Thought Journal.md and the quality rules prohibit replacing existing journal content."
+    }
+  ],
+  "forbiddenBehaviors": [
+    {
+      "behavior": "write the raw capture directly into the read-only vault",
+      "observed": false,
+      "evidence": "The quality rules explicitly state that with read-only Obsidian the capture automation must not write into the projection."
+    },
+    {
+      "behavior": "infer a Brain owner from an Obsidian folder",
+      "observed": false,
+      "evidence": "The storage-mode rule says staging/writable-vault are not semantic and Obsidian folders or filenames never determine later Brain routing."
+    }
+  ],
+  "overall": "pass"
+}
