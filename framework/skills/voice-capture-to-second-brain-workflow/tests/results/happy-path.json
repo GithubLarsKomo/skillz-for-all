@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "skill": "voice-capture-to-second-brain-workflow",
+  "caseId": "happy-path",
+  "recordedAt": "2026-09-20",
+  "evaluator": "skill-author-static-review",
+  "requiredBehaviors": [
+    {
+      "behavior": "normalize the capture",
+      "passed": true,
+      "evidence": "The workflow consumes the normalized thought journal and keeps capture normalization separate from routing and promotion."
+    },
+    {
+      "behavior": "resolve the single canonical owner from the federation",
+      "passed": true,
+      "evidence": "Federation routing requires reading the bootstrap, state and registry and proceeding only when the canonical owner is unambiguous."
+    },
+    {
+      "behavior": "apply the Knowledge Promotion Gate",
+      "passed": true,
+      "evidence": "The Promotion Gate section explicitly requires applying docs/KNOWLEDGE-PROMOTION-CONTRACT.md before durable persistence."
+    },
+    {
+      "behavior": "write only the smallest durable abstraction",
+      "passed": true,
+      "evidence": "Promotion step 2 requires formulating the smallest durable abstraction rather than copying the raw capture."
+    },
+    {
+      "behavior": "read back the canonical target before marking promoted",
+      "passed": true,
+      "evidence": "Promotion step 6 requires read-back verification and step 7 sets promoted/canonicalRef only after that verification."
+    },
+    {
+      "behavior": "allow a downstream read-only Obsidian projection",
+      "passed": true,
+      "evidence": "The Obsidian-Projektion section places Obsidian after canonical processing and renders determined semantics only."
+    }
+  ],
+  "forbiddenBehaviors": [
+    {
+      "behavior": "copy the raw dictation as the canonical knowledge item",
+      "observed": false,
+      "evidence": "The Promotion Gate states that the raw capture remains in its source and is not automatically copied as a Brain note."
+    },
+    {
+      "behavior": "write substantive content into the Super Second Brain",
+      "observed": false,
+      "evidence": "The routing architecture uses the Super Second Brain for owner resolution; substantive persistence goes to the canonical governed owner, not the Super Brain."
+    },
+    {
+      "behavior": "treat Obsidian as the Source of Truth",
+      "observed": false,
+      "evidence": "The Obsidian section explicitly says a read-only vault is not a Source of Truth and cannot write directly to the canonical Brain."
+    }
+  ],
+  "overall": "pass"
+}
