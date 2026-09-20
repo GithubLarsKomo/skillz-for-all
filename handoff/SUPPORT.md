@@ -5,7 +5,7 @@ Record here after rendering:
 - Distribution provider: {{DISTRIBUTION_PROVIDER}}
 - Update channel: {{UPDATE_CHANNEL}}
 - Support contact/link: {{SUPPORT_URL}}
-- Current release: 0.1.0
+- Current release: 0.1.1
 
 Framework updates are independent of tenant knowledge.
 

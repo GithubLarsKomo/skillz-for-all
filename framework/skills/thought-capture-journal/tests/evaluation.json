@@ -56,6 +56,40 @@
         "Capture-Automationen müssen neue Einträge anhängen und dürfen bestehende Journal-Inhalte nicht ersetzen",
         "Diktatfehler nicht kreativ umdeuten"
       ]
+    },
+    {
+      "id": "read-only-obsidian-staging",
+      "input": "The user uses Obsidian only as a read-only projection of GitHub-backed Second Brains and wants the iPhone shortcut to capture thoughts.",
+      "requiredBehaviors": [
+        "select staging mode",
+        "keep the capture file outside the Obsidian projection",
+        "preserve a plain append-only Markdown source"
+      ],
+      "forbiddenBehaviors": [
+        "write the raw capture directly into the read-only vault",
+        "infer a Brain owner from an Obsidian folder"
+      ],
+      "skillAnchors": [
+        "Staging (Standard bei read-only Obsidian)",
+        "Bei read-only Obsidian darf die Capture-Automation nicht in die Projektion schreiben"
+      ]
+    },
+    {
+      "id": "offline-capture",
+      "input": "The iPhone has no network connection while the user dictates a thought that should later be processed into a Second Brain.",
+      "requiredBehaviors": [
+        "allow local append-only capture without network services",
+        "defer routing and promotion until downstream processing is available",
+        "preserve the raw entry for later normalization"
+      ],
+      "forbiddenBehaviors": [
+        "require an LLM call during dictation",
+        "require repository access or workflow automation to be reachable before saving the thought"
+      ],
+      "skillAnchors": [
+        "Der Capture-Pfad muss offline funktionieren",
+        "darf weder LLM, Repository-Zugriff, Workflow-Automation noch einen erreichbaren Second-Brain-Dienst voraussetzen"
+      ]
     }
   ]
 }

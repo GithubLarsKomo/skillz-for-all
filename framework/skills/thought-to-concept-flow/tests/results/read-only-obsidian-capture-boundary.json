@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "skill": "thought-to-concept-flow",
+  "caseId": "read-only-obsidian-capture-boundary",
+  "recordedAt": "2026-09-20",
+  "evaluator": "skill-author-static-review",
+  "requiredBehaviors": [
+    {
+      "behavior": "keep capture in external staging",
+      "passed": true,
+      "evidence": "Phase 1 places capture under iCloud Drive/Shortcuts/SecondBrain Capture when Obsidian is a read-only projection."
+    },
+    {
+      "behavior": "use Obsidian only after semantic artifacts exist",
+      "passed": true,
+      "evidence": "Phase 4 states that Obsidian is an adapter/view on already determined knowledge artifacts rather than the capture store or Source of Truth."
+    },
+    {
+      "behavior": "keep manual projection edits non-canonical",
+      "passed": true,
+      "evidence": "The Obsidian projection section requires manual changes to follow the obsidian-adapter candidate/reconciliation rules instead of directly changing canonical content."
+    }
+  ],
+  "forbiddenBehaviors": [
+    {
+      "behavior": "write the shortcut journal into the read-only vault",
+      "observed": false,
+      "evidence": "The flow says direct writing to the Obsidian inbox is allowed only for an explicitly writable-vault configuration."
+    },
+    {
+      "behavior": "treat vault folders as semantic routing",
+      "observed": false,
+      "evidence": "The capture storage rule states that the capture location determines neither topic nor later canonical Brain owner."
+    }
+  ],
+  "overall": "pass"
+}

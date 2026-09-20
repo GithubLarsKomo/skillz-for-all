@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "skill": "voice-capture-to-second-brain-workflow",
+  "caseId": "offline-capture",
+  "recordedAt": "2026-09-20",
+  "evaluator": "skill-author-static-review",
+  "requiredBehaviors": [
+    {
+      "behavior": "allow append-only local capture",
+      "passed": true,
+      "evidence": "The Capture Boundary requires the Apple shortcut to append locally and function without LLM, repository access, workflow automation or an available Second-Brain service."
+    },
+    {
+      "behavior": "defer normalization, routing and promotion until services are available",
+      "passed": true,
+      "evidence": "Routing and promotion are downstream stages after capture/normalization, so unavailable services do not block the initial capture."
+    },
+    {
+      "behavior": "preserve the raw capture",
+      "passed": true,
+      "evidence": "The raw capture remains in its source and is preserved separately from any promoted abstraction."
+    }
+  ],
+  "forbiddenBehaviors": [
+    {
+      "behavior": "block saving until an LLM answers",
+      "observed": false,
+      "evidence": "The workflow explicitly requires offline capture without waiting for an LLM."
+    },
+    {
+      "behavior": "require repository access or workflow automation during dictation",
+      "observed": false,
+      "evidence": "Repository access and workflow automation are named as services that must not be prerequisites for the capture path."
+    }
+  ],
+  "overall": "pass"
+}

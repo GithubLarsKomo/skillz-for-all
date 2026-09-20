@@ -6,7 +6,7 @@ This repository contains the validated **full-portable** distribution: the gener
 
 ## Included
 
-- 341 portable skills
+- 342 portable skills
 - provider-neutral Knowledge Store, promotion and lint contracts
 - Super Second Brain starter with an empty registry
 - Child Brain project-memory template

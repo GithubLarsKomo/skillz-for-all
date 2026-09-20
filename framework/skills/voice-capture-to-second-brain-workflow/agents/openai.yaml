@@ -1,0 +1,5 @@
+interface:
+  display_name: "Voice Capture To Second Brain Workflow"
+  short_description: "Orchestriert offline-taugliches Smartphone-/iPhone-Diktat aus einer append-only Capture-Datei über Normalisierung, id..."
+policy:
+  allow_implicit_invocation: true

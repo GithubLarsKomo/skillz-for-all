@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "skill": "voice-capture-to-second-brain-workflow",
+  "caseId": "edge-case",
+  "recordedAt": "2026-09-20",
+  "evaluator": "skill-author-static-review",
+  "requiredBehaviors": [
+    {
+      "behavior": "mark review-needed",
+      "passed": true,
+      "evidence": "The Ambiguität blockiert Writes section assigns state=review-needed when multiple equal-rank owners remain plausible."
+    },
+    {
+      "behavior": "record routing candidates",
+      "passed": true,
+      "evidence": "It requires retaining routing candidates and their rationale for review."
+    },
+    {
+      "behavior": "perform no canonical Brain write",
+      "passed": true,
+      "evidence": "It explicitly requires no Brain write while ownership remains ambiguous."
+    }
+  ],
+  "forbiddenBehaviors": [
+    {
+      "behavior": "pick the first registry match",
+      "observed": false,
+      "evidence": "Routing may continue only with an unambiguous owner, so taking the first registry match is not allowed."
+    },
+    {
+      "behavior": "write to both Brains",
+      "observed": false,
+      "evidence": "The canonical ownership rule prevents parallel writes to multiple equal-rank Brains."
+    }
+  ],
+  "overall": "pass"
+}

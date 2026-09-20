@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 1,
+  "skill": "voice-capture-to-second-brain-workflow",
+  "cases": [
+    {
+      "id": "happy-path",
+      "input": "An iPhone staging journal contains a durable project learning. The current federation registry identifies exactly one available owning Project Brain and the knowledge does not yet exist there.",
+      "requiredBehaviors": [
+        "normalize the capture",
+        "resolve the single canonical owner from the federation",
+        "apply the Knowledge Promotion Gate",
+        "write only the smallest durable abstraction",
+        "read back the canonical target before marking promoted",
+        "allow a downstream read-only Obsidian projection"
+      ],
+      "forbiddenBehaviors": [
+        "copy the raw dictation as the canonical knowledge item",
+        "write substantive content into the Super Second Brain",
+        "treat Obsidian as the Source of Truth"
+      ],
+      "skillAnchors": [
+        "Ein Capture ist nie allein deshalb kanonisches Wissen",
+        "erst danach state = promoted und canonicalRef setzen",
+        "Obsidian folgt nach der kanonischen Verarbeitung"
+      ]
+    },
+    {
+      "id": "duplicate-capture-reprocessing",
+      "input": "The same unchanged Thought Journal snapshot is processed twice after the first run already promoted one entry.",
+      "requiredBehaviors": [
+        "recognize the unchanged stable capture",
+        "skip a second canonical write",
+        "preserve the existing canonicalRef"
+      ],
+      "forbiddenBehaviors": [
+        "create duplicate knowledge because the pipeline ran again",
+        "assign a fresh identity to the unchanged entry"
+      ],
+      "skillAnchors": [
+        "Derselbe unveränderte Capture darf bei erneutem Einlesen keinen zweiten Brain-Write erzeugen",
+        "Ein bereits verarbeiteter Capture mit unverändertem Fingerprint wird übersprungen"
+      ]
+    },
+    {
+      "id": "offline-capture",
+      "input": "The user dictates a thought on an iPhone with no network connectivity; repository access, workflow automation and all LLM endpoints are unavailable.",
+      "requiredBehaviors": [
+        "allow append-only local capture",
+        "defer normalization, routing and promotion until services are available",
+        "preserve the raw capture"
+      ],
+      "forbiddenBehaviors": [
+        "block saving until an LLM answers",
+        "require repository access or workflow automation during dictation"
+      ],
+      "skillAnchors": [
+        "ohne LLM, Repository-Zugriff, Workflow-Automation oder erreichbaren Second-Brain-Dienst funktionieren",
+        "Capture muss offline und lokal möglich bleiben"
+      ]
+    },
+    {
+      "id": "edge-case",
+      "input": "A durable capture could reasonably belong to two active Collection Brains with equal ownership rank and no confirmed project context disambiguates them.",
+      "requiredBehaviors": [
+        "mark review-needed",
+        "record routing candidates",
+        "perform no canonical Brain write"
+      ],
+      "forbiddenBehaviors": [
+        "pick the first registry match",
+        "write to both Brains"
+      ],
+      "skillAnchors": [
+        "Ambiguität blockiert Writes",
+        "state = review-needed",
+        "keinen Brain-Write ausführen"
+      ]
+    },
+    {
+      "id": "wrong-brain-prevention",
+      "input": "A capture mentions several broad topics, including thought experiments, but is explicitly tied to a currently active named project whose Project Brain is available.",
+      "requiredBehaviors": [
+        "prefer the specific owning Project Brain",
+        "use confirmed project context over broad semantic similarity",
+        "avoid catch-all routing"
+      ],
+      "forbiddenBehaviors": [
+        "route to a generic catch-all Brain merely because the text is conceptual",
+        "duplicate the same durable fact across multiple Brains"
+      ],
+      "skillAnchors": [
+        "Ein generischer Catch-all-Brain oder eine allgemeine Inbox ist kein Fallback-Owner",
+        "Ein falscher Write ist schwerer zu korrigieren als ein wartender Capture"
+      ]
+    },
+    {
+      "id": "run-only",
+      "input": "The capture says only that the user should remember to think about an idea tomorrow and contains no durable reusable knowledge.",
+      "requiredBehaviors": [
+        "classify the result as run-only",
+        "retain only the processing state needed by the ledger",
+        "avoid a canonical knowledge write"
+      ],
+      "forbiddenBehaviors": [
+        "promote a transient reminder",
+        "create a Project-Memory event for the reminder"
+      ],
+      "skillAnchors": [
+        "transiente Erinnerung oder niedriger dauerhafter Nutzen -> run-only",
+        "run-only Captures keinen dauerhaften Brain-Eintrag erzeugen"
+      ]
+    },
+    {
+      "id": "workflow-knowledge-promotion-to-skillz",
+      "input": "A capture identifies a confirmed reusable workflow rule: read-only Obsidian must not simultaneously be the raw capture store for the same governed pipeline.",
+      "requiredBehaviors": [
+        "classify the knowledge as workflow/gate logic",
+        "route the durable abstraction to Skillz rather than a domain Brain",
+        "apply novelty and promotion checks before writing"
+      ],
+      "forbiddenBehaviors": [
+        "store the workflow rule in a generic catch-all domain Brain",
+        "copy the entire raw dictation into Skillz"
+      ],
+      "skillAnchors": [
+        "Workflow, Gate, Schema, Evaluation oder Routinglogik -> Skillz",
+        "kleinste dauerhafte Abstraktion formulieren"
+      ]
+    },
+    {
+      "id": "failure-case",
+      "input": "An edited read-only Obsidian projection has a newer filesystem timestamp and a manually drawn Canvas edge; a downstream step proposes treating both as canonical and writing them back to the Brain.",
+      "requiredBehaviors": [
+        "keep the canonical Brain unchanged",
+        "treat any allowed return path as a non-canonical candidate",
+        "require governance or reconciliation before any semantic write"
+      ],
+      "forbiddenBehaviors": [
+        "use the newer filesystem timestamp as authority",
+        "promote the manual Canvas edge directly"
+      ],
+      "skillAnchors": [
+        "Ein read-only Vault schreibt nie direkt in den kanonischen Brain zurück",
+        "höchstens als nicht-kanonische Kandidaten zurückgegeben"
+      ]
+    }
+  ]
+}

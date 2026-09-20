@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "skill": "voice-capture-to-second-brain-workflow",
+  "caseId": "run-only",
+  "recordedAt": "2026-09-20",
+  "evaluator": "skill-author-static-review",
+  "requiredBehaviors": [
+    {
+      "behavior": "classify the result as run-only",
+      "passed": true,
+      "evidence": "Ownership classification explicitly routes transient reminders or low-durability items to run-only."
+    },
+    {
+      "behavior": "retain only the processing state needed by the ledger",
+      "passed": true,
+      "evidence": "The ledger is defined as a processing projection that stores status and references rather than a second domain truth."
+    },
+    {
+      "behavior": "avoid a canonical knowledge write",
+      "passed": true,
+      "evidence": "The quality gate requires run-only captures to create no durable Brain entry."
+    }
+  ],
+  "forbiddenBehaviors": [
+    {
+      "behavior": "promote a transient reminder",
+      "observed": false,
+      "evidence": "The Promotion Gate lists transient status/reminder-like content among items not to promote."
+    },
+    {
+      "behavior": "create a Project-Memory event for the reminder",
+      "observed": false,
+      "evidence": "Project-Second-Brain integration explicitly says not every capture creates a Project-Memory event."
+    }
+  ],
+  "overall": "pass"
+}

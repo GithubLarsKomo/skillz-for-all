@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "skill": "voice-capture-to-second-brain-workflow",
+  "caseId": "wrong-brain-prevention",
+  "recordedAt": "2026-09-20",
+  "evaluator": "skill-author-static-review",
+  "requiredBehaviors": [
+    {
+      "behavior": "prefer the specific owning Project Brain",
+      "passed": true,
+      "evidence": "Ownership classification routes concrete project-specific knowledge to the responsible Project/Collection Brain."
+    },
+    {
+      "behavior": "use confirmed project context over broad semantic similarity",
+      "passed": true,
+      "evidence": "Federation routing uses confirmed project context together with scope/workflowFamilies/tags rather than broad semantic similarity alone."
+    },
+    {
+      "behavior": "avoid catch-all routing",
+      "passed": true,
+      "evidence": "a generic catch-all Brain and a general inbox are explicitly prohibited as fallback owners for unclear captures."
+    }
+  ],
+  "forbiddenBehaviors": [
+    {
+      "behavior": "route to a generic catch-all Brain merely because the text is conceptual",
+      "observed": false,
+      "evidence": "The workflow explicitly says a generic catch-all Brain is not a fallback owner merely because content is conceptual."
+    },
+    {
+      "behavior": "duplicate the same durable fact across multiple Brains",
+      "observed": false,
+      "evidence": "Canonical ownership and promotion novelty rules prevent duplicating the same durable fact across multiple active Brains."
+    }
+  ],
+  "overall": "pass"
+}

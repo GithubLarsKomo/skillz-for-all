@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "releaseVersion": "0.1.0",
+  "releaseVersion": "0.1.1",
   "profile": "full-portable",
   "storageProvider": "google-drive",
   "rebindRequired": true,
@@ -13,7 +13,7 @@
     },
     {
       "path": "deployment-manifest.json",
-      "sha256": "4202db8e86b0b99e239c6f31c794351047f265ca59bc99264d79dabbf8d0c244"
+      "sha256": "fb85280f56fff9718607bdc8df1b0600d485809f4e2df33ea093b10d294407ed"
     },
     {
       "path": "framework/config/tool-capabilities.json",
@@ -8265,11 +8265,11 @@
     },
     {
       "path": "framework/skills/thought-capture-journal/SKILL.md",
-      "sha256": "8a9ad0546fc22b0983ecef799a1cde264a16f28746e5a8968fc2e597145075ff"
+      "sha256": "d24af20f98abbc99daace70769a24072dc1813a41d40c923773aab34b54af23a"
     },
     {
       "path": "framework/skills/thought-capture-journal/tests/evaluation.json",
-      "sha256": "8a81b0d73bba3b9ebd70abc06cd33955bcc11d02297989e0d3c952c36ace41c5"
+      "sha256": "5ba3504db40ffcd20551d72f1ed4db5e06a6bb095ea4964a99d9a14b7a10c797"
     },
     {
       "path": "framework/skills/thought-capture-journal/tests/results/edge-case.json",
@@ -8282,6 +8282,14 @@
     {
       "path": "framework/skills/thought-capture-journal/tests/results/happy-path.json",
       "sha256": "3bc5afc76750513ff8e28fb2320d671a43a87a42349ca5e5cb433ce1aad93117"
+    },
+    {
+      "path": "framework/skills/thought-capture-journal/tests/results/offline-capture.json",
+      "sha256": "087418140cb83b983585cad8d1f171ecdbc778fb9bc321e7198f42888fecbc51"
+    },
+    {
+      "path": "framework/skills/thought-capture-journal/tests/results/read-only-obsidian-staging.json",
+      "sha256": "f7ce1d2df6364fb4db3ce795d0a310e522f6a2f971f600c8a8bc86e43d5f090e"
     },
     {
       "path": "framework/skills/thought-graph-extractor/agents/openai.yaml",
@@ -8313,11 +8321,11 @@
     },
     {
       "path": "framework/skills/thought-to-concept-flow/SKILL.md",
-      "sha256": "9057b31e7b65f306ccbf050a6cc652cea08c4548acc20a730c6eb51c712133bc"
+      "sha256": "1cc0746d17b920b63f9dbe8c9694950729fb16551ef659e755e2ec4d9251f6ce"
     },
     {
       "path": "framework/skills/thought-to-concept-flow/tests/evaluation.json",
-      "sha256": "b31f7d3e8ab61c16780e73be9a6f064b550ddffc30454c6f507afa70cfb46a4d"
+      "sha256": "f1bb9cd6bb0d6a39ce5069062da5ded9e7ef17fc0ee62a5ba5a0fab144bbca5c"
     },
     {
       "path": "framework/skills/thought-to-concept-flow/tests/results/edge-case.json",
@@ -8330,6 +8338,10 @@
     {
       "path": "framework/skills/thought-to-concept-flow/tests/results/happy-path.json",
       "sha256": "22aa4fffc9ba98ec8497931523a6de546d1ac9b8bb5ee02d385e469063f5b0f8"
+    },
+    {
+      "path": "framework/skills/thought-to-concept-flow/tests/results/read-only-obsidian-capture-boundary.json",
+      "sha256": "2332b660b82b1b491291452c26726115ad03a0d706748da437fc7d62a2034558"
     },
     {
       "path": "framework/skills/throwaway-prototype/agents/openai.yaml",
@@ -8688,6 +8700,50 @@
       "sha256": "aa1ddb2697f1ae8598e25e038c10bce7f6efedd9832bc2588926f8eaba7695d7"
     },
     {
+      "path": "framework/skills/voice-capture-to-second-brain-workflow/agents/openai.yaml",
+      "sha256": "de65c2ac6a0c895118d5f2a9c25529897efad9c4d4e07a3baa91c3aa4f0dd5bd"
+    },
+    {
+      "path": "framework/skills/voice-capture-to-second-brain-workflow/SKILL.md",
+      "sha256": "4ac0f63b2e9af0474851bfad1e88fdb3a3cfec7ccb34939bfe72a8f88c216537"
+    },
+    {
+      "path": "framework/skills/voice-capture-to-second-brain-workflow/tests/evaluation.json",
+      "sha256": "34976c7ed099ea77ad3761b54bd3a9a154f741e93476d15a069f4c0e54cb79bf"
+    },
+    {
+      "path": "framework/skills/voice-capture-to-second-brain-workflow/tests/results/duplicate-capture-reprocessing.json",
+      "sha256": "4aef5b3b02fc55337562ca1e84bbf3da38b0662decc8c427d8a76ffc857b30d3"
+    },
+    {
+      "path": "framework/skills/voice-capture-to-second-brain-workflow/tests/results/edge-case.json",
+      "sha256": "efc4dd5b98a37d2ff5e84125bdec9244e103f343567151baf14c80b2e2888b13"
+    },
+    {
+      "path": "framework/skills/voice-capture-to-second-brain-workflow/tests/results/failure-case.json",
+      "sha256": "48e6f4893975fcb3c98099958f8ad9598237466bd90309c14411349d4ad737c7"
+    },
+    {
+      "path": "framework/skills/voice-capture-to-second-brain-workflow/tests/results/happy-path.json",
+      "sha256": "82d59f953ac135f30b1a8fea63d24461de3a029b27fe228e66874f5a2bf70807"
+    },
+    {
+      "path": "framework/skills/voice-capture-to-second-brain-workflow/tests/results/offline-capture.json",
+      "sha256": "dd7c1406dc2a008195bb0b7aeb5ce4faa7221523af03fcbfe7c88b240053364b"
+    },
+    {
+      "path": "framework/skills/voice-capture-to-second-brain-workflow/tests/results/run-only.json",
+      "sha256": "a731388ecebe3b4ce006fe6b5f0b66ba1f2c188c26d595dcedb00f9b80e8af2f"
+    },
+    {
+      "path": "framework/skills/voice-capture-to-second-brain-workflow/tests/results/workflow-knowledge-promotion-to-skillz.json",
+      "sha256": "c0c5a1dcb403d7abacd68b26f535fdcf3039e0cb31fb7fc0792b5bd197b33769"
+    },
+    {
+      "path": "framework/skills/voice-capture-to-second-brain-workflow/tests/results/wrong-brain-prevention.json",
+      "sha256": "a157371bc7d1a233a8c1fbfcb9040079f2f0cdc8bdcb0c8e2ddd266a81d23b49"
+    },
+    {
       "path": "framework/skills/whistleblowing-law-specialist/agents/openai.yaml",
       "sha256": "14c2545f2a77d3c7dc7e4a336084153d54d24d8067257c36f0470074331e18bf"
     },
@@ -8841,7 +8897,7 @@
     },
     {
       "path": "handoff/claim.example.json",
-      "sha256": "2aac5440bb047316bdae5a6e43c0281196ef51805ee133c3982f4fcf2188c7a0"
+      "sha256": "031a4c11d34490fbdf6394c2b246d58ea2ce2c4aaddb26ecda62b4c37a1a8b5d"
     },
     {
       "path": "handoff/CLAIM.md",
@@ -8857,7 +8913,7 @@
     },
     {
       "path": "handoff/SUPPORT.md",
-      "sha256": "efc1a57bd5a67d2c4861e10a4aeeff63f2df0ca900a6b97b9778a1e1a0991ed2"
+      "sha256": "c06526916b688f9a82e88a54cfb7490cd6c8b6b26b63a7a52ffb0880ab63f1c3"
     },
     {
       "path": "handoff/SYSTEM-PROMPT.md",
@@ -8873,7 +8929,7 @@
     },
     {
       "path": "instance.yaml",
-      "sha256": "f5c2bde42e0d752d912226759388aa2e8f3af7835f5fb80dffbe36d5c70c7b89"
+      "sha256": "bafb2717f0baafd049841bd59fdfdfc1df7605f2e0f21b0e0d0ddf771f009f5d"
     },
     {
       "path": "LICENSE",
