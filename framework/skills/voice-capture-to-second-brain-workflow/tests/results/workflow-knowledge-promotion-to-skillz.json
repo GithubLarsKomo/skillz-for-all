@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "skill": "voice-capture-to-second-brain-workflow",
+  "caseId": "workflow-knowledge-promotion-to-skillz",
+  "recordedAt": "2026-09-20",
+  "evaluator": "skill-author-static-review",
+  "requiredBehaviors": [
+    {
+      "behavior": "classify the knowledge as workflow/gate logic",
+      "passed": true,
+      "evidence": "Ownership classification explicitly routes workflow, gate, schema, evaluation or routing logic to Skillz."
+    },
+    {
+      "behavior": "route the durable abstraction to Skillz rather than a domain Brain",
+      "passed": true,
+      "evidence": "The same ownership rule directs reusable workflow logic to Skillz rather than a domain Brain."
+    },
+    {
+      "behavior": "apply novelty and promotion checks before writing",
+      "passed": true,
+      "evidence": "The Promotion Gate requires semantic-equivalent/novelty checking before writing the smallest durable abstraction."
+    }
+  ],
+  "forbiddenBehaviors": [
+    {
+      "behavior": "store the workflow rule in a generic catch-all Brain as domain knowledge",
+      "observed": false,
+      "evidence": "a generic catch-all Brain is explicitly not a fallback owner; workflow logic has a defined canonical route to Skillz."
+    },
+    {
+      "behavior": "copy the entire raw dictation into Skillz",
+      "observed": false,
+      "evidence": "Promotion writes only the smallest durable abstraction and leaves raw dictation in its source."
+    }
+  ],
+  "overall": "pass"
+}
