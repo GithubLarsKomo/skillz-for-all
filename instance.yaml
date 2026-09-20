@@ -16,7 +16,7 @@ framework:
   storeId: primary
   logicalRoot: "Skillz"
   rootFolderId: null
-  releaseVersion: "0.1.0"
+  releaseVersion: "0.1.1"
   updateMode: manual
 
 secondBrain:
@@ -32,7 +32,7 @@ secondBrain:
 distribution:
   deploymentMode: starter
   profile: "full-portable"
-  sourceRelease: "0.1.0"
+  sourceRelease: "0.1.1"
   claimedAt: null
   rebindStatus: required
 
