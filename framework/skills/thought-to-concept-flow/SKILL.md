@@ -4,7 +4,7 @@ description: Orchestriert die Klärung eines Ziels per Grilling, die fortlaufend
 userFacing: true
 implicitInvocation: false
 category: workflow
-version: 0.2.0
+version: 0.3.0
 status: candidate
 owners:
   - White Label Maintainer
@@ -16,9 +16,9 @@ requires:
 outputs:
   - concept.md
   - concept-handoff.json
-  - optional Obsidian vault projection
+  - optional Obsidian read-only projection
   - optional Mermaid map
-lastEvaluated: 2026-08-23
+lastEvaluated: 2026-09-20
 ---
 
 # Thought to Concept Flow
@@ -66,11 +66,11 @@ Empfohlener Ablauf des Kurzbefehls:
 4. `\n## <Datum>\n<Gedanke>\n` erzeugen.
 5. an `Thought Journal.md` anhängen.
 
-Bei Obsidian-Nutzung liegt die Datei bevorzugt direkt unter:
+Wenn Obsidian als read-only Projektion der kanonischen Brains verwendet wird, liegt die Capture-Datei **nicht** im Vault, sondern bevorzugt unter:
 
-`iCloud Drive/Obsidian/<Vault>/00 Inbox/Thought Journal.md`
+`iCloud Drive/Shortcuts/SecondBrain Capture/Thought Journal.md`
 
-Damit ist die Erfassungsdatei bereits native Obsidian-Quelle und kann auf dem Desktop ohne Importkopie verarbeitet werden. Start des Kurzbefehls kann je nach Gerät über Siri, Home-Screen/Widget, Kontrollzentrum oder Aktionstaste erfolgen.
+Direktes Schreiben nach `iCloud Drive/Obsidian/<Vault>/00 Inbox/Thought Journal.md` ist nur zulässig, wenn dieser Vault bewusst als `writable-vault` betrieben wird. Die Capture-Ablage ist Storage/Staging und bestimmt weder Thema noch späteren kanonischen Brain-Owner. Start des Kurzbefehls kann je nach Gerät über Siri, Home-Screen/Widget, Kontrollzentrum oder Aktionstaste erfolgen.
 
 ### Android
 
@@ -115,7 +115,9 @@ Erhalte zeitliche Entwicklung, Widersprüche und Confidence. Ein häufiger oder 
 
 Der Nutzer kann einen oder beide Wege wählen:
 
-### A. Obsidian Universe / Vault
+### A. Obsidian Universe / Vault-Projektion
+
+Obsidian ist in der Standardarchitektur ein Adapter/View auf bereits bestimmte Wissensartefakte. Ein read-only Vault wird nicht zum Capture Store und nicht zur Source of Truth.
 
 1. Thought-Graph-Einheiten als `structured-knowledge-artifact` bereitstellen.
 2. `knowledge-map-generator` für den provider-neutralen Graphen nutzen.
@@ -138,7 +140,7 @@ Thought-Universe/
   INDEX.md
 ```
 
-Jede Note enthält stabile ID, Typ, SourceRefs, Confidence, Links zu verbundenen Nodes und relevante Originalzitate/Paraphrasen. Ordner dienen der Orientierung; Semantik kommt aus Metadaten und Relationen.
+Jede Note enthält stabile ID, Typ, SourceRefs, Confidence, Links zu verbundenen Nodes und relevante Originalzitate/Paraphrasen. Ordner dienen der Orientierung; Semantik kommt aus Metadaten und Relationen. Manuelle Änderungen in einer read-only Projektion dürfen nicht direkt kanonische Inhalte verändern; bei zulässigem Rückimport gelten ausschließlich die Candidate-/Reconciliation-Regeln des `obsidian-adapter`.
 
 ### B. Mermaid
 
@@ -209,6 +211,7 @@ Neue Gedanken dürfen das Konzept verändern. Frühere Entscheidungen werden abe
 - Kein Gedanke geht beim Import verloren; Rohquelle bleibt erhalten.
 - Graphbeziehungen besitzen SourceRefs, inferierte Beziehungen zusätzlich Confidence/Rationale.
 - Obsidian-/Mermaid-Darstellung fügt keine neue Semantik hinzu.
+- Bei read-only Obsidian bleibt Capture außerhalb der Projektion; direkter Vault-Write erfordert einen ausdrücklich als `writable-vault` konfigurierten Modus.
 - Konzept erklärt sichtbar, warum bestimmte Gedanken ausgewählt, priorisiert oder zurückgestellt wurden.
 - Offene Fragen und Widersprüche bleiben sichtbar.
 - Ergebnis enthält ausführbare nächste Schritte und einen geeigneten Downstream-Handoff.
