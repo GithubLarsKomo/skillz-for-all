@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "skill": "voice-capture-to-second-brain-workflow",
+  "caseId": "failure-case",
+  "recordedAt": "2026-09-20",
+  "evaluator": "skill-author-static-review",
+  "requiredBehaviors": [
+    {
+      "behavior": "keep the canonical Brain unchanged",
+      "passed": true,
+      "evidence": "The Obsidian-Projektion section states that a read-only vault writes never directly back to the canonical Brain."
+    },
+    {
+      "behavior": "treat any allowed return path as a non-canonical candidate",
+      "passed": true,
+      "evidence": "Permitted manual Obsidian changes are returned only as non-canonical candidates."
+    },
+    {
+      "behavior": "require governance or reconciliation before any semantic write",
+      "passed": true,
+      "evidence": "Candidate changes must pass governance/reconciliation before any semantic canonical write."
+    }
+  ],
+  "forbiddenBehaviors": [
+    {
+      "behavior": "use the newer filesystem timestamp as authority",
+      "observed": false,
+      "evidence": "Obsidian presentation metadata and local edits are non-canonical, so a newer filesystem timestamp cannot become authority."
+    },
+    {
+      "behavior": "promote the manual Canvas edge directly",
+      "observed": false,
+      "evidence": "Manual Canvas edges cannot directly determine Brain routing or canonical semantics and must remain candidate relations."
+    }
+  ],
+  "overall": "pass"
+}
