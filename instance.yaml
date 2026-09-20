@@ -1,9 +1,9 @@
 schemaVersion: 2
 
 instance:
-  id: pilot
-  displayName: "Pilot AI Workbench"
-  ownerLabel: "White Label Maintainer"
+  id: skillz-for-all
+  displayName: "Skillz for All"
+  ownerLabel: "Skillz for All maintainers"
   defaultLanguage: en
 
 knowledgeStores:
@@ -37,10 +37,10 @@ distribution:
   rebindStatus: required
 
 branding:
-  productName: "Pilot AI Workbench"
-  organizationName: "White Label Maintainer"
+  productName: "Skillz for All"
+  organizationName: "Skillz for All maintainers"
   supportUrl: null
 
 licensing:
-  mode: proprietary
-  licenseFile: null
+  mode: Apache-2.0
+  licenseFile: "LICENSE"
