@@ -7,6 +7,12 @@
 
 This contract separates evidence, interpretation and recommendations. It prevents a research, analysis, report or rewrite request from silently becoming an advisory mandate.
 
+## 0. Precedence and default authority
+
+This is a repository-wide default contract. It overrides skill-local schemas, templates or habitual output sections that would otherwise add a recommendation, prioritization, roadmap, mitigation, owner/cadence, decision posture, or next action.
+
+A skill name or workflow type such as `assessment`, `due-diligence`, `strategy`, `review`, `report` or `analysis` does **not** itself authorize advice. Recommendation fields that are mandatory in an older schema are treated as optional/null unless the user explicitly authorizes advisory output.
+
 ## 1. Recommendation Authorization Gate
 
 Default state: **recommendations are not authorized**.
@@ -36,7 +42,7 @@ Every third-party recommendation must:
 
 ### Substantiated recommendations
 
-Recommendations from peer-reviewed publications, consensus statements, professional guidelines, standards/guidance documents or competent authorities must be visibly presented as quotations when their recommendation wording is material.
+Recommendations from peer-reviewed publications, consensus statements, professional guidelines, standards/guidance documents or competent authorities must be visibly presented as quotations when their recommendation wording is material. Peer review, consensus or guideline status strengthens provenance but does not transfer recommendation ownership to the assistant.
 
 Use:
 
