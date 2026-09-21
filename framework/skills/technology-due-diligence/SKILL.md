@@ -29,6 +29,14 @@ Der Orchestrator enthält **keine eigene Patent-, Claim-, Regulatory- oder Suppl
 
 Verwenden bei Technology Due Diligence für Licensing, Partnership, Acquisition, Strategic Investment, Make/Buy oder Supplier Selection, wenn mehrere technische, IP-, Regulatory-, Supply/Scale- oder kommerzielle Aspekte zusammengeführt werden sollen.
 
+## Recommendation Authorization Gate
+
+Vor jeder advisory Ausgabe explizit prüfen, ob der Nutzer Empfehlungen, Priorisierung, einen bevorzugten Pfad, Decision Support, einen Maßnahmenplan oder nächste Schritte beauftragt hat.
+
+Ohne diese Autorisierung bleibt der Output deskriptiv: Evidenz, Red Flags, Unknowns, Optionen, Abhängigkeiten und offene Entscheidungsfragen. Dann **keine** Decision Posture, Priorisierung, Mitigation, `nextSafeAction`, Roadmap oder Handlungsempfehlung erzeugen.
+
+Dritt-Empfehlungen bleiben attribuiert. Empfehlungen aus peer-reviewten Publikationen, Consensus Statements, Guidelines oder behördlicher/standardsetzender Guidance werden als kurze Zitate gekennzeichnet und nicht als eigene DD-Empfehlung übernommen.
+
 ## Decision Context
 
 Vor Orchestrierung mindestens erfassen:
@@ -123,9 +131,11 @@ Nur wenn kritische Unsicherheit die nächste Entscheidung blockiert und eine meh
 
 Für einfache DDs ohne solche offenen Investigationen wird Wayfinder **nicht** aufgerufen.
 
-### 8. Decision Posture mit Preconditions formulieren
+### 8. Decision Posture nur bei autorisiertem Advisory Scope
 
-Der Orchestrator trifft keine Board-/Management-/Legal-/Regulatory-Entscheidung. Er erzeugt stattdessen:
+Der Orchestrator trifft keine Board-/Management-/Legal-/Regulatory-Entscheidung.
+
+**Nur wenn der Recommendation Authorization Gate bestanden ist**, erzeugt er:
 
 - `decisionPosture.status`: `supportable | supportable-with-preconditions | not-yet-supportable | evidence-insufficient | material-blocker-identified`,
 - `decisionOwner`,
@@ -135,6 +145,8 @@ Der Orchestrator trifft keine Board-/Management-/Legal-/Regulatory-Entscheidung.
 - `materialBlockers[]`,
 - `stopConditions[]`,
 - `nextSafeAction`.
+
+Ohne Advisory-Autorisierung endet die Synthese bei `evidencePosture`, Red Flags, Unknowns, Optionen, Preconditions und offenen Entscheidungsfragen; `decisionPosture` und `nextSafeAction` bleiben aus.
 
 ## Output-Verträge
 
@@ -153,11 +165,12 @@ Der Orchestrator trifft keine Board-/Management-/Legal-/Regulatory-Entscheidung.
   "decisionDrivers": [],
   "options": [],
   "preconditions": [],
-  "decisionPosture": {}
+  "evidencePosture": {},
+  "decisionPosture": null
 }
 ```
 
-`due-diligence-handoff.json` ist Wayfinder-kompatibel und enthält mindestens `facts, assumptions, hypotheses, unknowns, blockers, decisions, investigations, risks, nextSafeAction`. Es wird auch dann erzeugt, wenn keine Wayfinder-Investigation nötig ist.
+`due-diligence-handoff.json` ist Wayfinder-kompatibel und enthält mindestens `facts, assumptions, hypotheses, unknowns, blockers, decisions, investigations, risks`. `nextSafeAction` ist nur bei explizit autorisiertem Advisory Scope zulässig. Es wird auch dann erzeugt, wenn keine Wayfinder-Investigation nötig ist.
 
 `technology-due-diligence.md` ist das Executive Assessment mit Scope, Domain Routing, Kernbefunden, Red Flags, Preconditions, Decision Posture und nächster sicherer Aktion.
 
@@ -185,8 +198,10 @@ Pass nur wenn:
 - Specialist Ergebnisse auf deren Evidence zurückgeführt werden,
 - kritische Unknowns nicht in Scores versteckt werden,
 - volatile Inputs `asOf` besitzen,
-- Decision Posture statt autoritativem Go/No-Go verwendet wird,
-- `nextSafeAction` ohne versteckte Fachannahmen ausführbar ist.
+- Decision Posture nur bei explizit autorisiertem Advisory Scope verwendet wird,
+- ohne Advisory-Autorisierung keine Recommendation-/Action-Felder befüllt werden,
+- Dritt-Empfehlungen attribuiert und substantiierte Empfehlungen als Zitate gekennzeichnet bleiben,
+- ein gegebenenfalls autorisiertes `nextSafeAction` ohne versteckte Fachannahmen ausführbar ist.
 
 ## Fehlerbehandlung
 
@@ -196,4 +211,4 @@ Ein pauschaler Score, der technische Stärke und materielle FTO-/Regulatory-Unkn
 
 ## Abschlusskriterien
 
-Abgeschlossen ist der Skill, wenn Domain Routing explizit, vorhandene Specialist Assessments wiederverwendet, nur erforderliche neue Assessments angestoßen, Cross-Domain-Abhängigkeiten sichtbar, Red Flags priorisiert, Decision Posture und Preconditions explizit und genau eine nächste sichere Aktion definiert sind.
+Abgeschlossen ist der Skill, wenn Domain Routing explizit, vorhandene Specialist Assessments wiederverwendet, nur erforderliche neue Assessments angestoßen, Cross-Domain-Abhängigkeiten sichtbar und Red Flags/Unknowns nachvollziehbar sind. Decision Posture, Priorisierung und nächste sichere Aktion sind nur Abschlussbestandteile, wenn der Nutzer Advisory Output ausdrücklich autorisiert hat.
