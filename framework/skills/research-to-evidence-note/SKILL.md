@@ -52,6 +52,7 @@ Wenn die Frage zu breit ist, enger formulieren. Fehlende Evidenz nicht durch pla
 Behandle jede belastbare Aussage als Claim mit mindestens:
 
 - `claim`: präzise Aussage,
+- `statementType`: `fact | source-interpretation | third-party-recommendation | assistant-interpretation | assistant-recommendation`,
 - `support`: Quellenreferenzen, die den Claim stützen,
 - `contradictions`: Quellenreferenzen, die widersprechen oder relevante Abweichungen zeigen,
 - `confidence`: `high`, `medium` oder `low`,
@@ -110,7 +111,11 @@ Keine numerischen Wahrscheinlichkeiten erfinden.
 
 ### 6. Synthese schreiben
 
-Die Kurzsynthese darf nur Claims zusammenfassen, die in der Evidenzliste auftauchen. Markiere Unsicherheit sprachlich sichtbar. Trenne Ergebnis von Empfehlung: Eine Handlungsempfehlung muss erkennen lassen, welche Evidenz und welche Wert-/Risikoprämisse sie verbindet.
+Die Kurzsynthese darf nur Claims zusammenfassen, die in der Evidenzliste auftauchen. Markiere Unsicherheit sprachlich sichtbar.
+
+**Recommendation Authorization Gate:** Eine eigene Handlungsempfehlung darf nur entstehen, wenn der Nutzer Empfehlungen, Rat, Priorisierung, Auswahl, Umsetzungsvorschläge oder Decision Support ausdrücklich beauftragt hat. Reine Recherche-, Analyse-, Bewertungs-, Dokumentations- oder Berichtsanfragen autorisieren keine Empfehlung.
+
+Empfehlungen Dritter bleiben Quellenclaims. Sie müssen sichtbar attribuiert bleiben. Empfehlungen aus peer-reviewten Publikationen, Consensus Statements, Guidelines, Standards/Guidance oder zuständigen Behörden werden als kurze direkte Zitate gekennzeichnet; wenn die Originalformulierung zu lang ist, verwende ein kurzes entscheidendes Zitat plus klar attribuierte Paraphrase. Eine Dritt-Empfehlung darf nie in eine nicht attribuierte eigene Imperativform umgeschrieben werden.
 
 ### 7. Offene Punkte ableiten
 
@@ -131,6 +136,7 @@ Liste nur offene Fragen auf, deren Beantwortung die Entscheidung oder die Confid
     {
       "id": "C1",
       "claim": "...",
+      "statementType": "fact",
       "basis": "direct",
       "confidence": "high",
       "support": ["S1"],
@@ -172,6 +178,8 @@ Vor Übergabe prüfen:
 - widersprechende Evidenz ist sichtbar und nicht stillschweigend entfernt,
 - Aktualität ist bei zeitabhängigen Fragen bewertet,
 - Confidence folgt Evidenzqualität und Konfliktlage,
+- keine eigene Empfehlung erscheint ohne explizite Recommendation-Autorisierung,
+- Dritt-Empfehlungen bleiben attribuiert; substantiierte Empfehlungen aus peer-reviewten Quellen, Consensus Statements, Guidelines oder Guidance sind als Zitate gekennzeichnet,
 - keine Empfehlung wird als Fakt dargestellt,
 - offene Punkte sind entscheidungsrelevant,
 - persistierte Inhalte respektieren die Datenschutzgrenze.
@@ -206,6 +214,10 @@ Zwei hochwertige Quellen widersprechen sich aufgrund unterschiedlicher Zeitpunkt
 ### Fehlerfall
 
 Eine vorgeschlagene Notiz übernimmt eine unbelegte Schlussfolgerung als Fakt, verschweigt eine widersprechende Quelle und nennt eine veraltete Community-Aussage „high confidence“. Stoppe und korrigiere Claim-Basis, Konflikt und Confidence.
+
+## Recommendation- und Attribution-Governance
+
+Dieser Skill folgt dem repositoryweiten `RECOMMENDATION-ATTRIBUTION-CONTRACT.md`. Recommendation Ownership und Zitatstatus sind Teil der Evidenztreue und dürfen downstream nicht verloren gehen.
 
 ## Abschlusskriterien
 
