@@ -25,7 +25,7 @@ Beweise nicht, dass zwei Texte identisch sind, sondern finde Stellen, an denen e
 
 1. Quelle und Rewrite segmentweise ausrichten.
 2. Optional `scripts/fidelity_tokens.py` ausführen, um konservativ Zahlen, Einheiten, DOI/PMID/URLs, nummerierte Referenzen und vorgegebene Fachtermini zu vergleichen.
-3. Claims, Negationen, Bedingungen, Ausnahmen, Zeitbezug, Modalität und Hedging semantisch vergleichen.
+3. Claims, Negationen, Bedingungen, Ausnahmen, Zeitbezug, Modalität, Hedging, Recommendation Ownership und Zitatstatus semantisch vergleichen.
 4. Ursache-Wirkungs-Beziehungen besonders prüfen; stilistische Straffung darf keine neue Kausalität erzeugen.
 5. Jede relevante Differenz klassifizieren.
 6. Bei `added` oder `removed` eines fachlichen Claims sowie nicht autorisierten Zahlen-/Quellenänderungen Hard Fail auslösen.
@@ -59,7 +59,13 @@ Beweise nicht, dass zwei Texte identisch sind, sondern finde Stellen, an denen e
 - `unknown`, `not assessed`, `not available` und ähnliche epistemisch unterschiedliche Aussagen dürfen nicht gleichgesetzt werden.
 - `may`, `could`, `likely`, `supports`, `demonstrates` und ihre deutschen Entsprechungen als Modalitäts-/Evidenzmarker behandeln.
 - Terminologiewechsel prüfen, wenn er Referenz oder Scope verändern könnte.
+- Eine neu hinzugefügte Assistant-Empfehlung ohne explizite Recommendation-Autorisierung ist ein Hard Fail.
+- Eine Dritt-Empfehlung, die ihre Attribution oder ihre erforderliche Zitatkennzeichnung verliert, ist ein Hard Fail.
 - Deterministische Token-Gleichheit beweist keine semantische Gleichheit.
+
+## Recommendation-/Attribution-Gate
+
+Der Verifier folgt dem repositoryweiten `RECOMMENDATION-ATTRIBUTION-CONTRACT.md` und prüft ausdrücklich, ob eine sprachliche Überarbeitung aus einer Quellenempfehlung eine eigene Empfehlung oder aus einer Beschreibung eine Handlungsanweisung gemacht hat.
 
 ## Abschluss
 
