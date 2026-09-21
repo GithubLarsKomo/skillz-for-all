@@ -1,6 +1,6 @@
 ---
 name: technology-due-diligence
-description: Orchestriert evidenzbasierte Technology-Due-Diligence für Licensing, Partnership, Acquisition, Make/Buy, Supplier Selection oder Investment, entscheidet zuerst über benötigte Specialist Depth und priorisiert Red Flags, Unknowns und nächste sichere Aktionen ohne Fachlogik der Spezial-Skills zu duplizieren.
+description: Orchestriert evidenzbasierte Technology-Due-Diligence für Licensing, Partnership, Acquisition, Make/Buy, Supplier Selection oder Investment, entscheidet zuerst über benötigte Specialist Depth und konsolidiert Red Flags und Unknowns; Priorisierung, Empfehlungen und nächste Aktionen entstehen nur bei explizit autorisiertem Advisory Scope.
 userFacing: true
 implicitInvocation: true
 category: workflow
@@ -21,7 +21,7 @@ lastEvaluated: 2026-08-19
 
 ## Zweck und Grenze
 
-Orchestriere eine entscheidungsorientierte Technology Due Diligence aus bestehenden oder bei Bedarf erzeugten Spezialbewertungen. Der Skill führt Ergebnisse zusammen, priorisiert Cross-Domain-Red-Flags und Unknowns und erzeugt eine sichere nächste Aktion.
+Orchestriere eine evidenzbasierte Technology Due Diligence aus bestehenden oder bei Bedarf erzeugten Spezialbewertungen. Der Skill führt Ergebnisse, Cross-Domain-Red-Flags und Unknowns zusammen. Priorisierung, Decision Posture, Maßnahmen und nächste Aktionen entstehen nur, wenn der Nutzer einen Advisory Output ausdrücklich beauftragt hat.
 
 Der Orchestrator enthält **keine eigene Patent-, Claim-, Regulatory- oder Supplier-Quality-Fachlogik**. Er delegiert diese Domänen und darf deren Unsicherheit nicht durch einen künstlichen Score verdecken.
 
@@ -119,9 +119,9 @@ Bewerte nur anwendbare Dimensionen und markiere andere als `not-applicable`:
 
 Keine Gesamtpunktzahl erfinden, wenn die Gewichtung nicht bestätigt ist.
 
-### 6. Red Flags und Unknowns priorisieren
+### 6. Red Flags und Unknowns strukturieren
 
-Jeder Red Flag Record enthält `issue`, `domain`, `evidence`, `confidence`, `impact`, `reversibility`, `decisionTiming`, `owner/authority`, `nextEvidence` und `stopCondition`.
+Ohne Advisory-Autorisierung Red Flags und Unknowns nach Domäne, Evidenz, Confidence und möglicher Wirkung **strukturieren, aber nicht ranken oder priorisieren**. Felder wie `owner/authority`, `nextEvidence`, `decisionTiming`, `stopCondition` oder eine Reihenfolge nach Dringlichkeit sind nur zulässig, wenn der Nutzer Priorisierung bzw. Handlungsvorschläge ausdrücklich beauftragt hat.
 
 **Kritische Unknowns nicht in Scores verstecken.** Ein materieller FTO-Screening-Concern oder instabiler Regulatory Context kann eine positive technische Bewertung blockieren.
 
@@ -172,7 +172,7 @@ Ohne Advisory-Autorisierung endet die Synthese bei `evidencePosture`, Red Flags,
 
 `due-diligence-handoff.json` ist Wayfinder-kompatibel und enthält mindestens `facts, assumptions, hypotheses, unknowns, blockers, decisions, investigations, risks`. `nextSafeAction` ist nur bei explizit autorisiertem Advisory Scope zulässig. Es wird auch dann erzeugt, wenn keine Wayfinder-Investigation nötig ist.
 
-`technology-due-diligence.md` ist das Executive Assessment mit Scope, Domain Routing, Kernbefunden, Red Flags, Preconditions, Decision Posture und nächster sicherer Aktion.
+`technology-due-diligence.md` ist das Executive Assessment mit Scope, Domain Routing, Kernbefunden, Red Flags, Unknowns, Optionen und Evidenzgrenzen. Decision Posture, Priorisierung und nächste sichere Aktion werden nur bei explizit autorisiertem Advisory Scope ergänzt.
 
 ## IVD-Komposition
 
@@ -205,7 +205,7 @@ Pass nur wenn:
 
 ## Fehlerbehandlung
 
-Wenn ein `REQUIRED` Specialist Assessment fehlt oder `BLOCKED` ist, darf der Orchestrator dessen Fachresultat nicht erfinden. Er markiert den Domain-Status entsprechend und setzt den Decision Posture auf `not-yet-supportable` oder `evidence-insufficient`, sofern die Lücke entscheidungsrelevant ist.
+Wenn ein `REQUIRED` Specialist Assessment fehlt oder `BLOCKED` ist, darf der Orchestrator dessen Fachresultat nicht erfinden. Er markiert den Domain-Status und die Evidenzlücke. Einen `decisionPosture` setzt er nur, wenn Advisory Output ausdrücklich autorisiert ist.
 
 Ein pauschaler Score, der technische Stärke und materielle FTO-/Regulatory-Unknowns mittelt, ist ein Qualitätsfehler.
 
