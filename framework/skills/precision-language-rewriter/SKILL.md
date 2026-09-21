@@ -57,7 +57,7 @@ Darf Absätze stärker rekonstruieren, Reihenfolge innerhalb eines Abschnitts op
 ## Verbindliche Stilregeln
 
 - Direkte, analytische Formulierungen bevorzugen, aber keine Evidenzstufe erhöhen.
-- Empfehlungen als sachliche Feststellung formulieren, wenn die Quelle sie bereits trägt.
+- Empfehlungen nicht in sachliche Feststellungen umschreiben. Eine Dritt-Empfehlung bleibt als Empfehlung der Quelle sichtbar attribuiert; eine eigene Empfehlung darf nur bei expliziter Autorisierung entstehen.
 - Unsicherheit epistemisch präzise formulieren: fehlende Evidenz nicht als ontologische Unbekanntheit darstellen.
 - Hedging nur entfernen, wenn die Evidenz die klarere Aussage trägt.
 - Wertungswörter nur mit konkret benannter Begründung verwenden.
@@ -79,7 +79,13 @@ Formelle Reports ohne unnötige Kontraktionen. Passiv zulassen, wenn Prozess ode
 - Keine Zahlen, Quellen, Negationen, Bedingungen oder fachlichen Claims still verändern.
 - Keine Unsicherheit in Gewissheit umschreiben.
 - Keine rhetorische Zuspitzung hinzufügen, die im Ausgangstext nicht eindeutig angelegt ist.
+- Keine neue Empfehlung, Priorisierung, Handlungsanweisung, Mitigation oder Next Step hinzufügen.
+- Keine Dritt-Empfehlung de-attribuieren; vorhandene Zitatmarkierung substantiierter Empfehlungen erhalten.
 - Keine "Humanisierung" durch Fehler, Zufall oder Detector-Evasion.
+
+## Recommendation-/Zitat-Fidelity
+
+Der Rewriter folgt dem repositoryweiten `RECOMMENDATION-ATTRIBUTION-CONTRACT.md`. Recommendation Ownership ist semantischer Inhalt. Ein Wechsel von "die Autoren empfehlen" zu "es sollte" oder von einem Zitat zu einer nicht attribuierten Paraphrase gilt als Bedeutungsänderung.
 
 ## Change Map
 
