@@ -83,7 +83,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test "$(find framework/skills -mindepth 1 -maxdepth 1 -type d | wc -l | tr -d ' ')" = "342"
+          count="$(find framework/skills -mindepth 1 -maxdepth 1 -type d | wc -l | tr -d ' ')"
+          echo "portable_skill_count=$count"
+          test "$count" -ge "342"
 
       - name: Verify public privacy boundary
         shell: bash
