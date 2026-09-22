@@ -12,7 +12,7 @@ A **Knowledge Store** is the persistence layer used for framework contracts, fed
 
 The architecture reasons in stable logical locators. Provider-specific adapters translate those locators into Google Drive, GitHub or another supported backend.
 
-For white-label deployments the default provider is **Google Drive**. GitHub is optional.
+The framework semantics remain provider-neutral, but the **standard claimed Skillz-for-all runtime uses a mandatory Google Drive persistence profile**. All mutable tenant framework state, federation/Project-Memory state, durable tenant knowledge and generated human-facing artifacts are persisted in recipient-owned Google Drive. GitHub or another producer system may remain authoritative for software/source-control/runtime artifacts, but is not a substitute canonical tenant Knowledge Store or final artifact-delivery root in this profile.
 
 ## Core principles
 
@@ -23,6 +23,9 @@ For white-label deployments the default provider is **Google Drive**. GitHub is 
 5. **Read-back verification** — a write is not successful until the provider returns or re-reads the intended object.
 6. **No hidden cross-tenant dependency** — a handed-off instance must be able to operate after source-owner access is removed.
 7. **Source-of-Truth ownership is independent of storage provider.**
+8. **Drive-only tenant persistence** — after Claim/Rebind, recipient-owned Google Drive is the only canonical mutable tenant persistence layer in the standard Skillz-for-all profile.
+9. **Producer separation** — source code, CI/CD, deployable runtime artifacts and controlled producer records stay with their authoritative producer systems and are referenced from Drive rather than copied merely for uniformity.
+10. **Link-first delivery** — a generated human-facing artifact is final only after canonical Drive persistence and read-back verification under `docs/DOCUMENT-ARTIFACT-DELIVERY-CONTRACT.md`.
 
 ## Logical locator
 
@@ -103,15 +106,22 @@ Moving or renaming a Drive object does not change logical identity when the file
 
 Human-readable paths MAY be refreshed after moves. They MUST NOT be treated as the only canonical locator.
 
-## Optional GitHub adapter
+## GitHub and other producer/source-control systems
 
-A GitHub adapter may continue to map:
+Provider-neutral framework semantics may still describe adapters for migration, import or source references, but the standard claimed Skillz-for-all tenant does not use GitHub as its canonical mutable Knowledge Store.
 
-- store root -> repository/ref;
-- object -> repository path;
-- revision -> commit/blob SHA.
+GitHub or another producer system may remain authoritative for:
 
-GitHub-specific branch, PR and commit semantics are adapter capabilities, not architectural requirements.
+- software source and configuration;
+- branches, commits, PRs and review evidence;
+- CI/CD and release automation;
+- schemas/migrations required by a producer;
+- deployable runtime artifacts;
+- public framework distribution/source history.
+
+Project Memory stores observed stable references to those producer objects. Generated tenant documents, presentations, spreadsheets, publications and ordinary durable project knowledge remain in recipient-owned Google Drive.
+
+A custom deployment that intentionally replaces the standard Drive-only persistence profile is a separate architecture profile and must not be silently inferred from the presence of a GitHub repository.
 
 ## Release transaction boundary
 
