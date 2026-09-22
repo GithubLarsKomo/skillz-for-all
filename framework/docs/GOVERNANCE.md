@@ -53,3 +53,14 @@ Eine Deprecation ist eine Migration, kein Alias auf Dauer. Der alte Skill darf d
 ## Repository-Gates
 
 Pull Requests müssen den Repository-Validator und die Prüfung generierter Dateien bestehen. Ausnahmen werden im Pull Request begründet und zeitlich begrenzt. Der Capability-Health-Report trennt Evaluationserfolg, Evaluation-Coverage, Discoverability und Output-Ownership voneinander.
+
+
+## Drive-Runtime-Gate
+
+Für Skillz for All ist Google Drive der verbindliche Runtime-Store nach Claim/Rebind.
+
+- Framework-Runtime, Super/Child Brains und erzeugte Nicht-Code-Artefakte folgen `docs/DRIVE-STORAGE-AND-DELIVERY-CONTRACT.md`.
+- Dokument-, Präsentations-, EPUB-, Learning-, Report-, Bild-, HTML- und Media-Workflows dürfen lokale/Sandbox-Dateien nur als Build-Zwischenstand behandeln.
+- Ein erfolgreicher Handoff liefert verifizierte Drive-Links; fehlende Drive-Schreibfähigkeit bleibt `pending|blocked`.
+- Source Code, Build/Test/Runtime-Assets und kontrollierte Records bleiben in ihren autoritativen Producer-/Source-Systemen und werden aus Drive referenziert.
+- Neue oder geänderte Delivery-Orchestratoren müssen diese Storage-Grenze in ihren Evaluationen oder einem gemeinsamen Regression-Gate abdecken.
