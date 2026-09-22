@@ -4,7 +4,7 @@ description: Orchestriert die Erstellung oder Überarbeitung editierbarer DOCX-D
 userFacing: true
 implicitInvocation: true
 category: workflow
-version: 0.1.0
+version: 0.2.0
 status: candidate
 owners:
   - White Label Maintainer
@@ -12,7 +12,13 @@ requires:
   - document-template-profiler
   - document-layout-qa
   - document-render-verifier
+  - artifact-production-contract
+  - artifact-contract-audit
 consumes:
+  - artifact-production-contract.json
+  - artifact-figure-contracts.json
+  - artifact-contract-audit.json
+  - artifact-contract-audit.md
   - document-template-profile.json
   - document-layout-qa.json
   - document-layout-qa.md
@@ -148,6 +154,19 @@ Vor PASS:
 ## Übergabe
 
 Eigene Outputs sind `document.docx`, optional `document.pdf`, `document-qa.md` und `document-delivery-manifest.json`. Profiler- und QA-Artefakte bleiben bei ihren spezialisierten Producer-Skills und werden referenziert.
+
+## Gemeinsame Artifact-Governance und Drive-Delivery
+
+Dieser Workflow unterliegt verbindlich:
+
+- `docs/ARTIFACT-PRODUCTION-CONTRACT.md`;
+- `docs/DOCUMENT-ARTIFACT-DELIVERY-CONTRACT.md`.
+
+Vor materieller Produktion muss eine aktive `frozen` Revision des Artifact Production Contract vorliegen; bereits bestätigte Anforderungen werden nicht erneut erfragt. `INVARIANT`-Festlegungen dürfen nicht still verändert werden, `CONTROLLED`-Abweichungen brauchen dokumentierten Grund/Impact und `ADAPTIVE`-Entscheidungen dürfen Intent und Bedeutung nicht verändern.
+
+Nach Format-/Render-QA wird `artifact-contract-audit` auf die **exakt auszuliefernde Revision** angewendet. Erst danach wird genau diese Revision in den kanonischen recipient-owned Google-Drive-Ort geschrieben, read-back-verifiziert und über den beobachteten Drive-Link ausgeliefert.
+
+Ein lokales/sandboxed Ergebnis ist niemals der erfolgreiche Endzustand. Ist Drive nicht beschreibbar, bleibt die Delivery `pending|blocked`.
 
 ## Abschlusskriterien
 
