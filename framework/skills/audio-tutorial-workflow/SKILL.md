@@ -4,7 +4,7 @@ description: Überführt einen durch Grilling geklärten Tutorial-Auftrag in ein
 userFacing: true
 implicitInvocation: true
 category: workflow
-version: 0.3.0
+version: 0.4.0
 status: candidate
 owners:
   - White Label Maintainer
@@ -20,7 +20,7 @@ outputs:
   - spoken-tutorial.epub
   - audio-tutorial-run.json
   - voice-guidance.md
-lastEvaluated: 2026-09-06
+lastEvaluated: 2026-09-22
 ---
 
 # Audio Tutorial Workflow
@@ -208,11 +208,18 @@ Vor PASS prüfen:
   "voiceGuidanceRef": "voice-guidance.md",
   "listenerReviewRef": "spoken-tutorial-listener-review.json",
   "listenerGateStatus": "pass|minor_revision|major_revision|fail",
+  "driveArtifacts": [],
+  "storageStatus": "verified|pending|blocked",
   "status": "pass|review|fail",
   "warnings": []
 }
 ```
 
+## Drive Storage and Delivery Gate
+
+Alle erzeugten Nicht-Code-Artefakte folgen `docs/DRIVE-STORAGE-AND-DELIVERY-CONTRACT.md`: lokal/Sandbox nur Build-Zwischenstand; finale Datei in den owning Child-Brain-Drive-Root oder ersatzweise tenantweiten `Deliveries`-Root schreiben; Write read-back-verifizieren; Projektartefakt registrieren; dem Nutzer den beobachteten Drive-Link ausgeben. Ohne erfolgreichen Drive-Write bleibt die Delivery `pending|blocked` und ist nicht final.
+
+EPUB, `voice-guidance.md`, Listener-Review und Run-Manifest werden gemeinsam im passenden Drive-Kontext persistiert. Der finale Nutzer-Handoff verweist auf die gespeicherten Drive-Objekte.
 ## Fehlerbehandlung
 
 - **Kein Grilling-Handoff:** Produktion stoppen und zuerst Grilling durchführen.
@@ -224,4 +231,4 @@ Vor PASS prüfen:
 
 ## Abschluss
 
-Der Workflow ist abgeschlossen, wenn der Auftrag durch Grilling geklärt wurde, die fachlich treue und hörgerechte Lernfassung sprachlich geprüft ist, das kritische Hörbuchnutzer-Gate `pass` meldet, ein navigierbares EPUB mit sinnvollen Kapiteln vorliegt und die Zielplattform eine belastbare Stimmenempfehlung oder einen passenden Voice-Design-Prompt erhält.
+Der Workflow ist abgeschlossen, wenn der Auftrag durch Grilling geklärt wurde, die finalen Nicht-Code-Artefakte in Drive read-back-verifiziert und verlinkt sind, die fachlich treue und hörgerechte Lernfassung sprachlich geprüft ist, das kritische Hörbuchnutzer-Gate `pass` meldet, ein navigierbares EPUB mit sinnvollen Kapiteln vorliegt und die Zielplattform eine belastbare Stimmenempfehlung oder einen passenden Voice-Design-Prompt erhält.
