@@ -1,0 +1,5 @@
+interface:
+  display_name: "Artifact Production Contract"
+  short_description: "Freeze user intent, content, visual and Drive-delivery requirements before artifact production."
+policy:
+  allow_implicit_invocation: true
