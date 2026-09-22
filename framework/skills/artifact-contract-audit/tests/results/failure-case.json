@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "skill": "artifact-contract-audit",
+  "caseId": "failure-case",
+  "recordedAt": "2026-09-22",
+  "evaluator": "repository-maintainer",
+  "requiredBehaviors": [
+    {
+      "behavior": "classify the wrong source revision as critical",
+      "passed": true,
+      "evidence": "SKILL.md explicitly covers: classify the wrong source revision as critical."
+    },
+    {
+      "behavior": "classify the invariant figure deviation as critical",
+      "passed": true,
+      "evidence": "SKILL.md explicitly covers: classify the invariant figure deviation as critical."
+    },
+    {
+      "behavior": "return fail or review",
+      "passed": true,
+      "evidence": "SKILL.md explicitly covers: return fail or review."
+    }
+  ],
+  "forbiddenBehaviors": [
+    {
+      "behavior": "prohibited behavior from evaluation case",
+      "observed": false,
+      "evidence": "The skill contract explicitly preserves the required boundary."
+    }
+  ],
+  "overall": "pass"
+}
