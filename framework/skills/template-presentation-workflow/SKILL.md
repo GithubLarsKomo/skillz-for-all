@@ -4,7 +4,7 @@ description: Orchestriert die Erstellung oder Überarbeitung editierbarer Präse
 userFacing: true
 implicitInvocation: true
 category: workflow
-version: 0.1.0
+version: 0.2.0
 status: candidate
 owners:
   - White Label Maintainer
@@ -26,7 +26,7 @@ outputs:
   - presentation.pptx
   - presentation.pdf
   - presentation-qa.md
-lastEvaluated: 2026-08-26
+lastEvaluated: 2026-09-22
 ---
 
 # Template Presentation Workflow
@@ -118,7 +118,19 @@ Prüfen:
 
 ### 10. Finalisieren
 
-Finale PPTX editierbar halten. PDF als geprüfte Druck-/Share-Version bereitstellen. `presentation-qa.md` aggregiert narrative, strukturelle und visuelle QA sowie verbleibende Warnungen und begründete Abweichungen. Das von `presentation-template-profiler` erzeugte `presentation-template-profile.json` bleibt als referenziertes Worker-Artefakt erhalten.
+Finale PPTX editierbar halten. PDF als geprüfte Druck-/Share-Version bereitstellen. Beide Dateien anschließend in den kanonischen Drive-Zielordner schreiben, read-back-verifizieren und über die beobachteten Drive-Links ausliefern. `presentation-qa.md` aggregiert narrative, strukturelle und visuelle QA sowie verbleibende Warnungen und begründete Abweichungen. Das von `presentation-template-profiler` erzeugte `presentation-template-profile.json` bleibt als referenziertes Worker-Artefakt erhalten.
+
+## Drive Storage and Delivery Gate
+
+Alle erzeugten Nicht-Code-Artefakte folgen dem framework-weiten `docs/DRIVE-STORAGE-AND-DELIVERY-CONTRACT.md`.
+
+- lokale/Sandbox-Dateien sind nur Build-Zwischenstände;
+- finale Artefakte werden in den owning Child-Brain-Drive-Root geschrieben; ohne passenden Brain in den tenantweiten `Deliveries`-Root;
+- nach dem Write werden Drive-ID, URL, Parent und soweit verfügbar Revision/Modified State read-back-verifiziert;
+- Projektartefakte werden über `project-second-brain` in `ASSETS.md`/`state.json` registriert;
+- ein erfolgreicher Nutzer-Handoff liefert die verifizierten Drive-Links;
+- fehlende Drive-Schreibfähigkeit bedeutet `pending|blocked`, nicht erfolgreiche Delivery und keinen GitHub-/Sandbox-Fallback.
+
 
 ## Corporate Wrapper
 
@@ -142,4 +154,5 @@ Abgeschlossen, wenn:
 - strukturelle Layout-QA bestanden ist,
 - PPTX- und PDF-Render geprüft wurden,
 - Korrekturen erneut gerendert wurden,
-- finale PPTX, PDF, referenziertes Template-Profil und aggregierter QA-Bericht vorliegen.
+- finale PPTX, PDF, referenziertes Template-Profil und aggregierter QA-Bericht vorliegen,
+- PPTX/PDF als verifizierte Drive-Objekte registriert sind und der Handoff ihre Drive-Links enthält.
