@@ -4061,7 +4061,7 @@
     },
     {
       "path": "framework/skills/learning-artifact-qa/SKILL.md",
-      "sha256": "18f838682b8723ba76b6f8c87bd5497995caee61bf905881b5bfe98a6ecbde1a"
+      "sha256": "55dd3740b5feacd00c977566471ea4f26174c434d4a83848958f14a3e5710b1e"
     },
     {
       "path": "framework/skills/learning-artifact-qa/tests/evaluation.json",
@@ -4141,11 +4141,11 @@
     },
     {
       "path": "framework/skills/learning-delivery-workflow/SKILL.md",
-      "sha256": "19c23e61ade59bd1d74550a9cf759fb9ae279e28d597dcd0284a4a67f169fa31"
+      "sha256": "bf07f09b64c149f26b4ccbfd7fd006f65d8ce5b9b64ee529619ca87ba587f9b3"
     },
     {
       "path": "framework/skills/learning-delivery-workflow/tests/evaluation.json",
-      "sha256": "58500790852dc7c36fab98e16945fcc0a968201c68c644849b61c7d76023f63a"
+      "sha256": "6494ce7bdda8e8865ac3c80a87068f1218f796633fdca3f5beb021171df2f9bd"
     },
     {
       "path": "framework/skills/learning-delivery-workflow/tests/results/edge-case.json",
@@ -4165,7 +4165,7 @@
     },
     {
       "path": "framework/skills/learning-document-delivery/SKILL.md",
-      "sha256": "9722de9360b4454f856208969cb2f6b8e448f3e4e55c3072e7f70507cb014981"
+      "sha256": "07db659504a4099c2d84752f8856a0385a393611fcbcd1f5a57bde404d564d7e"
     },
     {
       "path": "framework/skills/learning-document-delivery/tests/evaluation.json",
@@ -4189,7 +4189,7 @@
     },
     {
       "path": "framework/skills/learning-image-generator/SKILL.md",
-      "sha256": "7a5325344a5506da205444b1f7705a76cd03b8a816d465ce4fd688968e850071"
+      "sha256": "f2510b51033d58a7266b86bc53637704d685218ebe4b154e2469f30455e14b3a"
     },
     {
       "path": "framework/skills/learning-image-generator/tests/evaluation.json",
@@ -4213,7 +4213,7 @@
     },
     {
       "path": "framework/skills/learning-landingpage-renderer/SKILL.md",
-      "sha256": "8d6ef95493b16bd8de63b55e58eab564f1877c1d3986673f90f1dc5039bb3acb"
+      "sha256": "7081f7d184758569d6f5f3cd3ccac644f3a91621b1261071ac1bff68362a0ad2"
     },
     {
       "path": "framework/skills/learning-landingpage-renderer/tests/evaluation.json",
@@ -4381,7 +4381,7 @@
     },
     {
       "path": "framework/skills/learning-svg-generator/SKILL.md",
-      "sha256": "3966fc450faa084fe6526a6993041bf8350a3f5cc14f7edace293973fec84235"
+      "sha256": "9a290f0a06962b48995502ba828694e16d93e7663725f3fd767ceac5155e02dc"
     },
     {
       "path": "framework/skills/learning-svg-generator/tests/evaluation.json",
@@ -8940,6 +8940,10 @@
       "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
     },
     {
+      "path": "README.md",
+      "sha256": "79de380307cd0183bf4cb46b7abb029446c9e76adf9fe7e5287ba15bced13ca5"
+    },
+    {
       "path": "second-brain/super-second-brain/docs/super-memory/BOOTSTRAP.md",
       "sha256": "50c1e7a8bd91b20668b4cf8fbbbdd848b2387dad9baea5dc01de1b56d517e022"
     },
@@ -8958,6 +8962,10 @@
     {
       "path": "second-brain/super-second-brain/README.md",
       "sha256": "86ce937c000dadc6f82a02b03608e0cdc58a568fb96d7347bf86dbb76a3b5fc2"
+    },
+    {
+      "path": "templates/child-brain/docs/project-memory/ASSETS.md",
+      "sha256": "cd46525015aa8783aa20a2444c81e648d23693ba94f53b1695029274dbcf35e6"
     },
     {
       "path": "templates/child-brain/docs/project-memory/INDEX.md",
