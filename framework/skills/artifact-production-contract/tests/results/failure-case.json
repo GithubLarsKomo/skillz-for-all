@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "skill": "artifact-production-contract",
+  "caseId": "failure-case",
+  "recordedAt": "2026-09-22",
+  "evaluator": "repository-maintainer",
+  "requiredBehaviors": [
+    {
+      "behavior": "block silent invariant changes",
+      "passed": true,
+      "evidence": "SKILL.md explicitly covers: block silent invariant changes."
+    },
+    {
+      "behavior": "require contract revision and re-freeze",
+      "passed": true,
+      "evidence": "SKILL.md explicitly covers: require contract revision and re-freeze."
+    },
+    {
+      "behavior": "keep final delivery pending until canonical Drive persistence succeeds",
+      "passed": true,
+      "evidence": "SKILL.md explicitly covers: keep final delivery pending until canonical Drive persistence succeeds."
+    }
+  ],
+  "forbiddenBehaviors": [
+    {
+      "behavior": "prohibited behavior from evaluation case",
+      "observed": false,
+      "evidence": "The skill contract explicitly preserves the required boundary."
+    }
+  ],
+  "overall": "pass"
+}
