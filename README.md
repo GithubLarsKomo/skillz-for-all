@@ -1,14 +1,14 @@
 # Skillz for All
 
-A public distribution of the Skillz framework and Second-Brain architecture with provider-neutral semantics and a Drive-only persistence profile for claimed Skillz-for-all tenants.
+A public distribution of the Skillz framework and a **Google-Drive-native** Second-Brain runtime architecture.
 
-This repository contains the validated **full-portable** distribution: the generic skill library, shared contracts and schemas, a Google-Drive-only tenant-persistence Second-Brain starter, Child-Brain templates, and third-party handoff material.
+This repository contains the validated **full-portable** distribution: the generic skill library, shared contracts and schemas, a Google-Drive-first Second-Brain starter, Child-Brain templates, and third-party handoff material.
 
 ## Included
 
-- 344 portable skills
-- provider-neutral Knowledge Store semantics with recipient-owned Google Drive as the canonical mutable tenant store
-- shared Artifact Production and Drive-link Delivery contracts for PPTX/DOCX/PDF/XLSX/EPUB and related outputs
+- 342 portable skills
+- recipient-owned Google Drive as the mandatory claimed runtime Knowledge Store
+- Drive-first artifact delivery: generated non-code outputs are persisted and linked from Drive
 - Super Second Brain starter with an empty registry
 - Child Brain project-memory template
 - Google Drive-first Claim → Rebind handoff
@@ -27,7 +27,7 @@ Validate a checkout with:
 python tools/validate_white_label_release.py .
 ```
 
-The Starter Super Brain is intentionally empty. Recipients claim the package into their own Knowledge Store and bind their own Drive object IDs before use.
+The Starter Super Brain is intentionally empty. Recipients claim the package into their own Google Drive, bind recipient-owned Drive object IDs, and run framework state, Brains and generated non-code artifacts from that Drive instance.
 
 ## License
 

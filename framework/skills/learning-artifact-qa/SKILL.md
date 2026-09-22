@@ -3,7 +3,7 @@ name: learning-artifact-qa
 description: Prüft HTML-, PPTX-, DOCX- und PDF-Lernartefakte sowie ihre SVG-/Bildassets gemeinsam gegen das kanonische Learning-Modell, Timestamp-/Claim-Traceability, SOP-Evidenzklassen, DESIGN.md und vollständige Render-Evidenz. Verwenden als finales Cross-Format-Gate; nicht als Ersatz für fachliche Quellanalyse.
 userFacing: false
 implicitInvocation: true
-version: 0.1.0
+version: 0.2.0
 status: candidate
 owners:
   - White Label Maintainer
@@ -12,7 +12,7 @@ requires:
 outputs:
   - learning-artifact-qa.json
   - learning-artifact-qa.md
-lastEvaluated: 2026-08-28
+lastEvaluated: 2026-09-22
 ---
 
 # Learning Artifact QA
@@ -84,6 +84,10 @@ Kürzung ist erlaubt, Bedeutungsänderung nicht.
 - `warning`: dokumentierte nicht-materiale Abweichung.
 
 PASS nur bei 0 offenen Critical/Major Findings und vollständiger Renderabdeckung der angeforderten Formate.
+
+## Drive Storage Gate
+
+Bei einem Skillz-for-All Delivery-Run gehört zur Abschlussprüfung zusätzlich: alle erzeugten Nicht-Code-Artefakte besitzen verifizierte Drive-Locators; Bundle-/Manifest-Refs zeigen nicht auf lokale/Sandbox-Pfade; fehlender Drive-Write erzwingt `review|fail` beziehungsweise `pending|blocked` statt Delivery-PASS.
 
 ## Abschluss
 

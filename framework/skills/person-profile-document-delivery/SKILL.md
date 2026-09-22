@@ -13,17 +13,13 @@ requires:
   - artifact-production-contract
   - artifact-contract-audit
 consumes:
-  - artifact-production-contract.json
-  - artifact-figure-contracts.json
-  - artifact-contract-audit.json
-  - artifact-contract-audit.md
   - final-revised-text
   - precision-writing-report.json
 outputs:
   - person-profile-report.docx
   - person-profile-report.pdf
   - person-profile-delivery.json
-lastEvaluated: 2026-08-25
+lastEvaluated: 2026-09-22
 ---
 
 # Person Profile Document Delivery
@@ -144,32 +140,37 @@ Bei PDF-Problemen die Ursache im DOCX/Template korrigieren und erneut konvertier
   "templateStatus": "neutral|public-reference|supplied|approved",
   "docxQa": "pass|not-requested|blocked",
   "pdfQa": "pass|not-requested|blocked",
+  "driveArtifacts": [],
+  "storageStatus": "verified|pending|blocked",
   "warnings": []
 }
 ```
+
+## Artifact Production Contract Gate
+
+Bei substantieller Neuerstellung oder materieller Überarbeitung zuerst den gemeinsamen `artifact-production-contract` aus angemessenem Grilling erzeugen bzw. einen gültigen gefrorenen Vertrag wiederverwenden. Dieser Workflow führt den gefrorenen Vertrag aus und darf INVARIANT-Festlegungen nicht neu interpretieren. Vor Release prüft `artifact-contract-audit` die exakt auszuliefernde Revision. Ein Audit-PASS ist Voraussetzung für den anschließenden Drive-Delivery-Gate; reine deterministische Konvertierungen dürfen den bestehenden Vertrag erben.
+
+## Drive Storage and Delivery Gate
+
+Alle erzeugten Nicht-Code-Artefakte folgen dem framework-weiten `docs/DOCUMENT-ARTIFACT-DELIVERY-CONTRACT.md`.
+
+- lokale/Sandbox-Dateien sind nur Build-Zwischenstände;
+- finale Artefakte werden in den owning Child-Brain-Drive-Root geschrieben; ohne passenden Brain in den tenantweiten `Deliveries`-Root;
+- nach dem Write werden Drive-ID, URL, Parent und soweit verfügbar Revision/Modified State read-back-verifiziert;
+- Projektartefakte werden über `project-second-brain` in `ASSETS.md`/`state.json` registriert;
+- ein erfolgreicher Nutzer-Handoff liefert die verifizierten Drive-Links;
+- fehlende Drive-Schreibfähigkeit bedeutet `pending|blocked`, nicht erfolgreiche Delivery und keinen GitHub-/Sandbox-Fallback.
+
 
 ## Fehlerbehandlung
 
 - Fidelity-Status nicht `pass`: keine finale DOCX/PDF-Ausgabe.
 - DOCX-Erzeugung technisch nicht möglich: keine Fake-Datei erzeugen; klar blockieren.
-- PDF-Konvertierung fehlgeschlagen: geprüfte DOCX kann ausgegeben werden, PDF bleibt `blocked`.
+- PDF-Konvertierung fehlgeschlagen: geprüfte DOCX kann in Drive gespeichert und verlinkt werden, PDF bleibt `blocked`.
 - Visuelle QA nicht möglich: betroffenes Format nicht als final geprüft kennzeichnen.
 - Corporate-Template fehlt: nur dann neutralen Stil verwenden, wenn kein Corporate-Template ausdrücklich verlangt wurde.
 - Nutzer hat ein bestimmtes Template verlangt und es ist nicht verfügbar/kompatibel: nicht still auf einen anderen Stil wechseln.
 
-## Gemeinsame Artifact-Governance und Drive-Delivery
-
-Dieser Workflow unterliegt verbindlich:
-
-- `docs/ARTIFACT-PRODUCTION-CONTRACT.md`;
-- `docs/DOCUMENT-ARTIFACT-DELIVERY-CONTRACT.md`.
-
-Vor materieller Produktion muss eine aktive `frozen` Revision des Artifact Production Contract vorliegen; bereits bestätigte Anforderungen werden nicht erneut erfragt. `INVARIANT`-Festlegungen dürfen nicht still verändert werden, `CONTROLLED`-Abweichungen brauchen dokumentierten Grund/Impact und `ADAPTIVE`-Entscheidungen dürfen Intent und Bedeutung nicht verändern.
-
-Nach Format-/Render-QA wird `artifact-contract-audit` auf die **exakt auszuliefernde Revision** angewendet. Erst danach wird genau diese Revision in den kanonischen recipient-owned Google-Drive-Ort geschrieben, read-back-verifiziert und über den beobachteten Drive-Link ausgeliefert.
-
-Ein lokales/sandboxed Ergebnis ist niemals der erfolgreiche Endzustand. Ist Drive nicht beschreibbar, bleibt die Delivery `pending|blocked`.
-
 ## Abschlusskriterien
 
-Abgeschlossen ist der Skill, wenn alle angeforderten Formate aus derselben finalen fidelity-geprüften Inhaltsbasis erzeugt wurden, die gewählte Template-/Renderer-Route dokumentiert ist, DOCX und PDF ihre jeweilige visuelle QA bestanden haben und keine inhaltliche Abweichung zwischen den Formaten erkennbar ist.
+Abgeschlossen ist der Skill, wenn alle angeforderten Formate aus derselben finalen fidelity-geprüften Inhaltsbasis erzeugt, in Drive gespeichert und read-back-verifiziert wurden, die gewählte Template-/Renderer-Route dokumentiert ist, DOCX und PDF ihre jeweilige visuelle QA bestanden haben und keine inhaltliche Abweichung zwischen den Formaten erkennbar ist.

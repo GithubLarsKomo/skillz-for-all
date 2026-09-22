@@ -1,10 +1,10 @@
 ---
 name: project-second-brain
-description: Führt eine provider-neutrale, versionierbare Projektdokumentation als verlinkten Second Brain ab dem Requirements-Grilling. Nutzt einen kanonischen Knowledge Store mit stabilen Objekt-IDs, erfasst wesentliche Workflow-Übergänge, Entscheidungen, Evidenz und Assets und bleibt strikt von ausführbaren Producer-Artefakten sowie privater Chain-of-Thought getrennt.
+description: Führt eine Google-Drive-native, versionierbare Projektdokumentation als verlinkten Second Brain ab dem Requirements-Grilling. Nutzt recipient-owned Drive als kanonischen Knowledge Store, registriert erzeugte Nicht-Code-Artefakte im selben Brain und liefert verifizierte Drive-Links, während ausführbare Producer-Artefakte und private Chain-of-Thought getrennt bleiben.
 userFacing: true
 implicitInvocation: true
 category: workflow
-version: 0.4.0
+version: 0.5.0
 status: candidate
 owners:
   - White Label Maintainer
@@ -14,18 +14,18 @@ outputs:
   - project-memory-state.json
   - project-memory-event.md
   - project-memory-assets.md
-lastEvaluated: 2026-09-19
+lastEvaluated: 2026-09-22
 ---
 
 # Project Second Brain
 
 ## Zweck
 
-Dieser Skill hält den vollständigen Projektweg **ab dem Grilling** als provider-neutrale, versionierbare Wissensspur zusammen. Im standardmäßigen, geclaimten Skillz-for-all-Profil wird der kanonische Project Memory ausschließlich im recipient-owned Google Drive Knowledge Store persistiert. Provider-Neutralität beschreibt das Daten-/Locator-Modell, nicht mehrere gleichrangige Tenant-Speicher.
+Dieser Skill hält den vollständigen Projektweg **ab dem Grilling** als Google-Drive-native, versionierbare Wissensspur zusammen. In Skillz for All liegt der kanonische Project Memory nach Claim/Rebind zwingend in recipient-owned Google Drive. GitHub ist Framework-/Producer-Quelle, aber kein alternativer Runtime-Store für den Brain.
 
 Er ersetzt keine fachlichen Producer-Artefakte, keine kontrollierten Records und keine externen Sources of Truth. Er verlinkt und projiziert deren verifizierten Zustand als nachvollziehbaren Projektgraphen.
 
-Im Drive-first White-Label-Modell liegen Markdown/JSON/YAML sowie normale Projektartefakte im selben recipient-owned Knowledge Store. Software, Build/Test/Runtime-Artefakte und kontrollierte Quellsysteme bleiben außerhalb des Brain, wenn sie dort kanonisch produziert oder verwaltet werden.
+Markdown/JSON/YAML sowie erzeugte normale Projekt- und Delivery-Artefakte liegen im selben recipient-owned Drive-Brain. Software, Build/Test/Runtime-Artefakte und kontrollierte Quellsysteme bleiben außerhalb des Brain, wenn sie dort kanonisch produziert oder verwaltet werden. Für alle Nicht-Code-Outputs gilt zusätzlich `docs/DRIVE-STORAGE-AND-DELIVERY-CONTRACT.md`.
 
 Seine Kernfrage lautet: **Welcher verifizierbare Projektzustand entstand in diesem Schritt, worauf basiert er und wohin führt er als Nächstes?**
 
@@ -45,7 +45,7 @@ Nicht für jedes Shell-Kommando, jede Toolabfrage oder jede Zwischenüberlegung 
 
 - Ein projektbezogener Kontext oder ein abgeschlossener Grilling-Schritt ist vorhanden.
 - Der kanonische Knowledge Store oder ein eindeutiger Bootstrap-Zielstore kann bestimmt werden.
-- Der verwendete Provider erfüllt den Knowledge Store Contract oder ist ausdrücklich als `pending` markiert.
+- Der konfigurierte Knowledge Store ist recipient-owned Google Drive; fehlende Drive-Schreibfähigkeit wird als `pending|blocked` behandelt, nicht durch einen anderen Runtime-Provider ersetzt.
 - Kanonische Producer-Artefakte bleiben in ihren autoritativen Systemen und werden nicht als zweite Wahrheit in den Project Memory kopiert.
 - Bei externen Producer-Systemen wird deren stabile Evidenzidentität verifiziert, zum Beispiel Commit SHA, Dokument-ID, Record-ID oder Release-ID.
 - Provider-IDs, Revisionen, URLs und Sharing-Zustände werden beobachtet und nicht erfunden.
@@ -136,13 +136,13 @@ Wenn ein Schritt keine semantische Zustandsänderung erzeugt, darf auf einen neu
 Für jedes neue Artefakt zuerst den kanonischen Eigentümer bestimmen:
 
 1. Project-Memory-Kernartefakt -> Brain Knowledge Store.
-2. Normales Projekt-/Referenz-/Delivery-Artefakt -> standardmäßig derselbe Drive Knowledge Store oder ein bereits kanonischer externer Store.
+2. Erzeugtes normales Projekt-/Referenz-/Delivery-Artefakt -> derselbe Child-Brain-Drive-Root; wenn kein Brain passt, tenantweiter `Deliveries`-Root.
 3. Build/Test/Runtime/Source-Code-Artefakt -> zuständiges Producer-System.
 4. Controlled Record/Evidence Original -> kontrolliertes Quellsystem.
 
 Für registrierte Assets stabile IDs, Provider, Revision/Freshness und gegebenenfalls Hash erfassen. Freigegebene/frozen Deliverables nicht still überschreiben; neue Version oder Supersession erzeugen.
 
-Google-Drive-spezifische Asset-Regeln bleiben in `references/drive-artifact-contract.md`; die allgemeine Storage-Semantik kommt aus `docs/KNOWLEDGE-STORE-CONTRACT.md`.
+Google-Drive-spezifische Asset-Regeln stehen in `references/drive-artifact-contract.md`; die tenantweite Pflicht zur Drive-Ablage und Link-Übergabe kommt aus `docs/DRIVE-STORAGE-AND-DELIVERY-CONTRACT.md`.
 
 ### 4. Query-Promotion Gate
 
@@ -159,14 +159,14 @@ Vor Abschluss oder Handoff eines substanziellen Queries, Research-Passes, Analys
 
 1. Knowledge Store, Brain-Root, `state.json` und letzten relevanten Event verifizieren.
 2. Kanonische Inputs und externe Producer-/Source-Evidenz bestimmen.
-3. Artefakte gemäß Artifact Gate routen.
+3. Artefakte gemäß Artifact Gate routen; erzeugte Nicht-Code-Artefakte in Drive schreiben, read-back-verifizieren und registrieren.
 4. Nur bei semantischer Zustandsänderung einen neuen Event erzeugen.
 5. Wesentliche Entscheidungen über `decision-record` referenzieren.
 6. `INDEX.md`, `TIMELINE.md`, `ASSETS.md` soweit vorhanden und `state.json` konsistent aktualisieren.
 7. Knowledge-Promotion Gate ausführen.
 8. Writes und Kern-Locators read-back-verifizieren.
 9. Genau eine nächste Aktion und das Routingziel festhalten.
-10. Provider-neutralen `projectMemory`-Locator an den nächsten Skill übergeben.
+10. Drive-basierten `projectMemory`-Locator und verifizierte Stored-Artifact-Links an den nächsten Skill übergeben.
 
 ## Event-Modell
 
@@ -231,14 +231,14 @@ Project Second Brain besitzt **keine zweite fachliche Wahrheit**.
 - Decision Records bleiben bei `decision-record`;
 - Implementierungs- und Review-Evidenz bleibt bei Engineering-/Producer-Systemen;
 - kontrollierte Records bleiben im kontrollierten Quellsystem;
-- normale Dokumente, Präsentationen, Tabellen, Bilder und andere Projektartefakte dürfen im Drive Knowledge Store liegen;
+- normale Dokumente, Präsentationen, Tabellen, Bilder, EPUBs, HTML und andere erzeugte Nicht-Code-Projektartefakte **müssen** im Drive Knowledge Store liegen;
 - Software-Source, CI/CD, Docker/Compose, Migrationen, Schemas und deploybare Runtime-Artefakte bleiben in dedizierten Producer-Systemen.
 
 Project Memory speichert Locators, Status, Provenance, Freshness und einen knappen verifizierten Abstract statt divergierender Kopien.
 
 ## Knowledge Store und Artifact Contract
 
-Die allgemeine Storage-, Identitäts-, Read-back-, Release- und Rebind-Semantik liegt in `docs/KNOWLEDGE-STORE-CONTRACT.md`.
+Die allgemeine Drive-Storage-, Identitäts-, Read-back-, Release- und Rebind-Semantik liegt in `docs/KNOWLEDGE-STORE-CONTRACT.md`; die verpflichtende Artefaktablage und Link-first-Auslieferung in `docs/DRIVE-STORAGE-AND-DELIVERY-CONTRACT.md`.
 
 Für Google Drive gelten zusätzlich die Detailregeln in `references/drive-artifact-contract.md`.
 
@@ -252,20 +252,7 @@ Kernregeln:
 - `ASSETS.md` als menschenlesbares Asset-Register und `state.json` als maschinenlesbare Projektion führen;
 - freigegebene/frozen Artefakte nicht still überschreiben;
 - Provider-Ausfälle als `pending`/`unavailable` dokumentieren;
-- erzeugte human-facing Artefakte ausschließlich link-first aus dem verifizierten recipient-owned Drive ausliefern;
 - bei Copy/Handoff Rebind durchführen, weil Provider-IDs sich ändern können.
-
-## Drive-only Artifact- und Delivery-Gate
-
-Für erzeugte menschlich nutzbare Projektartefakte gilt verbindlich `docs/DOCUMENT-ARTIFACT-DELIVERY-CONTRACT.md` zusammen mit `references/drive-artifact-contract.md`.
-
-Kernregel:
-
-> **Erzeugen/prüfen ist nicht gleich ausliefern. Final ist ein Artefakt erst nach Write in den kanonischen recipient-owned Drive-Ort, Read-back-Verifikation, Registrierung und Rückgabe des beobachteten Drive-Links.**
-
-Das gilt insbesondere für PPTX, DOCX, PDF, XLSX, EPUB, Bilder, Audio/Video und Handoff-Bundles. Lokale/Sandbox-/Chat-Dateien sind nur Build-Zwischenstände. Bei nicht verfügbarem Drive bleibt der Status `pending|blocked`; ein temporärer Download darf nicht als kanonische Lieferung bezeichnet werden.
-
-Software-/Build-/Runtime-Artefakte verbleiben bei ihrem autoritativen Producer-System und werden aus dem Project Memory referenziert.
 
 ## Decision Records
 

@@ -16,10 +16,6 @@ requires:
   - artifact-production-contract
   - artifact-contract-audit
 consumes:
-  - artifact-production-contract.json
-  - artifact-figure-contracts.json
-  - artifact-contract-audit.json
-  - artifact-contract-audit.md
   - presentation-template-profile.json
   - presentation-revised-text
   - presentation-language-report.json
@@ -32,7 +28,7 @@ outputs:
   - presentation.pptx
   - presentation.pdf
   - presentation-qa.md
-lastEvaluated: 2026-08-26
+lastEvaluated: 2026-09-22
 ---
 
 # Template Presentation Workflow
@@ -124,7 +120,23 @@ Prüfen:
 
 ### 10. Finalisieren
 
-Finale PPTX editierbar halten. PDF als geprüfte Druck-/Share-Version bereitstellen. `presentation-qa.md` aggregiert narrative, strukturelle und visuelle QA sowie verbleibende Warnungen und begründete Abweichungen. Das von `presentation-template-profiler` erzeugte `presentation-template-profile.json` bleibt als referenziertes Worker-Artefakt erhalten.
+Finale PPTX editierbar halten. PDF als geprüfte Druck-/Share-Version bereitstellen. Beide Dateien anschließend in den kanonischen Drive-Zielordner schreiben, read-back-verifizieren und über die beobachteten Drive-Links ausliefern. `presentation-qa.md` aggregiert narrative, strukturelle und visuelle QA sowie verbleibende Warnungen und begründete Abweichungen. Das von `presentation-template-profiler` erzeugte `presentation-template-profile.json` bleibt als referenziertes Worker-Artefakt erhalten.
+
+## Artifact Production Contract Gate
+
+Bei substantieller Neuerstellung oder materieller Überarbeitung zuerst den gemeinsamen `artifact-production-contract` aus angemessenem Grilling erzeugen bzw. einen gültigen gefrorenen Vertrag wiederverwenden. Dieser Workflow führt den gefrorenen Vertrag aus und darf INVARIANT-Festlegungen nicht neu interpretieren. Vor Release prüft `artifact-contract-audit` die exakt auszuliefernde Revision. Ein Audit-PASS ist Voraussetzung für den anschließenden Drive-Delivery-Gate; reine deterministische Konvertierungen dürfen den bestehenden Vertrag erben.
+
+## Drive Storage and Delivery Gate
+
+Alle erzeugten Nicht-Code-Artefakte folgen dem framework-weiten `docs/DOCUMENT-ARTIFACT-DELIVERY-CONTRACT.md`.
+
+- lokale/Sandbox-Dateien sind nur Build-Zwischenstände;
+- finale Artefakte werden in den owning Child-Brain-Drive-Root geschrieben; ohne passenden Brain in den tenantweiten `Deliveries`-Root;
+- nach dem Write werden Drive-ID, URL, Parent und soweit verfügbar Revision/Modified State read-back-verifiziert;
+- Projektartefakte werden über `project-second-brain` in `ASSETS.md`/`state.json` registriert;
+- ein erfolgreicher Nutzer-Handoff liefert die verifizierten Drive-Links;
+- fehlende Drive-Schreibfähigkeit bedeutet `pending|blocked`, nicht erfolgreiche Delivery und keinen GitHub-/Sandbox-Fallback.
+
 
 ## Corporate Wrapper
 
@@ -137,19 +149,6 @@ Marken- oder unternehmensspezifische Skills sollen dünne Wrapper bleiben. Sie l
 - Keine Behauptung erfolgreicher visueller QA ohne tatsächlichen Render.
 - Kein PDF-only Ergebnis, wenn eine editierbare PPTX verlangt ist.
 
-## Gemeinsame Artifact-Governance und Drive-Delivery
-
-Dieser Workflow unterliegt verbindlich:
-
-- `docs/ARTIFACT-PRODUCTION-CONTRACT.md`;
-- `docs/DOCUMENT-ARTIFACT-DELIVERY-CONTRACT.md`.
-
-Vor materieller Produktion muss eine aktive `frozen` Revision des Artifact Production Contract vorliegen; bereits bestätigte Anforderungen werden nicht erneut erfragt. `INVARIANT`-Festlegungen dürfen nicht still verändert werden, `CONTROLLED`-Abweichungen brauchen dokumentierten Grund/Impact und `ADAPTIVE`-Entscheidungen dürfen Intent und Bedeutung nicht verändern.
-
-Nach Format-/Render-QA wird `artifact-contract-audit` auf die **exakt auszuliefernde Revision** angewendet. Erst danach wird genau diese Revision in den kanonischen recipient-owned Google-Drive-Ort geschrieben, read-back-verifiziert und über den beobachteten Drive-Link ausgeliefert.
-
-Ein lokales/sandboxed Ergebnis ist niemals der erfolgreiche Endzustand. Ist Drive nicht beschreibbar, bleibt die Delivery `pending|blocked`.
-
 ## Abschlusskriterien
 
 Abgeschlossen, wenn:
@@ -161,4 +160,5 @@ Abgeschlossen, wenn:
 - strukturelle Layout-QA bestanden ist,
 - PPTX- und PDF-Render geprüft wurden,
 - Korrekturen erneut gerendert wurden,
-- finale PPTX, PDF, referenziertes Template-Profil und aggregierter QA-Bericht vorliegen.
+- finale PPTX, PDF, referenziertes Template-Profil und aggregierter QA-Bericht vorliegen,
+- PPTX/PDF als verifizierte Drive-Objekte registriert sind und der Handoff ihre Drive-Links enthält.

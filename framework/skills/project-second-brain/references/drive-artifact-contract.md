@@ -2,127 +2,113 @@
 
 ## Purpose
 
-This contract defines how `project-second-brain` stores and registers durable project artifacts in the standard Skillz-for-all runtime.
+This contract defines how `project-second-brain` persists and registers generated non-code artifacts inside the recipient-owned Google Drive runtime required by Skillz for All.
 
-The standard claimed deployment is **Drive-only for mutable tenant persistence**: Project Memory, durable project knowledge and ordinary human-facing artifacts live in recipient-owned Google Drive under stable observed Drive IDs.
-
-Software/source-control/runtime producer artifacts may remain in their authoritative producer system and are referenced from Project Memory; they are not copied into Drive merely because they are binary or external.
+It specializes the framework-wide `docs/DRIVE-STORAGE-AND-DELIVERY-CONTRACT.md`. Project Memory and its generated project/delivery artifacts share the same canonical Child-Brain Drive root; GitHub is not a parallel artifact store.
 
 ## Storage boundary
 
-### Canonical in recipient-owned Google Drive
+### Keep in the producer system
 
-Persist ordinary durable project and delivery artifacts in the owning Brain/project Drive location, including:
+Do not move an artifact into the Brain merely because it is binary when it is required for source control, build, test, deployment or runtime, or when another controlled system is the authoritative record. Reference the verified producer/source object from Drive instead.
 
-- Project-Memory Markdown/JSON/YAML;
-- PPT/PPTX;
-- DOC/DOCX;
-- XLS/XLSX;
-- PDF;
-- PNG/JPEG/TIFF and comparable review/export images;
-- EPUB and other publications;
+### Store in the owning Brain Drive root
+
+Store generated documentary, referential, review-oriented and delivery material in the owning Child Brain's Drive artifact area. Typical examples include:
+
+- PPT/PPTX, DOC/DOCX, XLS/XLSX and PDF;
+- PNG/JPEG/TIFF/SVG and other review/export images;
+- EPUB and packaged publications;
+- HTML/Markdown/JSON/YAML delivery manifests and reports;
 - audio/video;
-- ZIP and handoff bundles;
-- Google Docs, Sheets and Slides when they are the intended canonical business artifact;
-- delivery manifests, QA reports and artifact registers that belong to tenant project state.
+- ZIP or other handoff bundles;
+- native Google Docs, Sheets and Slides when they are the authoritative business artifact.
 
-### Remain at authoritative producer/source system
+If no owning Child Brain is appropriate, use the tenant `Deliveries` root from `instance.yaml`. Do not create a second ad-hoc project store.
 
-Do not move/copy an artifact into Drive as a competing Source of Truth when it is canonically owned by a producer system, for example:
+## Brain Drive identity
 
-- software source/configuration;
-- CI/CD;
-- Docker/Compose;
-- database schemas/migrations;
-- build/test/runtime dependencies;
-- deployable services/images/packages;
-- controlled records whose authoritative system is external.
+Reuse the Brain root and artifact root IDs already recorded in `state.json`. Resolve by stable Drive ID, not by folder name.
 
-Project Memory records stable observed references, revision/freshness and concise status instead.
-
-## Canonical project location
-
-Each Project/Child Brain uses one canonical recipient-owned Drive root, identified by stable folder ID.
-
-Resolution order:
-
-1. reuse the root/folder ID already recorded in project state;
-2. reuse an explicitly established project folder from the current verified handoff;
-3. resolve an existing exact folder only after identity/suitability verification;
-4. otherwise create exactly one private project location below the configured tenant Drive root.
-
-Do not create a second folder simply because a workflow wants a different artifact type.
-
-Never use a source-owner Drive object after Claim/Rebind.
-
-Preserve existing sharing state and keep newly created project folders private unless the tenant/user explicitly chooses otherwise.
-
-## Project-Memory representation
-
-`ASSETS.md` is the human-readable artifact register; `state.json` is the compact machine-readable projection.
-
-For each registered artifact record, where available:
-
-- stable local asset ID;
-- role/purpose;
-- canonical file name;
-- observed Drive file ID and URL;
-- parent folder ID;
-- MIME/artifact type;
-- lifecycle state: `working|review|released|superseded|archived`;
-- producer/source;
-- related Project-Memory event;
-- provider revision/modified timestamp/checksum where useful;
-- last verified timestamp.
-
-Never invent provider values.
-
-## Link-first delivery policy
-
-All human-facing generated deliverables follow `docs/DOCUMENT-ARTIFACT-DELIVERY-CONTRACT.md`.
-
-Normal order:
+Recommended projection:
 
 ```text
-generate
-  -> QA/audit
-  -> write exact approved revision to canonical recipient-owned Drive
-  -> read-back verify
-  -> register/update state
-  -> return observed Drive link
+<CHILD_BRAIN_ROOT>/
+├── docs/project-memory/
+└── artifacts/
+    ├── working/
+    └── released/
 ```
 
-A local/sandbox/chat file is only an intermediate build artifact. It is not a completed Skillz-for-all delivery.
+Do not change sharing permissions merely to satisfy this contract. Preserve the tenant's protection boundary.
 
-If Drive is unavailable, record `pending|blocked`; a temporary file may be exposed as an explicit fallback but not represented as canonical/final.
+## Project Memory representation
 
-## Upload/update protocol
+`docs/project-memory/ASSETS.md` is the human-readable asset register. `state.json` carries the compact machine projection.
 
-1. Resolve owning Brain/project and canonical Drive root by stable ID.
-2. Classify producer-owned exceptions before copying anything.
-3. Upload/create the artifact in the canonical project location, or update an intentionally mutable working artifact.
-4. Read back the stored object and capture observed ID/URL/parent/type/revision state.
-5. Update `ASSETS.md`, `state.json` and the relevant event/manifest consistently.
-6. For released/frozen outputs, prefer a versioned new object or auditable Drive revision rather than silent replacement.
-7. Return the observed canonical Drive link.
+Each registered asset records at least: stable asset ID, role, canonical file name, Drive file ID, observed Drive URL, artifact/MIME type, lifecycle state, producer, related event, and verification timestamp. Revision/checksum/modified time are added when materially useful.
+
+Do not invent Drive IDs, URLs, revisions, checksums or verification timestamps.
+
+## `state.json` projection
+
+Use the Brain's existing Drive `knowledgeStore` plus `externalArtifacts`; do not materialize a separate non-Drive artifact provider.
+
+```json
+{
+  "schemaVersion": 3,
+  "knowledgeStore": {
+    "provider": "google-drive",
+    "storeId": "primary",
+    "rootFolderId": "observed-brain-root-folder-id",
+    "artifactRootFolderId": "observed-artifact-root-folder-id",
+    "deliveryPolicy": "drive-only"
+  },
+  "externalArtifacts": [
+    {
+      "id": "ASSET-004",
+      "role": "final-presentation",
+      "name": "NDD Review.pptx",
+      "driveFileId": "observed-file-id",
+      "url": "observed-drive-file-url",
+      "status": "released",
+      "producer": "template-presentation-workflow",
+      "event": "docs/project-memory/events/EVT-....md",
+      "verifiedAt": "observed timestamp"
+    }
+  ]
+}
+```
+
+## Write and delivery protocol
+
+1. Determine producer ownership and Brain ownership.
+2. Resolve the canonical Child-Brain artifact root, or the tenant `Deliveries` root when no Brain applies.
+3. Generate locally only as a build intermediate.
+4. Write the artifact to Drive.
+5. Read back metadata/content as appropriate and capture observed ID, URL, parent, MIME/type and revision/modified state.
+6. Register/update `ASSETS.md`, `state.json` and the related event.
+7. For released/frozen deliverables use an auditable version/supersession transition.
+8. Return the verified Drive link as the primary user-facing handoff.
+
+## Event linkage
+
+Use stable asset IDs and observed Drive IDs/URLs. The event is an index/evidence record, not a duplicate of the binary artifact.
 
 ## Handoff
 
-Downstream workflows receive provider-neutral locators whose standard profile resolves to Google Drive, including Brain root, Project-Memory state and relevant asset IDs/URLs.
-
-They must reuse the canonical root and must not create a parallel artifact folder.
+Downstream skills reuse the same Brain/artifact root IDs. They do not create their own storage tree. Delivery manifests reference Drive object IDs/URLs rather than local/sandbox paths as final refs.
 
 ## Failure rules
 
 The artifact step is incomplete when:
 
-- Drive write/read-back is not verified;
-- recorded ID/URL/revision is guessed;
-- the object is outside the canonical recipient-owned project location without explicit authority;
-- a producer-owned artifact was duplicated as a competing truth;
-- a released/frozen artifact was silently overwritten;
-- a parallel Drive project root was created;
-- a source-owner/other-tenant Drive object is treated as canonical;
-- a local/sandbox/chat attachment is reported as final delivery.
+- the Drive write was not read back/verified;
+- the file/folder ID or URL is guessed;
+- a generated non-code artifact exists only locally/sandboxed;
+- a final artifact was placed outside the owning Brain or tenant Deliveries root without documented reason;
+- a released artifact was silently overwritten;
+- a parallel Drive project folder was created despite an existing canonical Brain root;
+- a software build/runtime asset was moved to Drive solely because it is binary.
 
-A Drive outage is a pending external state, not evidence of successful persistence.
+A Drive outage is `pending|blocked`, not successful delivery. A temporary local/download link is not the normal final handoff.

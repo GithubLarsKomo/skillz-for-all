@@ -1,10 +1,12 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "projectId": "{{BRAIN_ID}}",
   "knowledgeStore": {
     "provider": "google-drive",
     "storeId": "primary",
-    "rootFolderId": "{{CHILD_BRAIN_ROOT_FOLDER_ID}}"
+    "rootFolderId": "{{CHILD_BRAIN_ROOT_FOLDER_ID}}",
+    "artifactRootFolderId": "{{CHILD_BRAIN_ARTIFACT_ROOT_FOLDER_ID}}",
+    "deliveryPolicy": "drive-only"
   },
   "memoryRootFileId": "{{CHILD_BRAIN_MEMORY_ROOT_FILE_ID}}",
   "memoryRootLogicalPath": "docs/project-memory/INDEX.md",
@@ -17,5 +19,6 @@
   "nextAction": {
     "description": "Record the first verified state transition.",
     "skill": "project-second-brain"
-  }
+  },
+  "externalArtifacts": []
 }

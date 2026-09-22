@@ -4,7 +4,7 @@ description: Orchestriert einen vollständigen Sportdiagnostik-Workflow von Test
 userFacing: true
 implicitInvocation: true
 category: workflow
-version: 0.3.0
+version: 0.4.0
 status: candidate
 owners:
   - White Label Maintainer
@@ -20,7 +20,7 @@ consumes:
   - document-delivery-manifest.json
 outputs:
   - sport-report-package
-lastEvaluated: 2026-08-28
+lastEvaluated: 2026-09-22
 ---
 
 # Sport Diagnostics to Training Report Workflow
@@ -54,7 +54,7 @@ Bei reiner Testauswertung, reiner Trainingsplanung oder reinem Dokumentsatz dire
 6. **Kanonisches DOCX rendern.** `template-document-workflow` mit dem finalen Sport-Report-Inhalt und einem optional bereitgestellten Template aufrufen. Mehrseitige Tabellen müssen ungeteilte Datenzeilen und wiederholte Kopfzeilen behalten.
 7. **PDF ableiten und visuell prüfen.** Die PDF-Ausgabe aus demselben `template-document-workflow` ableiten; keine zweite Layoutlogik verwenden.
 8. **Paritäts-Gate.** DOCX- und PDF-Seitenbilder auf Reflow, Tabellen, Charts, Header/Footer, Glyphen und sichtbare Inhalte vergleichen. Bei Abweichung zurück zum DOCX-Pfad.
-9. **Paket abschließen.** DOCX, PDF und benötigte strukturierte Zwischenartefakte/Quellenreferenzen gemeinsam ausgeben.
+9. **Paket abschließen.** DOCX, PDF und benötigte strukturierte Zwischenartefakte/Quellenreferenzen in den owning Brain Drive schreiben, read-back-verifizieren und gemeinsam über Drive-Locators ausgeben.
 
 ## Renderer-Routing
 
@@ -63,6 +63,11 @@ Für neue Reports gilt zwingend:
 `Report-Spec -> template-document-workflow -> DOCX -> PDF + Render-QA`
 
 
+## Drive Storage and Delivery Gate
+
+Erzeugte Nicht-Code-Artefakte folgen `docs/DRIVE-STORAGE-AND-DELIVERY-CONTRACT.md`: in Drive persistieren, read-back-verifizieren und über beobachtete Drive-Links referenzieren. Lokale/Sandbox-Dateien bleiben Build-Zwischenstände; ohne Drive-Write ist der Handoff `pending|blocked`.
+
+Fachartefakte, Report-Spec, DOCX, PDF und Paketmanifest liegen nach erfolgreichem Lauf im passenden Drive-Kontext; Software-/Messsystem-Producer bleiben außerhalb des Brain.
 ## Prüfungen
 
 - Wurde jeder fachliche Wert nur an einer Stelle interpretiert und danach referenziert?
@@ -95,6 +100,8 @@ Für neue Reports gilt zwingend:
   "report_spec": "report-spec.json",
   "docx": "sport-report.docx",
   "pdf": "sport-report.pdf",
+  "drive_links": [],
+  "storage_status": "verified|pending|blocked",
   "verification": {
     "content_consistency": true,
     "visual_docx_check": true,
@@ -108,4 +115,4 @@ Die strukturierten Fachartefakte sind die fachliche Wahrheit; das DOCX ist die k
 
 ## Abschlusskriterien
 
-Der Workflow ist abgeschlossen, wenn alle benötigten Fach-Skills beendet wurden, Diagnose und kanonischer Trainingsplan konsistent sind, der Report-Spec keine stillen Inhaltsänderungen enthält, das DOCX visuell geprüft wurde, das PDF ausschließlich daraus konvertiert wurde und die visuelle DOCX/PDF-Übereinstimmung bestätigt ist.
+Der Workflow ist abgeschlossen, wenn alle benötigten Fach-Skills beendet wurden, Diagnose und kanonischer Trainingsplan konsistent sind, der Report-Spec keine stillen Inhaltsänderungen enthält, das DOCX visuell geprüft wurde, das PDF ausschließlich daraus konvertiert wurde, die visuelle DOCX/PDF-Übereinstimmung bestätigt ist und die finalen Reportartefakte als verifizierte Drive-Objekte verlinkt sind.

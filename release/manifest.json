@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "releaseVersion": "0.1.2",
+  "releaseVersion": "0.2.0",
   "profile": "full-portable",
   "storageProvider": "google-drive",
   "rebindRequired": true,
@@ -9,11 +9,11 @@
   "files": [
     {
       "path": "00-START-HERE.md",
-      "sha256": "ad66afda6a754f8c4011520771dc4d379cb11b51cd0df3dd3ee66346b8789986"
+      "sha256": "f156c7577ab3a3254b528f4dabdfc84f65bf973c22cc37255cac846ef4fb6923"
     },
     {
       "path": "deployment-manifest.json",
-      "sha256": "a637b8ca7b77bc7cffddea7f81472119339811136a75ad6b16a51bff10122bc6"
+      "sha256": "ea5f5885e49e845874501fb9384d2e9b97ed8a628e00cd2694672df9206e8e0e"
     },
     {
       "path": "framework/config/tool-capabilities.json",
@@ -44,20 +44,24 @@
       "sha256": "6c142abfd8016fddbace3b7122957cbf7dc86b04dc7828837e695e74266da512"
     },
     {
+      "path": "framework/docs/DRIVE-STORAGE-AND-DELIVERY-CONTRACT.md",
+      "sha256": "d6d659c194e18c7589fd46b95790f0100db1ad9771cb04497e6b186ce619f2db"
+    },
+    {
       "path": "framework/docs/EVALUATION.md",
       "sha256": "c9c5cf5e023c2893a780f439ae929d5ea933a83d6af085f50ff3f4592c475375"
     },
     {
       "path": "framework/docs/GOVERNANCE.md",
-      "sha256": "d83b505a3751b4aa4fe3e4339a90a3347a1b044c960c6d6130f6a0112bd368ca"
+      "sha256": "9fecaba5a7bec872c3e64e5b9ab723ba4d353fe4baa328409193d98ca188f119"
     },
     {
       "path": "framework/docs/KNOWLEDGE-PROMOTION-CONTRACT.md",
-      "sha256": "c68598834b6369258db6cc5b1842f1a34b7163afefc16c639c3ad5000de36c9e"
+      "sha256": "505e99f7892248a412616258a32b9704951bbfdd68759be9e758116c944eb30a"
     },
     {
       "path": "framework/docs/KNOWLEDGE-STORE-CONTRACT.md",
-      "sha256": "029f3692faf25b8a20ce0c33bceadcaec8cb2b74e0aad72941ff3d2fd6304b1d"
+      "sha256": "c787781476a4e524b15e9deab871493c87f1546c18ee098b51bd911161ad7293"
     },
     {
       "path": "framework/docs/MEMORY-PATH-CONTRACT.md",
@@ -65,11 +69,11 @@
     },
     {
       "path": "framework/docs/SECOND-BRAIN-LINT-CONTRACT.md",
-      "sha256": "54e2b074982d4ac7b8c0ffdeea0958505e1adc72dba2c9113eec3fddd351504f"
+      "sha256": "313467b5a7604d29e0e413cd9b3851753e3a133314c78349eda66e8cfe5f24da"
     },
     {
       "path": "framework/docs/SECOND-BRAIN-OPERATING-CYCLE.md",
-      "sha256": "8b523827354dd8b550a6d8efb71abaf3feeb7f7d716a424fdf06b38eea58b0e1"
+      "sha256": "ea949eab975de6c62b25fcd391ae2844d89cc467c1d557b211cd31513c057b67"
     },
     {
       "path": "framework/schemas/candidate-role-fit-v1.schema.json",
@@ -313,7 +317,7 @@
     },
     {
       "path": "framework/skills/artifact-contract-normalizer/SKILL.md",
-      "sha256": "bb28fd44adea7fdb5732122a059a32d436837833011cfa7534ed38c0bc7ee271"
+      "sha256": "f6b8c859c022681d6c48b3fe66858d23d1d82edc01106c546777ffa1a8154cc6"
     },
     {
       "path": "framework/skills/artifact-contract-normalizer/tests/evaluation.json",
@@ -332,6 +336,26 @@
       "sha256": "a6c14717f01e4c454830c48e16a0d3cb3ffb96f2555166085f3ad571efa71b8a"
     },
     {
+      "path": "framework/skills/artifact-production-contract/SKILL.md",
+      "sha256": "4d28e8987da51133fa532ce82f502031c4c353b0692001f3ec635d0e90427a8a"
+    },
+    {
+      "path": "framework/skills/artifact-production-contract/tests/evaluation.json",
+      "sha256": "850ed40e25380df891257a38597ee1ac136cf7954bbfdafaa3f92af58b758fbc"
+    },
+    {
+      "path": "framework/skills/artifact-production-contract/tests/results/edge-case.json",
+      "sha256": "2263138f05ad83d39bc5e4de2d48e3f4969f09cf04d9550219f873240da57fc3"
+    },
+    {
+      "path": "framework/skills/artifact-production-contract/tests/results/failure-case.json",
+      "sha256": "7808fb0bcd7f33feb0dfd6b5f6fd9ac4c624ae1de7d783a1afd05595252fec92"
+    },
+    {
+      "path": "framework/skills/artifact-production-contract/tests/results/happy-path.json",
+      "sha256": "685be6d4a571df5256f4134d27bd963dc989e39e764ad92bb58dacdb44c5e5fb"
+    },
+    {
       "path": "framework/skills/audio-tutorial-workflow/agents/openai.yaml",
       "sha256": "197910256625f00b8e27193f18f73de383661d64ea9e78c417a04876742bc177"
     },
@@ -341,7 +365,7 @@
     },
     {
       "path": "framework/skills/audio-tutorial-workflow/SKILL.md",
-      "sha256": "f2ce45d31bf912359b72f8bb2d253426c4ce2340dc5786974f6aec89a05fcf6b"
+      "sha256": "f43007f62fb58da12625e73fcb7859d7f4a68e6ea81b769c4aad702679df1444"
     },
     {
       "path": "framework/skills/audio-tutorial-workflow/tests/evaluation.json",
@@ -1089,11 +1113,11 @@
     },
     {
       "path": "framework/skills/creative-writing-epub-delivery/SKILL.md",
-      "sha256": "60c03afb4156c2c44996d985a1cbec087662980849f8079b7f3034feca85d2bc"
+      "sha256": "6d4a4e3437e5c6c7f4e9f5e124c84cd98fc08e30152bcf0ace5917df74017e3b"
     },
     {
       "path": "framework/skills/creative-writing-epub-delivery/tests/evaluation.json",
-      "sha256": "8ebc5857838c545b99cec951e122e8fe81b81d5c791d55fd48dcfca8cdb2c84a"
+      "sha256": "97b745d069acbe28f6aa5bfd3290a641611a9d01af30b47883957e11c1105e4d"
     },
     {
       "path": "framework/skills/creative-writing-epub-delivery/tests/results/edge-case.json",
@@ -1113,7 +1137,7 @@
     },
     {
       "path": "framework/skills/creative-writing-workflow/SKILL.md",
-      "sha256": "dc47e09d0e96220aedb02e4cd79f0ee61ab68aa549dac4799b3db90938e3b2d0"
+      "sha256": "97df65cb9a9d6f09d6cc85ebd305e76c7f2a74d90f5e9b7b1a8b90605df1ef5b"
     },
     {
       "path": "framework/skills/creative-writing-workflow/tests/evaluation.json",
@@ -1645,7 +1669,7 @@
     },
     {
       "path": "framework/skills/epub3-publication-renderer/SKILL.md",
-      "sha256": "83afc410635912d5ca556f9442c959ec493671b05b998070fd5f6b148661cf3a"
+      "sha256": "5456fe26367e85d9792fb24fc0da2ee6f79b53e00eb72909b9efc5cb42c0e6cd"
     },
     {
       "path": "framework/skills/epub3-publication-renderer/tests/evaluation.json",
@@ -4065,7 +4089,7 @@
     },
     {
       "path": "framework/skills/learning-artifact-qa/SKILL.md",
-      "sha256": "18f838682b8723ba76b6f8c87bd5497995caee61bf905881b5bfe98a6ecbde1a"
+      "sha256": "55dd3740b5feacd00c977566471ea4f26174c434d4a83848958f14a3e5710b1e"
     },
     {
       "path": "framework/skills/learning-artifact-qa/tests/evaluation.json",
@@ -4145,11 +4169,11 @@
     },
     {
       "path": "framework/skills/learning-delivery-workflow/SKILL.md",
-      "sha256": "19c23e61ade59bd1d74550a9cf759fb9ae279e28d597dcd0284a4a67f169fa31"
+      "sha256": "bf07f09b64c149f26b4ccbfd7fd006f65d8ce5b9b64ee529619ca87ba587f9b3"
     },
     {
       "path": "framework/skills/learning-delivery-workflow/tests/evaluation.json",
-      "sha256": "58500790852dc7c36fab98e16945fcc0a968201c68c644849b61c7d76023f63a"
+      "sha256": "6494ce7bdda8e8865ac3c80a87068f1218f796633fdca3f5beb021171df2f9bd"
     },
     {
       "path": "framework/skills/learning-delivery-workflow/tests/results/edge-case.json",
@@ -4169,7 +4193,7 @@
     },
     {
       "path": "framework/skills/learning-document-delivery/SKILL.md",
-      "sha256": "9722de9360b4454f856208969cb2f6b8e448f3e4e55c3072e7f70507cb014981"
+      "sha256": "5f0a3a2404e90dd3d0b421fd4273e182a07b2880bd206840b22cedb548e29ac8"
     },
     {
       "path": "framework/skills/learning-document-delivery/tests/evaluation.json",
@@ -4193,7 +4217,7 @@
     },
     {
       "path": "framework/skills/learning-image-generator/SKILL.md",
-      "sha256": "7a5325344a5506da205444b1f7705a76cd03b8a816d465ce4fd688968e850071"
+      "sha256": "f2510b51033d58a7266b86bc53637704d685218ebe4b154e2469f30455e14b3a"
     },
     {
       "path": "framework/skills/learning-image-generator/tests/evaluation.json",
@@ -4217,7 +4241,7 @@
     },
     {
       "path": "framework/skills/learning-landingpage-renderer/SKILL.md",
-      "sha256": "8d6ef95493b16bd8de63b55e58eab564f1877c1d3986673f90f1dc5039bb3acb"
+      "sha256": "7081f7d184758569d6f5f3cd3ccac644f3a91621b1261071ac1bff68362a0ad2"
     },
     {
       "path": "framework/skills/learning-landingpage-renderer/tests/evaluation.json",
@@ -4385,7 +4409,7 @@
     },
     {
       "path": "framework/skills/learning-svg-generator/SKILL.md",
-      "sha256": "3966fc450faa084fe6526a6993041bf8350a3f5cc14f7edace293973fec84235"
+      "sha256": "9a290f0a06962b48995502ba828694e16d93e7663725f3fd767ceac5155e02dc"
     },
     {
       "path": "framework/skills/learning-svg-generator/tests/evaluation.json",
@@ -5825,7 +5849,7 @@
     },
     {
       "path": "framework/skills/person-profile-document-delivery/SKILL.md",
-      "sha256": "767e97c4c8a395c69a8cfbb3053aa24dcf1aeb1fd018cf4591e405d04020859a"
+      "sha256": "09397b035049d582f65565d68d84fb2aba55e881f21d3cbcc35364bb0e4517e9"
     },
     {
       "path": "framework/skills/person-profile-report/agents/openai.yaml",
@@ -5881,7 +5905,7 @@
     },
     {
       "path": "framework/skills/person-research-report-workflow/SKILL.md",
-      "sha256": "31c4c8933cc6ae9a0ef88ca14d1409494786e5b9535251e84858e95d5de889c5"
+      "sha256": "7f56416941e129f9d46829dbdbfd0a96bcfab7d0be601623f8a4c7f1ca42af88"
     },
     {
       "path": "framework/skills/person-research-report-workflow/tests/evaluation.json",
@@ -6353,15 +6377,15 @@
     },
     {
       "path": "framework/skills/project-second-brain/references/drive-artifact-contract.md",
-      "sha256": "63e1b6ed7a8f160cddd7b9033a7707755b354aa89a7ac216c090f5e6341deab1"
+      "sha256": "456e77621bb54da1ff647604a868ee82deccb059574ab210d9dae3657d167ebd"
     },
     {
       "path": "framework/skills/project-second-brain/SKILL.md",
-      "sha256": "b4758660786035d3d007f896060e0fd840c18962f47d373f13c1d89b5cae9b64"
+      "sha256": "6b5c95bec20b3318fc84b07dfed65862bc6a9dcd10b4f785a51d9f934a2cd2ab"
     },
     {
       "path": "framework/skills/project-second-brain/tests/evaluation.json",
-      "sha256": "39cf3bcb2b07d3386b7dd3c27b5d5b23fcd81e8e9d5dd2434a3f76bd3f1334f2"
+      "sha256": "28935a5b6419b68da37f8a3b51e18efc36df797a9cc282728fa9721ebd91a6e8"
     },
     {
       "path": "framework/skills/project-second-brain/tests/results/drive-pending-edge-case.json",
@@ -6901,7 +6925,7 @@
     },
     {
       "path": "framework/skills/second-brain-federation-workflow/SKILL.md",
-      "sha256": "396adf01cc326b2bd9651947eb8d3b0d74fb1f5094830dc8d9c6b526b9bed56f"
+      "sha256": "f1b11166ad1a459aa82bb2dcfe421867327340cabfcbd4241b5454f65111b55b"
     },
     {
       "path": "framework/skills/second-brain-federation-workflow/tests/evaluation.json",
@@ -7241,7 +7265,7 @@
     },
     {
       "path": "framework/skills/sport-diagnostics-training-report-workflow/SKILL.md",
-      "sha256": "7a60153f2a749366f14a8cff710de07f096649baeaab21b6920c183bbc465a5a"
+      "sha256": "2ee9cbb4a72081d189ea0f79ee150f5937d4fc8c51ebcd0fda69e2f77f308a9b"
     },
     {
       "path": "framework/skills/sport-diagnostics-training-report-workflow/tests/evaluation.json",
@@ -8201,11 +8225,11 @@
     },
     {
       "path": "framework/skills/template-document-workflow/SKILL.md",
-      "sha256": "e98d18970e2d035a3fcfebfb97adb818fd821393da1d0c7412d595b61d9c1e5d"
+      "sha256": "315d057ecbf83f384dfaaaae0a9dcef6a98642b150f7036233ba8eac00cdf7b8"
     },
     {
       "path": "framework/skills/template-document-workflow/tests/evaluation.json",
-      "sha256": "8e11ed3cacaa3d24eadbffb387c65fb902506f0c66243341d3620aed838f592f"
+      "sha256": "e4a094e32e7c63f4a2d7fc465e0238bd2bdcfbd175ed9d21f1e6a14bd08a2d67"
     },
     {
       "path": "framework/skills/template-document-workflow/tests/results/edge-case.json",
@@ -8225,11 +8249,11 @@
     },
     {
       "path": "framework/skills/template-presentation-workflow/SKILL.md",
-      "sha256": "90a8b3c0128948e3ad88047c2e2e3231dfdf751a1b872ca5375c82abf079ab9b"
+      "sha256": "7dd761ad9a2db92f483d14619fc9158dcc112d96ce1e051305ceb6b85e7a6103"
     },
     {
       "path": "framework/skills/template-presentation-workflow/tests/evaluation.json",
-      "sha256": "cf7d26eb3f2d07bfb6e571287496f7a1a375a15834afaac190732a3727603afa"
+      "sha256": "9a7fbafbe2da8032940bc4e22f7d844886540797777b086cada87f04a421971c"
     },
     {
       "path": "framework/skills/template-presentation-workflow/tests/results/edge-case.json",
@@ -8905,15 +8929,15 @@
     },
     {
       "path": "handoff/claim.example.json",
-      "sha256": "39d7b33114bf221e5093bd02546e95a45d1c3bc6099195ae3acee7b8f12d0842"
+      "sha256": "49c93a435c7d0d673832945e7b4c7321727f26846921f17d16221813208a2d7d"
     },
     {
       "path": "handoff/CLAIM.md",
-      "sha256": "e511390fa5938a208c1bcb9d14fa34e3aab2b2623449d41163ac17e6f767fdf5"
+      "sha256": "04027d9c0e787d2697377a55348268afa0d1e47d1a9919521be8a6389494db1c"
     },
     {
       "path": "handoff/RECIPIENT-BOOTSTRAP-PROMPT.md",
-      "sha256": "516e94488f21e7c9dc795a70ef8f4f352c07571f8e64302a939b0edf8e52c326"
+      "sha256": "4ca5157f459eb849c803eb212abd43911e6f4feb1c8d89984e57fd6ffc60d80d"
     },
     {
       "path": "handoff/SENDER-CHECKLIST.md",
@@ -8921,31 +8945,35 @@
     },
     {
       "path": "handoff/SUPPORT.md",
-      "sha256": "727b637f6ecb9d1eaa426cdf593185b576fa66a2e1fd79974e03b1e9e57dbb3a"
+      "sha256": "c06526916b688f9a82e88a54cfb7490cd6c8b6b26b63a7a52ffb0880ab63f1c3"
     },
     {
       "path": "handoff/SYSTEM-PROMPT.md",
-      "sha256": "d09e616927c89a3755a95bb41cb404f1bb3e2ebd367fa910f27136dee107b64c"
+      "sha256": "8671d9b9d0af67f0c7ad7e122be372c95fe3b8fe1a8176d1b2e7f799955295de"
     },
     {
       "path": "handoff/THIRD-PARTY-DEPLOYMENT.md",
-      "sha256": "235dc9f2c6461be0c611cf459b2f44ddf73d35a19c6b6e091681ab7d724872d8"
+      "sha256": "d63657f06e3ccc1afa1f8cf8bf434519f8834c6dc78623e4081f9800b7673959"
     },
     {
       "path": "handoff/VALIDATION.md",
-      "sha256": "1aacd71d8272d17b3029476d1e8e21a29e6dfab1eef2afcdfbd2e2875aa0160a"
+      "sha256": "676e9c6d5132aebcaeaea82a487c76d6a1a9d6e986f3e4719fecafc9b83636ef"
     },
     {
       "path": "instance.yaml",
-      "sha256": "6aae0ecd605d1f904f3feb71595d152a3f99b5d066be33ab812676e3677c347d"
+      "sha256": "6b2a69dcda158df5e31f56eab0e133b1e84eb7c4c9e9697045e1524d9d89d9b4"
     },
     {
       "path": "LICENSE",
       "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
     },
     {
+      "path": "README.md",
+      "sha256": "79de380307cd0183bf4cb46b7abb029446c9e76adf9fe7e5287ba15bced13ca5"
+    },
+    {
       "path": "second-brain/super-second-brain/docs/super-memory/BOOTSTRAP.md",
-      "sha256": "3e894dc2ba439cbbd82f462d68db2a7d44ee04fa9d4c51487990ca636308822d"
+      "sha256": "c949672786f4328c96c66b7f5307d3339230b7d78fb6210c5af1afdf3fd608b0"
     },
     {
       "path": "second-brain/super-second-brain/docs/super-memory/INDEX.md",
@@ -8964,12 +8992,16 @@
       "sha256": "86ce937c000dadc6f82a02b03608e0cdc58a568fb96d7347bf86dbb76a3b5fc2"
     },
     {
+      "path": "templates/child-brain/docs/project-memory/ASSETS.md",
+      "sha256": "cd46525015aa8783aa20a2444c81e648d23693ba94f53b1695029274dbcf35e6"
+    },
+    {
       "path": "templates/child-brain/docs/project-memory/INDEX.md",
-      "sha256": "b6a7bf5fa449ce964cc51c12ce15435126305f8782a503f3b792a7d18df93621"
+      "sha256": "81617e37360bdd9c200c65505ad8112c69c4470545bdf4a5d3e94aebcaebf22d"
     },
     {
       "path": "templates/child-brain/docs/project-memory/state.json",
-      "sha256": "de2d1e36ff2f995859793037fdf1075f49f6e687f02a9b9cffa03dfffc58f7ab"
+      "sha256": "0094154c4be0ccc23c0edc1bfb5863332d0f0b570b60796fc2b61c8b10fbb0d4"
     },
     {
       "path": "templates/child-brain/docs/project-memory/TIMELINE.md",
@@ -8977,11 +9009,13 @@
     },
     {
       "path": "templates/child-brain/README.md",
-      "sha256": "6b832747b519c6f21ac2d792bfcf6ea447c632225a5767174409572516fd79b9"
+      "sha256": "051a602e81c91254474474162b0e9053c5f6a84ff5711b69be8c1d3e3801d9fd"
     },
     {
       "path": "tools/validate_white_label_release.py",
-      "sha256": "20543b9f6f66f25bfe2ded37773eaea37ff4e7b893d0c00f21e6633f8bb786d8"
+      "sha256": "1d4da40830a28fecf46991fbef71e78ea880a725bd46268b48ca1cb7f4230892"
     }
-  ]
+  ],
+  "runtimeStoragePolicy": "drive-only",
+  "artifactDeliveryPolicy": "drive-link-first"
 }

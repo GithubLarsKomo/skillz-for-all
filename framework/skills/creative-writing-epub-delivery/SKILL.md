@@ -14,17 +14,13 @@ requires:
   - artifact-production-contract
   - artifact-contract-audit
 consumes:
-  - artifact-production-contract.json
-  - artifact-figure-contracts.json
-  - artifact-contract-audit.json
-  - artifact-contract-audit.md
   - narrative-listener-review.json
   - epub3-validation.json
 outputs:
   - creative-writing.epub
   - creative-epub-delivery.json
   - creative-voice-guidance.md
-lastEvaluated: 2026-09-06
+lastEvaluated: 2026-09-22
 ---
 
 # Creative Writing EPUB Delivery
@@ -90,6 +86,15 @@ Nach `structuralStatus=pass` darf das validierte Paket content-neutral als `crea
 
 **Nie structural-pass als import-pass ausgeben.**
 
+## Artifact Production Contract Gate
+
+Bei substantieller Neuerstellung oder materieller Überarbeitung zuerst den gemeinsamen `artifact-production-contract` aus angemessenem Grilling erzeugen bzw. einen gültigen gefrorenen Vertrag wiederverwenden. Dieser Workflow führt den gefrorenen Vertrag aus und darf INVARIANT-Festlegungen nicht neu interpretieren. Vor Release prüft `artifact-contract-audit` die exakt auszuliefernde Revision. Ein Audit-PASS ist Voraussetzung für den anschließenden Drive-Delivery-Gate; reine deterministische Konvertierungen dürfen den bestehenden Vertrag erben.
+
+## Drive Storage and Delivery Gate
+
+Alle erzeugten Nicht-Code-Artefakte folgen `docs/DOCUMENT-ARTIFACT-DELIVERY-CONTRACT.md`: lokal/Sandbox nur Build-Zwischenstand; finale Datei in den owning Child-Brain-Drive-Root oder ersatzweise tenantweiten `Deliveries`-Root schreiben; Write read-back-verifizieren; Projektartefakt registrieren; dem Nutzer den beobachteten Drive-Link ausgeben. Ohne erfolgreichen Drive-Write bleibt die Delivery `pending|blocked` und ist nicht final.
+
+Das gilt für EPUB, Delivery-Manifest und Voice Guidance. Ein `structural-pass` ohne Drive-Write ist noch keine abgeschlossene Auslieferung.
 ## Qualitätsgate
 
 - **Listener Gate vor EPUB Release.**
@@ -112,18 +117,13 @@ Nach `structuralStatus=pass` darf das validierte Paket content-neutral als `crea
   "epubStructuralStatus": "pass",
   "elevenReaderCompatibility": "structural-pass|import-pass|voice-smoke-pass|not-tested",
   "voiceGuidanceRef": "creative-voice-guidance.md",
+  "driveFileId": "observed-drive-file-id|null",
+  "driveUrl": "observed-drive-url|null",
+  "storageStatus": "verified|pending|blocked",
   "status": "pass|review|fail"
 }
 ```
 
-## Publication Contract und Drive-Release
-
-Die Manuskript-/Projektentscheidungen werden nicht neu erfunden. Für publikationsspezifische materielle Entscheidungen (z. B. Cover/Visuals, Metadaten, Format-/Editierbarkeits- oder Delivery-Anforderungen) gilt `docs/ARTIFACT-PRODUCTION-CONTRACT.md`; ein bereits bestätigter Projekt-/Publikationsvertrag wird wiederverwendet und nur bei Delta-Bedarf nachgegrillt.
-
-Vor Release wird die exakt zu publizierende EPUB-Revision mit `artifact-contract-audit` gegen den aktiven Vertrag geprüft.
-
-Danach gilt `docs/DOCUMENT-ARTIFACT-DELIVERY-CONTRACT.md`: `creative-writing.epub` ist erst final ausgeliefert, wenn die exakt geprüfte Datei im kanonischen recipient-owned Google Drive gespeichert, read-back-verifiziert und als beobachteter Drive-Link zurückgegeben wurde. Eine lokale/Sandbox-Datei ist nur Zwischenstand.
-
 ## Abschluss
 
-Abgeschlossen, wenn Listener Gate und EPUB-Struktur bestanden sind, `creative-writing.epub` und Voice Guidance vorliegen und der ElevenReader-Status exakt die tatsächlich geprüfte Ebene beschreibt.
+Abgeschlossen, wenn Listener Gate und EPUB-Struktur bestanden sind, `creative-writing.epub` und Voice Guidance als verifizierte Drive-Objekte vorliegen und der ElevenReader-Status exakt die tatsächlich geprüfte Ebene beschreibt.

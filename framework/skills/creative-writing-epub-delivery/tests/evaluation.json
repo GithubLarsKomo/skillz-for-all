@@ -51,6 +51,24 @@
         "Nur `gateStatus=pass` erlaubt finale Auslieferung",
         "Listener Gate vor EPUB Release"
       ]
+    },
+    {
+      "id": "drive-only-delivery",
+      "input": "Release an approved long-form manuscript as EPUB with voice guidance.",
+      "requiredBehaviors": [
+        "persist EPUB delivery manifest and voice guidance in Drive",
+        "distinguish structural EPUB validation from Drive delivery completion",
+        "return the verified Drive EPUB link"
+      ],
+      "forbiddenBehaviors": [
+        "claim final release from a local EPUB only",
+        "substitute a sandbox download for a failed Drive write"
+      ],
+      "skillAnchors": [
+        "Drive Storage and Delivery Gate",
+        "DRIVE-STORAGE-AND-DELIVERY-CONTRACT.md",
+        "Drive"
+      ]
     }
   ]
 }

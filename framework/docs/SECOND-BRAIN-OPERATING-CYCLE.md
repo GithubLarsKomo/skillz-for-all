@@ -48,7 +48,8 @@ For substantive work:
 2. read the Child Brain rather than relying on Super-Brain summaries;
 3. use current authoritative evidence where freshness matters;
 4. distinguish source facts, synthesis, assumptions and recommendations;
-5. produce the requested answer, decision support, artifact or execution result.
+5. produce the requested answer, decision support, artifact or execution result;
+6. for generated non-code artifacts, apply the Drive delivery gate: persist to the owning Brain/tenant Deliveries root, read back, register, and return the verified Drive link.
 
 A Query may itself create new knowledge even if no new source was ingested.
 
@@ -117,7 +118,8 @@ A substantive task is operationally complete when:
 2. current evidence and Source-of-Truth boundaries were respected;
 3. the Promotion decision was made;
 4. any triggered Lint was completed or explicitly left as an evidence-backed open finding;
-5. writes that are claimed successful were read-back verified.
+5. writes that are claimed successful were read-back verified;
+6. generated non-code artifacts are stored in recipient-owned Drive and successful user handoff uses their verified Drive links.
 
 ## Design origin
 

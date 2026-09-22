@@ -13,7 +13,11 @@
       "forbiddenBehaviors": [
         "allow a renderer to reinterpret the user brief or use a local download as canonical delivery"
       ],
-      "skillAnchors": ["round-based-requirements-grilling", "Freeze gate", "Drive"]
+      "skillAnchors": [
+        "round-based-requirements-grilling",
+        "Freeze gate",
+        "Drive"
+      ]
     },
     {
       "id": "edge-case",
@@ -23,8 +27,14 @@
         "avoid redundant Grilling",
         "preserve the canonical source relation"
       ],
-      "forbiddenBehaviors": ["create an independent PDF design brief"],
-      "skillAnchors": ["derivative", "reuse", "canonical"]
+      "forbiddenBehaviors": [
+        "create an independent PDF design brief"
+      ],
+      "skillAnchors": [
+        "derivative",
+        "reuse",
+        "canonical"
+      ]
     },
     {
       "id": "failure-case",
@@ -34,8 +44,35 @@
         "require contract revision and re-freeze",
         "keep final delivery pending until canonical Drive persistence succeeds"
       ],
-      "forbiddenBehaviors": ["treat sandbox output as final canonical delivery"],
-      "skillAnchors": ["INVARIANT", "re-freeze", "Drive"]
+      "forbiddenBehaviors": [
+        "treat sandbox output as final canonical delivery"
+      ],
+      "skillAnchors": [
+        "INVARIANT",
+        "re-freeze",
+        "Drive"
+      ]
+    },
+    {
+      "id": "drive-only-delivery",
+      "input": "A substantive PPTX/PDF package has completed Grilling and production. The renderer wants to hand back local files immediately.",
+      "requiredBehaviors": [
+        "require the frozen Artifact Production Contract to govern the exact candidate",
+        "require artifact-contract-audit before release",
+        "persist the exact approved artifacts to recipient-owned canonical Google Drive",
+        "read back and register observed Drive identities",
+        "return observed Drive links as the successful final handoff"
+      ],
+      "forbiddenBehaviors": [
+        "treat local or sandbox files as final delivery",
+        "skip contract audit because rendering succeeded",
+        "fall back to GitHub as canonical artifact storage"
+      ],
+      "skillAnchors": [
+        "Artifact Production Contract",
+        "DOCUMENT-ARTIFACT-DELIVERY-CONTRACT.md",
+        "recipient-owned Drive"
+      ]
     }
   ]
 }

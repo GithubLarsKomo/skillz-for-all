@@ -13,6 +13,8 @@
 - [ ] Active deployment root is recipient-owned or organization-owned.
 - [ ] Framework root ID is recipient-controlled.
 - [ ] Super Second Brain root ID is recipient-controlled.
+- [ ] Tenant Deliveries root ID is recipient-controlled.
+- [ ] Runtime storage policy is `drive-only`.
 - [ ] No source-owner Drive ID is required at runtime.
 - [ ] No source-owner credentials are required.
 
@@ -32,5 +34,8 @@
 - [ ] Sandbox Child Brain can be created.
 - [ ] Sandbox Child Brain can be registered and routed.
 - [ ] Sandbox Project-Memory event can be written and read back.
+- [ ] A generated non-code sandbox artifact can be written to Drive and read back.
+- [ ] The sandbox artifact is registered with observed Drive ID/URL.
+- [ ] The final smoke-test handoff uses the verified Drive link, not a local/sandbox download.
 
 Only after all applicable checks pass is the deployment considered claimed.

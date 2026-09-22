@@ -15,10 +15,6 @@ requires:
   - artifact-production-contract
   - artifact-contract-audit
 consumes:
-  - artifact-production-contract.json
-  - artifact-figure-contracts.json
-  - artifact-contract-audit.json
-  - artifact-contract-audit.md
   - document-template-profile.json
   - document-layout-qa.json
   - document-layout-qa.md
@@ -30,7 +26,7 @@ outputs:
   - document.pdf
   - document-qa.md
   - document-delivery-manifest.json
-lastEvaluated: 2026-08-28
+lastEvaluated: 2026-09-22
 ---
 
 # Template Document Workflow
@@ -110,11 +106,12 @@ Regeln:
   "contentFingerprint": "...",
   "templateProfileRef": "document-template-profile.json",
   "outputs": [
-    {"format": "docx", "ref": "document.docx"},
-    {"format": "pdf", "ref": "document.pdf"}
+    {"format": "docx", "ref": "drive://observed-file-id", "driveUrl": "observed-drive-url"},
+    {"format": "pdf", "ref": "drive://observed-file-id", "driveUrl": "observed-drive-url"}
   ],
   "layoutQaRef": "document-layout-qa.json",
   "renderQaRef": "document-render-qa.json",
+  "storageStatus": "verified|pending|blocked",
   "status": "pass|review|fail"
 }
 ```
@@ -151,22 +148,25 @@ Vor PASS:
 - **Renderer/PDF-Export fehlt:** DOCX kann separat geliefert werden, aber visuelle/PDF-Paritätsclaims bleiben `not-run`.
 - **Fachlicher Konflikt im Input:** upstream zurückgeben; nicht beim Layouten lösen.
 
+## Artifact Production Contract Gate
+
+Bei substantieller Neuerstellung oder materieller Überarbeitung zuerst den gemeinsamen `artifact-production-contract` aus angemessenem Grilling erzeugen bzw. einen gültigen gefrorenen Vertrag wiederverwenden. Dieser Workflow führt den gefrorenen Vertrag aus und darf INVARIANT-Festlegungen nicht neu interpretieren. Vor Release prüft `artifact-contract-audit` die exakt auszuliefernde Revision. Ein Audit-PASS ist Voraussetzung für den anschließenden Drive-Delivery-Gate; reine deterministische Konvertierungen dürfen den bestehenden Vertrag erben.
+
+## Drive Storage and Delivery Gate
+
+Alle erzeugten Nicht-Code-Artefakte folgen dem framework-weiten `docs/DOCUMENT-ARTIFACT-DELIVERY-CONTRACT.md`.
+
+- lokale/Sandbox-Dateien sind nur Build-Zwischenstände;
+- finale Artefakte werden in den owning Child-Brain-Drive-Root geschrieben; ohne passenden Brain in den tenantweiten `Deliveries`-Root;
+- nach dem Write werden Drive-ID, URL, Parent und soweit verfügbar Revision/Modified State read-back-verifiziert;
+- Projektartefakte werden über `project-second-brain` in `ASSETS.md`/`state.json` registriert;
+- ein erfolgreicher Nutzer-Handoff liefert die verifizierten Drive-Links;
+- fehlende Drive-Schreibfähigkeit bedeutet `pending|blocked`, nicht erfolgreiche Delivery und keinen GitHub-/Sandbox-Fallback.
+
+
 ## Übergabe
 
-Eigene Outputs sind `document.docx`, optional `document.pdf`, `document-qa.md` und `document-delivery-manifest.json`. Profiler- und QA-Artefakte bleiben bei ihren spezialisierten Producer-Skills und werden referenziert.
-
-## Gemeinsame Artifact-Governance und Drive-Delivery
-
-Dieser Workflow unterliegt verbindlich:
-
-- `docs/ARTIFACT-PRODUCTION-CONTRACT.md`;
-- `docs/DOCUMENT-ARTIFACT-DELIVERY-CONTRACT.md`.
-
-Vor materieller Produktion muss eine aktive `frozen` Revision des Artifact Production Contract vorliegen; bereits bestätigte Anforderungen werden nicht erneut erfragt. `INVARIANT`-Festlegungen dürfen nicht still verändert werden, `CONTROLLED`-Abweichungen brauchen dokumentierten Grund/Impact und `ADAPTIVE`-Entscheidungen dürfen Intent und Bedeutung nicht verändern.
-
-Nach Format-/Render-QA wird `artifact-contract-audit` auf die **exakt auszuliefernde Revision** angewendet. Erst danach wird genau diese Revision in den kanonischen recipient-owned Google-Drive-Ort geschrieben, read-back-verifiziert und über den beobachteten Drive-Link ausgeliefert.
-
-Ein lokales/sandboxed Ergebnis ist niemals der erfolgreiche Endzustand. Ist Drive nicht beschreibbar, bleibt die Delivery `pending|blocked`.
+Eigene Outputs sind `document.docx`, optional `document.pdf`, `document-qa.md` und `document-delivery-manifest.json`; als final ausgeliefert gelten sie erst mit verifiziertem Drive-Objekt/Link. Profiler- und QA-Artefakte bleiben bei ihren spezialisierten Producer-Skills und werden referenziert.
 
 ## Abschlusskriterien
 

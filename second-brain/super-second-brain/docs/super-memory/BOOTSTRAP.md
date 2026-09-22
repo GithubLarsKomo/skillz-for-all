@@ -6,7 +6,7 @@ Status: active
 
 Stable startup contract for substantive work using this tenant's federated Second-Brain system.
 
-This bootstrap uses provider-neutral locators, while the standard claimed Skillz-for-all runtime persists mutable tenant state exclusively in recipient-owned Google Drive.
+This bootstrap is stored and executed from recipient-owned Google Drive. Skillz for All does not support GitHub or another backend as the canonical claimed Second-Brain runtime store.
 
 ## Startup sequence
 
@@ -25,8 +25,9 @@ This bootstrap uses provider-neutral locators, while the standard claimed Skillz
 Resolve these logical files below the bound tenant Skillz framework root:
 
 - `docs/KNOWLEDGE-STORE-CONTRACT.md`
-- `docs/ARTIFACT-PRODUCTION-CONTRACT.md`
+- `docs/DRIVE-STORAGE-AND-DELIVERY-CONTRACT.md`
 - `docs/DOCUMENT-ARTIFACT-DELIVERY-CONTRACT.md`
+- `docs/ARTIFACT-PRODUCTION-CONTRACT.md`
 - `skills/second-brain-federation-workflow/SKILL.md`
 - `skills/project-second-brain/SKILL.md`
 - `docs/SECOND-BRAIN-OPERATING-CYCLE.md`
@@ -37,4 +38,4 @@ Resolve these logical files below the bound tenant Skillz framework root:
 
 If the tenant framework, Super Brain or canonical Child Brain cannot be verified, do not invent prior knowledge.
 
-Use current-task evidence where possible and mark persistence/routing as pending or blocked. Never write substantive knowledge into a convenient non-canonical target.
+Use current-task evidence where possible and mark persistence/routing as pending or blocked. Never write substantive knowledge into a convenient non-canonical target. Generated non-code artifacts likewise remain pending until written to and read back from the canonical Drive location.

@@ -16,7 +16,7 @@ outputs:
   - learning-handout.docx
   - learning-handout.pdf
   - learning-document-qa.json
-lastEvaluated: 2026-08-28
+lastEvaluated: 2026-09-22
 ---
 
 # Learning Document Delivery
@@ -88,19 +88,22 @@ Nach DOCX-PASS:
 - sichtbare Parität zum kanonischen DOCX;
 - Corporate Design Gate zusätzlich PASS, wenn anwendbar.
 
-## Gemeinsame Artifact-Governance und Drive-Delivery
+## Artifact Production Contract Gate
 
-Dieser Workflow unterliegt verbindlich:
+Bei substantieller Neuerstellung oder materieller Überarbeitung zuerst den gemeinsamen `artifact-production-contract` aus angemessenem Grilling erzeugen bzw. einen gültigen gefrorenen Vertrag wiederverwenden. Dieser Workflow führt den gefrorenen Vertrag aus und darf INVARIANT-Festlegungen nicht neu interpretieren. Vor Release prüft `artifact-contract-audit` die exakt auszuliefernde Revision. Ein Audit-PASS ist Voraussetzung für den anschließenden Drive-Delivery-Gate; reine deterministische Konvertierungen dürfen den bestehenden Vertrag erben.
 
-- `docs/ARTIFACT-PRODUCTION-CONTRACT.md`;
-- `docs/DOCUMENT-ARTIFACT-DELIVERY-CONTRACT.md`.
+## Drive Storage and Delivery Gate
 
-Vor materieller Produktion muss eine aktive `frozen` Revision des Artifact Production Contract vorliegen; bereits bestätigte Anforderungen werden nicht erneut erfragt. `INVARIANT`-Festlegungen dürfen nicht still verändert werden, `CONTROLLED`-Abweichungen brauchen dokumentierten Grund/Impact und `ADAPTIVE`-Entscheidungen dürfen Intent und Bedeutung nicht verändern.
+Alle erzeugten Nicht-Code-Artefakte folgen dem framework-weiten `docs/DOCUMENT-ARTIFACT-DELIVERY-CONTRACT.md`.
 
-Nach Format-/Render-QA wird `artifact-contract-audit` auf die **exakt auszuliefernde Revision** angewendet. Erst danach wird genau diese Revision in den kanonischen recipient-owned Google-Drive-Ort geschrieben, read-back-verifiziert und über den beobachteten Drive-Link ausgeliefert.
+- lokale/Sandbox-Dateien sind nur Build-Zwischenstände;
+- finale Artefakte werden in den owning Child-Brain-Drive-Root geschrieben; ohne passenden Brain in den tenantweiten `Deliveries`-Root;
+- nach dem Write werden Drive-ID, URL, Parent und soweit verfügbar Revision/Modified State read-back-verifiziert;
+- Projektartefakte werden über `project-second-brain` in `ASSETS.md`/`state.json` registriert;
+- ein erfolgreicher Nutzer-Handoff liefert die verifizierten Drive-Links;
+- fehlende Drive-Schreibfähigkeit bedeutet `pending|blocked`, nicht erfolgreiche Delivery und keinen GitHub-/Sandbox-Fallback.
 
-Ein lokales/sandboxed Ergebnis ist niemals der erfolgreiche Endzustand. Ist Drive nicht beschreibbar, bleibt die Delivery `pending|blocked`.
 
 ## Abschluss
 
-Abgeschlossen, wenn DOCX editierbar, PDF visuell vollständig geprüft und beide inhaltlich identisch zur kanonischen Learning-Basis sind.
+Abgeschlossen, wenn DOCX editierbar, PDF visuell vollständig geprüft und beide inhaltlich identisch zur kanonischen Learning-Basis sind, beide angeforderten Formate in Drive read-back-verifiziert wurden und ihre Drive-Links im Delivery-Handoff stehen.

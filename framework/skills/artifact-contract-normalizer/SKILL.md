@@ -4,7 +4,7 @@ description: Analysiert und normalisiert Skill-Artefaktverträge für eindeutige
 userFacing: false
 implicitInvocation: true
 discoverability: internal
-version: 0.1.0
+version: 0.2.0
 status: candidate
 owners:
   - White Label Maintainer
@@ -12,7 +12,7 @@ requires:
   - skill-portfolio-audit
 outputs:
   - artifact-contract-normalization.json
-lastEvaluated: 2026-08-28
+lastEvaluated: 2026-09-22
 ---
 
 # Artifact Contract Normalizer
@@ -33,10 +33,11 @@ Intern verwenden, wenn mehrere Skills dasselbe Output-Artefakt deklarieren, Prod
 1. **Artefakt inventarisieren.** Alle deklarierenden Producer, potenziellen Consumer und relevante Dependency-Kanten erfassen.
 2. **Producer bestimmen.** Den Skill identifizieren, der das Artefakt tatsächlich erzeugt und dessen fachliche/formatbezogene Verantwortung besitzt.
 3. **Orchestrator bereinigen.** Orchestratoren behalten Run-/Bundle-/Manifest-Artefakte; Worker-Dateien werden referenziert statt erneut als Output deklariert.
-4. **Consumer explizieren.** Wo ein downstream Skill ein bestimmtes Artefakt wirklich liest, `consumes` bevorzugen. `requires` allein darf nicht als Beweis für jede mögliche Output-Nutzung missverstanden werden.
-5. **Compatibility behandeln.** Deprecated Facades dürfen Replacement-Artefakte referenzieren, deklarieren aber eigene Compatibility-Manifeste statt denselben kanonischen Output.
-6. **Terminal Outputs erkennen.** Berichte, Exporte und andere Endprodukte ohne harte Consumer nicht automatisch als Orphans klassifizieren.
-7. **Delta planen.** Frontmatter-, Body-, Evaluation- und Regressionstest-Änderungen mit erwarteter Ambiguity-Auswirkung dokumentieren.
+4. **Storage von Ownership trennen.** Für Skillz for All bleibt genau ein fachlicher Producer Eigentümer des Artefakts, während die persistierte Nicht-Code-Instanz gemäß `docs/DRIVE-STORAGE-AND-DELIVERY-CONTRACT.md` in Drive liegt. Drive-Persistenz erzeugt keinen zweiten Producer.
+5. **Consumer explizieren.** Wo ein downstream Skill ein bestimmtes Artefakt wirklich liest, `consumes` bevorzugen. `requires` allein darf nicht als Beweis für jede mögliche Output-Nutzung missverstanden werden.
+6. **Compatibility behandeln.** Deprecated Facades dürfen Replacement-Artefakte referenzieren, deklarieren aber eigene Compatibility-Manifeste statt denselben kanonischen Output.
+7. **Terminal Outputs erkennen.** Berichte, Exporte und andere Endprodukte ohne harte Consumer nicht automatisch als Orphans klassifizieren.
+8. **Delta planen.** Frontmatter-, Body-, Evaluation- und Regressionstest-Änderungen mit erwarteter Ambiguity-Auswirkung dokumentieren.
 
 ## Prüfungen
 
@@ -46,6 +47,7 @@ Intern verwenden, wenn mehrere Skills dasselbe Output-Artefakt deklarieren, Prod
 - Sind explizite `consumes`-Kanten evidenzbasiert?
 - Bleiben terminale Outputs ohne Consumer zulässig?
 - Erzeugt eine Compatibility-Fassade kein zweites kanonisches Artefakt?
+- Ist die persistierte Nicht-Code-Instanz über einen verifizierten Drive-Locator referenziert, ohne Producer-Ownership zu duplizieren?
 
 ## Fehlerbehandlung
 

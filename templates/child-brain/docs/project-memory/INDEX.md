@@ -10,10 +10,11 @@ Status: bootstrap
 
 - Machine state: `state.json`
 - Timeline: `TIMELINE.md`
+- Asset register: `ASSETS.md`
 
 ## Source-of-truth boundary
 
-This Brain owns only the durable knowledge within its declared scope. Controlled records and executable producer artifacts remain in their authoritative systems/repositories.
+This Brain owns durable knowledge and generated non-code project/delivery artifacts within its declared scope. Controlled records and executable producer artifacts remain in their authoritative systems/repositories and are referenced here.
 
 ## Next action
 

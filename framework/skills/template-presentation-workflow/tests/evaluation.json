@@ -55,6 +55,24 @@
         "Report-Sätze nicht unverändert",
         "Keine Behauptung erfolgreicher visueller QA ohne tatsächlichen Render"
       ]
+    },
+    {
+      "id": "drive-only-delivery",
+      "input": "Generate an editable PPTX and PDF from a verified presentation template in a claimed Skillz-for-All tenant.",
+      "requiredBehaviors": [
+        "persist PPTX PDF and QA in the canonical Drive destination",
+        "read back Drive metadata before completion",
+        "return verified Drive links for the final deck"
+      ],
+      "forbiddenBehaviors": [
+        "return only local download links",
+        "claim final delivery while Drive write is pending"
+      ],
+      "skillAnchors": [
+        "Drive Storage and Delivery Gate",
+        "DRIVE-STORAGE-AND-DELIVERY-CONTRACT.md",
+        "Drive"
+      ]
     }
   ]
 }

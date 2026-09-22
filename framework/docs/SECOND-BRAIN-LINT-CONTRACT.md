@@ -73,6 +73,17 @@ Check at least:
 - sources not connected to any durable synthesis when they were ingested for that purpose;
 - durable knowledge hidden only inside event prose.
 
+### Drive-runtime integrity
+
+For Skillz for All also check:
+
+- an active Super/Child Brain whose canonical runtime store is not recipient-owned Google Drive;
+- generated non-code artifacts that exist only as local/sandbox/download objects;
+- delivery manifests that use local paths as final refs instead of observed Drive IDs/URLs;
+- missing `ASSETS.md` registration for material project delivery artifacts;
+- a second ad-hoc Drive hierarchy created beside the canonical Brain or tenant Deliveries root;
+- successful delivery claims without Drive read-back verification.
+
 ### Promotion debt
 
 - repeated useful query syntheses that were never promoted;
@@ -90,7 +101,9 @@ Check at least:
 - Project/Collection Brains that exist but are missing from expected routing;
 - cross-Brain duplication where one Brain should link to the canonical owner;
 - privacy regressions, including private Child metadata or provider locators copied into a less-protected layer;
-- knowledge promoted to the Super Brain instead of the owning Child Brain;\n- copied/transferred Brains marked available before provider-ID rebind;\n- integrity mismatches between frozen release manifests and copied framework files.
+- knowledge promoted to the Super Brain instead of the owning Child Brain;\n- copied/transferred Brains marked available before provider-ID rebind;\n- integrity mismatches between frozen release manifests and copied framework files;
+- active Brain entries rebound to a non-Drive runtime provider;
+- generated non-code artifacts reported complete without a verified Drive object.
 
 ## Finding states
 

@@ -6,17 +6,26 @@ instance:
   ownerLabel: "Skillz for All maintainers"
   defaultLanguage: en
 
+runtimeStoragePolicy: drive-only
+
 knowledgeStores:
   primary:
     provider: google-drive
     rootFolderId: null
     rootFolderUrl: null
 
+delivery:
+  storeId: primary
+  logicalRoot: "Deliveries"
+  rootFolderId: null
+  requireDriveWrite: true
+  returnStoredLinks: true
+
 framework:
   storeId: primary
   logicalRoot: "Skillz"
   rootFolderId: null
-  releaseVersion: "0.1.2"
+  releaseVersion: "0.2.0"
   updateMode: manual
 
 secondBrain:
@@ -32,7 +41,7 @@ secondBrain:
 distribution:
   deploymentMode: starter
   profile: "full-portable"
-  sourceRelease: "0.1.2"
+  sourceRelease: "0.2.0"
   claimedAt: null
   rebindStatus: required
 

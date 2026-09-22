@@ -1,12 +1,15 @@
 {
   "schemaVersion": 1,
   "packageId": "skillz-for-all-deployment",
-  "releaseVersion": "0.1.2",
+  "releaseVersion": "0.2.0",
   "deploymentMode": "starter",
   "profile": "full-portable",
   "storage": {
     "provider": "google-drive",
-    "rebindRequired": true
+    "rebindRequired": true,
+    "runtimePolicy": "drive-only",
+    "generatedNonCodeArtifacts": "google-drive-required",
+    "linkFirstDelivery": true
   },
   "components": [
     {

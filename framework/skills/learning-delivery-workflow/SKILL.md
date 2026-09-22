@@ -39,7 +39,7 @@ consumes:
 outputs:
   - learning-delivery-bundle.json
   - learning-delivery-run.json
-lastEvaluated: 2026-08-28
+lastEvaluated: 2026-09-22
 ---
 
 # Learning Delivery Workflow
@@ -130,17 +130,30 @@ Minimaler Vertrag:
   "visualPlanRef": "...",
   "requestedFormats": ["html", "pptx", "docx", "pdf"],
   "artifacts": [
-    {"format": "html", "ref": "...", "producer": "learning-landingpage-renderer"},
-    {"format": "pptx", "ref": "...", "producer": "template-presentation-workflow"}
+    {"format": "html", "ref": "drive://observed-file-id", "driveUrl": "observed-drive-url", "producer": "learning-landingpage-renderer"},
+    {"format": "pptx", "ref": "drive://observed-file-id", "driveUrl": "observed-drive-url", "producer": "template-presentation-workflow"}
   ],
   "assetManifests": [],
   "qaRef": "learning-artifact-qa.json",
+  "storageStatus": "verified|pending|blocked",
   "status": "pass|review|fail"
 }
 ```
 
 `learning-delivery-run.json` dokumentiert Routing, ausgeführte Worker, ausgelassene Formate, Warnings, Render-Coverage und Abschlussstatus.
 
+## Drive Storage and Delivery Gate
+
+Alle erzeugten Nicht-Code-Artefakte folgen dem framework-weiten `docs/DRIVE-STORAGE-AND-DELIVERY-CONTRACT.md`.
+
+- lokale/Sandbox-Dateien sind nur Build-Zwischenstände;
+- finale Artefakte werden in den owning Child-Brain-Drive-Root geschrieben; ohne passenden Brain in den tenantweiten `Deliveries`-Root;
+- nach dem Write werden Drive-ID, URL, Parent und soweit verfügbar Revision/Modified State read-back-verifiziert;
+- Projektartefakte werden über `project-second-brain` in `ASSETS.md`/`state.json` registriert;
+- ein erfolgreicher Nutzer-Handoff liefert die verifizierten Drive-Links;
+- fehlende Drive-Schreibfähigkeit bedeutet `pending|blocked`, nicht erfolgreiche Delivery und keinen GitHub-/Sandbox-Fallback.
+
+Das gilt auch für HTML, SVGs, Rasterbilder und die beiden Run-/Bundle-Manifeste; Producer-Ownership bleibt unverändert, aber die persistierte Instanz liegt in Drive.
 ## Prüfungen
 
 Vor PASS prüfen:
@@ -161,14 +174,6 @@ Vor PASS prüfen:
 - **Asset-Fehler:** wenn semantisch verzichtbar, dokumentiert ohne Asset fortfahren; wenn für Verständnis oder Traceability erforderlich, Delivery auf `review|fail` setzen.
 - **QA-Finding:** betroffenen Worker korrigieren lassen und danach erneut rendern/prüfen.
 - **Designkonflikt:** verbindliche Corporate-/Template-Autorität respektieren; keine lokale Designabweichung als Fix erfinden.
-
-## Canonical Drive Delivery Gate
-
-Alle tatsächlich erzeugten human-facing Worker-Artefakte und das finale Delivery-Bundle unterliegen `docs/DOCUMENT-ARTIFACT-DELIVERY-CONTRACT.md`.
-
-Das Bundle darf einen Worker-Pfad wie `presentation.pptx` intern referenzieren, aber ein erfolgreicher finaler Delivery-Eintrag benötigt zusätzlich den beobachteten kanonischen Drive-Locator der exakt geprüften Revision. HTML/PPTX/DOCX/PDF/SVG/Bilder und vergleichbare tenant-owned Outputs werden in den owning project/Brain Drive-Kontext persistiert und read-back-verifiziert.
-
-Cross-Format-QA ist damit **nicht** der letzte Schritt: nach QA folgt canonical Drive persistence -> registration -> Drive-link handoff. Bei fehlender Drive-Schreibfähigkeit bleibt der Run `pending|blocked`, nicht `complete`.
 
 ## Übergabe
 

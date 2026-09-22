@@ -4,7 +4,7 @@ description: Orchestriert eine vollständige evidenzbasierte Personenrecherche v
 userFacing: true
 implicitInvocation: true
 category: workflow
-version: 0.2.1
+version: 0.3.0
 status: candidate
 owners:
   - White Label Maintainer
@@ -15,7 +15,7 @@ requires:
   - person-profile-document-delivery
 outputs:
   - person-research-workflow-result.json
-lastEvaluated: 2026-08-25
+lastEvaluated: 2026-09-22
 ---
 
 # Person Research Report Workflow
@@ -134,6 +134,7 @@ Wenn DOCX und/oder PDF gewünscht sind, rufe `person-profile-document-delivery` 
 - Bei anderem Kontext ein bereitgestelltes Template oder einen neutralen professionellen Reportstil verwenden.
 - Beide Formate müssen Quellen, Tabellen, Überschriftenhierarchie und Evidenzhinweise identisch transportieren.
 - DOCX und PDF vor Übergabe visuell auf Seitenumbrüche, Tabellen, Links, Glyphen, Header/Footer und Quellenblöcke prüfen.
+- Nach QA beide Formate über `person-profile-document-delivery` in den owning Brain Drive schreiben und die verifizierten Drive-Links übernehmen.
 
 `person-profile-document-delivery` bleibt Eigentümer der DOCX-/PDF-Artefakte.
 
@@ -159,7 +160,8 @@ Beispiel:
     "report": "person-profile-report.md",
     "revisionAudit": "precision-writing-report.json",
     "docx": "person-profile.docx",
-    "pdf": "person-profile.pdf"
+    "pdf": "person-profile.pdf",
+    "driveLinks": []
   },
   "warnings": []
 }
@@ -175,6 +177,11 @@ Falls der Nutzer eine konkrete Entscheidung treffen möchte, übergib Report, Ma
 
 Für Downstream-Entscheidungen bleibt das Evidence Dossier normativ; sprachlich verbesserte Fassungen und DOCX/PDF sind Darstellungsartefakte und dürfen Evidenzklassen nicht verändern.
 
+## Drive Storage and Delivery Gate
+
+Alle erzeugten Nicht-Code-Artefakte folgen `docs/DRIVE-STORAGE-AND-DELIVERY-CONTRACT.md`: lokal/Sandbox nur Build-Zwischenstand; finale Datei in den owning Child-Brain-Drive-Root oder ersatzweise tenantweiten `Deliveries`-Root schreiben; Write read-back-verifizieren; Projektartefakt registrieren; dem Nutzer den beobachteten Drive-Link ausgeben. Ohne erfolgreichen Drive-Write bleibt die Delivery `pending|blocked` und ist nicht final.
+
+Das Run-Manifest selbst wird ebenfalls in Drive persistiert. Lokale Report-/DOCX-/PDF-Pfade sind keine finalen Delivery-Referenzen.
 ## Evidenzregeln
 
 Für zentrale Aussagen immer verwenden:
@@ -215,7 +222,7 @@ Vor Abschluss müssen gelten:
 8. Sprachliche Revision hat Fidelity-Check bestanden.
 9. Sensible/private Profilierung ausgeschlossen.
 10. Optionaler Hobbies-/Sport-Block ist separat und evidenzgebunden.
-11. DOCX/PDF stammen aus der finalen geprüften Reportfassung und wurden visuell geprüft, sofern diese Formate angefordert wurden.
+11. DOCX/PDF stammen aus der finalen geprüften Reportfassung, wurden visuell geprüft und als Drive-Objekte read-back-verifiziert, sofern diese Formate angefordert wurden.
 12. Der Orchestrator besitzt ausschließlich `person-research-workflow-result.json`; Fachartefakte behalten einen eindeutigen Producer im Dependency-Graph.
 
 ## Fehlerbehandlung

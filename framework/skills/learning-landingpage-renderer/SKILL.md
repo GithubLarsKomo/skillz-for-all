@@ -4,7 +4,7 @@ description: Rendert ein kanonisches Learning-Content-Modell mit Visuals und DES
 userFacing: true
 implicitInvocation: true
 category: workflow
-version: 0.1.0
+version: 0.2.0
 status: candidate
 owners:
   - White Label Maintainer
@@ -13,7 +13,7 @@ requires:
 outputs:
   - learning-landingpage
   - learning-landingpage-qa.json
-lastEvaluated: 2026-08-28
+lastEvaluated: 2026-09-22
 ---
 
 # Learning Landingpage Renderer
@@ -59,6 +59,11 @@ Nur vorhandene Module rendern.
 - Alt-Texte für relevante Bilder;
 - SVGs skalieren ohne abgeschnittene Labels.
 
+## Drive Storage and Delivery Gate
+
+Erzeugte Nicht-Code-Artefakte folgen `docs/DRIVE-STORAGE-AND-DELIVERY-CONTRACT.md`: in Drive persistieren, read-back-verifizieren und über beobachtete Drive-Links referenzieren. Lokale/Sandbox-Dateien bleiben Build-Zwischenstände; ohne Drive-Write ist der Handoff `pending|blocked`.
+
+HTML, lokale Assets und QA-Manifest werden als portables Bundle in Drive gespeichert. Der finale Handoff verwendet den Drive-Link auf das Bundle bzw. die kanonische HTML-Datei.
 ## Landingpage-Stil
 
 Die Seite darf visuell hochwertig sein, bleibt aber ein Lernartefakt. Keine generische SaaS-Startseite mit dekorativen KPI-Cards. Priorität: Orientierung, Verständnis, Scanbarkeit, Quellenrücksprung.
@@ -80,4 +85,4 @@ Prüfe mindestens:
 
 ## Abschluss
 
-Abgeschlossen, wenn `learning-landingpage` portabel funktioniert und `learning-landingpage-qa.json` keine blockierenden Findings enthält.
+Abgeschlossen, wenn `learning-landingpage` portabel funktioniert, `learning-landingpage-qa.json` keine blockierenden Findings enthält und die kanonische Drive-Instanz read-back-verifiziert ist.

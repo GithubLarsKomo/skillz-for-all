@@ -3,7 +3,7 @@ name: epub3-publication-renderer
 description: Rendert einen finalen, kapitelstrukturierten Markdown-Text content-neutral als konservatives EPUB3 mit OPF-Spine, EPUB-Navigation, NCX-Kompatibilitätsnavigation, UTF-8, semantischen Absätzen und Scene Breaks und erzeugt eine strukturelle Validierungsnotiz. Interner Delivery-Worker; verändert keine Prosa und behauptet ohne Plattform-Smoke-Test keine verifizierte ElevenReader-Kompatibilität.
 userFacing: false
 implicitInvocation: true
-version: 0.1.0
+version: 0.2.0
 status: candidate
 owners:
   - White Label Maintainer
@@ -13,7 +13,7 @@ outputs:
   - epub3-validation.json
 portableFiles:
   - scripts/render_epub3.py
-lastEvaluated: 2026-09-06
+lastEvaluated: 2026-09-22
 ---
 
 # EPUB3 Publication Renderer
@@ -76,8 +76,15 @@ Ein tatsächlicher Import in die aktuelle ElevenReader-Version und die reale Aus
 - javascriptFree;
 - structuralStatus;
 - elevenReaderCompatibility;
-- limitations.
+- limitations;
+- driveStorageStatus;
+- driveFileId/driveUrl when persisted by the delivery run.
 
+## Drive Storage and Delivery Gate
+
+Alle erzeugten Nicht-Code-Artefakte folgen `docs/DRIVE-STORAGE-AND-DELIVERY-CONTRACT.md`: lokal/Sandbox nur Build-Zwischenstand; finale Datei in den owning Child-Brain-Drive-Root oder ersatzweise tenantweiten `Deliveries`-Root schreiben; Write read-back-verifizieren; Projektartefakt registrieren; dem Nutzer den beobachteten Drive-Link ausgeben. Ohne erfolgreichen Drive-Write bleibt die Delivery `pending|blocked` und ist nicht final.
+
+Der Renderer darf lokal bauen, aber ein finaler Delivery-Run persistiert EPUB und Validation in Drive. Der Renderer selbst erfindet keine Drive-IDs; der aufrufende Delivery-Orchestrator oder `project-second-brain` registriert die beobachteten Objekte.
 ## Fehlerbehandlung
 
 Kein finaler PASS bei:
@@ -100,4 +107,4 @@ Kein finaler PASS bei:
 
 ## Abschluss
 
-Abgeschlossen, wenn EPUB und strukturierte Validierungsnotiz erzeugt sind und `structuralStatus=pass` melden.
+Als Rendering-Worker abgeschlossen, wenn EPUB und strukturierte Validierungsnotiz erzeugt sind und `structuralStatus=pass` melden. Als Nutzer-Delivery abgeschlossen erst nach dem übergeordneten Drive-Write/Read-back und Link-Handoff.
