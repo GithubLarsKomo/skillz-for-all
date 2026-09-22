@@ -17,8 +17,12 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Diagnose changed hashes - skills A-B
-        run: python -c 'import hashlib,json,pathlib,subprocess; s=json.load(open("release/SHA256SUMS.json")); ch=subprocess.check_output(["git","diff","--name-only","origin/main...HEAD"],text=True).splitlines(); b=[p for p in ch if p in s and p.startswith("framework/skills/") and (p.split("/")[2][0].lower() < "c") and (not pathlib.Path(p).is_file() or hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()!=s[p])]; assert not b, b'
+      - name: Diagnose changed hashes - skills artifact-contract-audit
+        run: python -c 'import hashlib,json,pathlib,subprocess; s=json.load(open("release/SHA256SUMS.json")); ch=subprocess.check_output(["git","diff","--name-only","origin/main...HEAD"],text=True).splitlines(); b=[p for p in ch if p in s and p.startswith("framework/skills/") and (p.startswith("framework/skills/artifact-contract-audit/")) and (not pathlib.Path(p).is_file() or hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()!=s[p])]; assert not b, b'
+      - name: Diagnose changed hashes - skills artifact-production-contract
+        run: python -c 'import hashlib,json,pathlib,subprocess; s=json.load(open("release/SHA256SUMS.json")); ch=subprocess.check_output(["git","diff","--name-only","origin/main...HEAD"],text=True).splitlines(); b=[p for p in ch if p in s and p.startswith("framework/skills/") and (p.startswith("framework/skills/artifact-production-contract/")) and (not pathlib.Path(p).is_file() or hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()!=s[p])]; assert not b, b'
+      - name: Diagnose changed hashes - skills other-A-B
+        run: python -c 'import hashlib,json,pathlib,subprocess; s=json.load(open("release/SHA256SUMS.json")); ch=subprocess.check_output(["git","diff","--name-only","origin/main...HEAD"],text=True).splitlines(); b=[p for p in ch if p in s and p.startswith("framework/skills/") and (not p.startswith("framework/skills/artifact-contract-audit/") and not p.startswith("framework/skills/artifact-production-contract/") and p.split("/")[2][0].lower() < "c") and (not pathlib.Path(p).is_file() or hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()!=s[p])]; assert not b, b'
       - name: Diagnose changed hashes - skills C-E
         run: python -c 'import hashlib,json,pathlib,subprocess; s=json.load(open("release/SHA256SUMS.json")); ch=subprocess.check_output(["git","diff","--name-only","origin/main...HEAD"],text=True).splitlines(); b=[p for p in ch if p in s and p.startswith("framework/skills/") and (p.split("/")[2][0].lower() >= "c" and p.split("/")[2][0].lower() < "f") and (not pathlib.Path(p).is_file() or hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()!=s[p])]; assert not b, b'
       - name: Diagnose changed hashes - skills F-L
