@@ -4,7 +4,7 @@ description: Überführt einen fachlich und sprachlich finalisierten Personenrep
 userFacing: true
 implicitInvocation: true
 category: workflow
-version: 0.1.0
+version: 0.2.0
 status: candidate
 owners:
   - White Label Maintainer
@@ -17,7 +17,7 @@ outputs:
   - person-profile-report.docx
   - person-profile-report.pdf
   - person-profile-delivery.json
-lastEvaluated: 2026-08-25
+lastEvaluated: 2026-09-22
 ---
 
 # Person Profile Document Delivery
@@ -138,19 +138,33 @@ Bei PDF-Problemen die Ursache im DOCX/Template korrigieren und erneut konvertier
   "templateStatus": "neutral|public-reference|supplied|approved",
   "docxQa": "pass|not-requested|blocked",
   "pdfQa": "pass|not-requested|blocked",
+  "driveArtifacts": [],
+  "storageStatus": "verified|pending|blocked",
   "warnings": []
 }
 ```
+
+## Drive Storage and Delivery Gate
+
+Alle erzeugten Nicht-Code-Artefakte folgen dem framework-weiten `docs/DRIVE-STORAGE-AND-DELIVERY-CONTRACT.md`.
+
+- lokale/Sandbox-Dateien sind nur Build-Zwischenstände;
+- finale Artefakte werden in den owning Child-Brain-Drive-Root geschrieben; ohne passenden Brain in den tenantweiten `Deliveries`-Root;
+- nach dem Write werden Drive-ID, URL, Parent und soweit verfügbar Revision/Modified State read-back-verifiziert;
+- Projektartefakte werden über `project-second-brain` in `ASSETS.md`/`state.json` registriert;
+- ein erfolgreicher Nutzer-Handoff liefert die verifizierten Drive-Links;
+- fehlende Drive-Schreibfähigkeit bedeutet `pending|blocked`, nicht erfolgreiche Delivery und keinen GitHub-/Sandbox-Fallback.
+
 
 ## Fehlerbehandlung
 
 - Fidelity-Status nicht `pass`: keine finale DOCX/PDF-Ausgabe.
 - DOCX-Erzeugung technisch nicht möglich: keine Fake-Datei erzeugen; klar blockieren.
-- PDF-Konvertierung fehlgeschlagen: geprüfte DOCX kann ausgegeben werden, PDF bleibt `blocked`.
+- PDF-Konvertierung fehlgeschlagen: geprüfte DOCX kann in Drive gespeichert und verlinkt werden, PDF bleibt `blocked`.
 - Visuelle QA nicht möglich: betroffenes Format nicht als final geprüft kennzeichnen.
 - Corporate-Template fehlt: nur dann neutralen Stil verwenden, wenn kein Corporate-Template ausdrücklich verlangt wurde.
 - Nutzer hat ein bestimmtes Template verlangt und es ist nicht verfügbar/kompatibel: nicht still auf einen anderen Stil wechseln.
 
 ## Abschlusskriterien
 
-Abgeschlossen ist der Skill, wenn alle angeforderten Formate aus derselben finalen fidelity-geprüften Inhaltsbasis erzeugt wurden, die gewählte Template-/Renderer-Route dokumentiert ist, DOCX und PDF ihre jeweilige visuelle QA bestanden haben und keine inhaltliche Abweichung zwischen den Formaten erkennbar ist.
+Abgeschlossen ist der Skill, wenn alle angeforderten Formate aus derselben finalen fidelity-geprüften Inhaltsbasis erzeugt, in Drive gespeichert und read-back-verifiziert wurden, die gewählte Template-/Renderer-Route dokumentiert ist, DOCX und PDF ihre jeweilige visuelle QA bestanden haben und keine inhaltliche Abweichung zwischen den Formaten erkennbar ist.
