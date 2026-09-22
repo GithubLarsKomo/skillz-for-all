@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "packageId": "pilot-deployment",
-  "releaseVersion": "0.1.1",
+  "releaseVersion": "0.2.0",
   "claimedBy": {
     "instanceId": "pilot",
     "displayName": "Pilot AI Workbench"
@@ -13,9 +13,11 @@
     "superSecondBrainRootFolderId": "{{SUPER_SECOND_BRAIN_ROOT_FOLDER_ID}}",
     "bootstrapFileId": "{{SUPER_SECOND_BRAIN_BOOTSTRAP_FILE_ID}}",
     "registryFileId": "{{SUPER_SECOND_BRAIN_REGISTRY_FILE_ID}}",
-    "stateFileId": "{{SUPER_SECOND_BRAIN_STATE_FILE_ID}}"
+    "stateFileId": "{{SUPER_SECOND_BRAIN_STATE_FILE_ID}}",
+    "deliveryRootFolderId": "{{DELIVERY_ROOT_FOLDER_ID}}"
   },
   "claimedAt": "{{CLAIMED_AT}}",
   "rebindStatus": "complete",
-  "sourceOwnerRuntimeDependency": false
+  "sourceOwnerRuntimeDependency": false,
+  "runtimeStoragePolicy": "drive-only"
 }
