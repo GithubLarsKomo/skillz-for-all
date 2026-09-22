@@ -11,6 +11,8 @@ owners:
 requires:
   - narrative-audiobook-listener-review
   - epub3-publication-renderer
+  - artifact-production-contract
+  - artifact-contract-audit
 consumes:
   - narrative-listener-review.json
   - epub3-validation.json
@@ -84,9 +86,13 @@ Nach `structuralStatus=pass` darf das validierte Paket content-neutral als `crea
 
 **Nie structural-pass als import-pass ausgeben.**
 
+## Artifact Production Contract Gate
+
+Bei substantieller Neuerstellung oder materieller Überarbeitung zuerst den gemeinsamen `artifact-production-contract` aus angemessenem Grilling erzeugen bzw. einen gültigen gefrorenen Vertrag wiederverwenden. Dieser Workflow führt den gefrorenen Vertrag aus und darf INVARIANT-Festlegungen nicht neu interpretieren. Vor Release prüft `artifact-contract-audit` die exakt auszuliefernde Revision. Ein Audit-PASS ist Voraussetzung für den anschließenden Drive-Delivery-Gate; reine deterministische Konvertierungen dürfen den bestehenden Vertrag erben.
+
 ## Drive Storage and Delivery Gate
 
-Alle erzeugten Nicht-Code-Artefakte folgen `docs/DRIVE-STORAGE-AND-DELIVERY-CONTRACT.md`: lokal/Sandbox nur Build-Zwischenstand; finale Datei in den owning Child-Brain-Drive-Root oder ersatzweise tenantweiten `Deliveries`-Root schreiben; Write read-back-verifizieren; Projektartefakt registrieren; dem Nutzer den beobachteten Drive-Link ausgeben. Ohne erfolgreichen Drive-Write bleibt die Delivery `pending|blocked` und ist nicht final.
+Alle erzeugten Nicht-Code-Artefakte folgen `docs/DOCUMENT-ARTIFACT-DELIVERY-CONTRACT.md`: lokal/Sandbox nur Build-Zwischenstand; finale Datei in den owning Child-Brain-Drive-Root oder ersatzweise tenantweiten `Deliveries`-Root schreiben; Write read-back-verifizieren; Projektartefakt registrieren; dem Nutzer den beobachteten Drive-Link ausgeben. Ohne erfolgreichen Drive-Write bleibt die Delivery `pending|blocked` und ist nicht final.
 
 Das gilt für EPUB, Delivery-Manifest und Voice Guidance. Ein `structural-pass` ohne Drive-Write ist noch keine abgeschlossene Auslieferung.
 ## Qualitätsgate
