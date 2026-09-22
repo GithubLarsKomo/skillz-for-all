@@ -1,32 +1,33 @@
 # Knowledge Store Contract
 
 Status: candidate architecture contract  
-Version: 0.1.0  
+Version: 0.2.0  
 Date: 2026-09-19
 
 ## Purpose
 
-This contract decouples Skillz and the federated Second-Brain architecture from any specific source-control or cloud-storage product.
+This contract defines the runtime Knowledge Store for Skillz for All.
 
 A **Knowledge Store** is the persistence layer used for framework contracts, federation metadata, Project Memory, durable knowledge and related artifacts.
 
-The architecture reasons in stable logical locators. Provider-specific adapters translate those locators into Google Drive, GitHub or another supported backend.
+For a claimed Skillz-for-All tenant the canonical runtime provider is **recipient-owned Google Drive**. The public GitHub repository is a distribution/update source, not a tenant runtime Knowledge Store. Other storage adapters are outside the supported white-label runtime contract.
 
-For white-label deployments the default provider is **Google Drive**. GitHub is optional.
+The architecture still uses stable logical locators so Drive IDs, logical paths, revisions and hashes remain explicit and portable.
 
 ## Core principles
 
-1. **Provider-neutral semantics** — Skillz, Promotion, Lint and Federation rules do not depend on GitHub concepts.
+1. **Drive-only tenant runtime** — claimed framework state, Super/Child Brains and generated non-code artifacts persist in recipient-owned Google Drive.
 2. **Stable identity over paths** — provider object IDs are canonical; names and paths are human-readable projections.
 3. **Machine files stay machine files** — normative Markdown, JSON and YAML remain stored files rather than native office documents.
 4. **Native documents are artifacts** — Google Docs, Sheets and Slides may be authoritative business artifacts but do not replace machine contracts.
 5. **Read-back verification** — a write is not successful until the provider returns or re-reads the intended object.
 6. **No hidden cross-tenant dependency** — a handed-off instance must be able to operate after source-owner access is removed.
-7. **Source-of-Truth ownership is independent of storage provider.**
+7. **Source-of-Truth ownership is independent of storage location.** Drive persistence does not make a Brain the owner of external producer truth.
+8. **Link-first delivery** — generated non-code artifacts are written to Drive, read back, registered and then handed to the user by verified Drive link.
 
 ## Logical locator
 
-Every canonical object is addressable by a provider-neutral locator.
+Every canonical runtime object is addressable by a Drive-backed logical locator.
 
 ```json
 {
@@ -49,7 +50,7 @@ Required semantics:
 - `revisionId` captures a known provider revision where available.
 - `sha256` freezes exact content when deterministic integrity matters.
 
-## Google Drive adapter
+## Mandatory Google Drive runtime
 
 ### Store root
 
@@ -103,15 +104,11 @@ Moving or renaming a Drive object does not change logical identity when the file
 
 Human-readable paths MAY be refreshed after moves. They MUST NOT be treated as the only canonical locator.
 
-## Optional GitHub adapter
+## GitHub distribution boundary
 
-A GitHub adapter may continue to map:
+GitHub may host the public Skillz-for-All source distribution and executable software producer repositories. It is **not** a supported canonical tenant runtime Knowledge Store after Claim/Rebind.
 
-- store root -> repository/ref;
-- object -> repository path;
-- revision -> commit/blob SHA.
-
-GitHub-specific branch, PR and commit semantics are adapter capabilities, not architectural requirements.
+A claimed tenant must not route Project Memory, federation state or generated non-code delivery artifacts back into GitHub as a runtime persistence fallback.
 
 ## Release transaction boundary
 
@@ -130,6 +127,10 @@ A release is considered complete only when:
 7. release status changes to `released`.
 
 A released version is logically immutable. Corrections create a new release version; they do not silently rewrite the prior release contract.
+
+## Drive delivery integration
+
+All generated non-code artifacts additionally follow [`DRIVE-STORAGE-AND-DELIVERY-CONTRACT.md`](DRIVE-STORAGE-AND-DELIVERY-CONTRACT.md). A local/sandbox build result is not a successful delivery until its Drive object is verified.
 
 ## Write protocol
 
@@ -187,9 +188,9 @@ Use explicit states:
 
 Never interpret a file with the right name but an unverified ID/content as canonical merely because it is visible.
 
-## Acceptance criteria for a provider adapter
+## Acceptance criteria for the Drive runtime
 
-A provider adapter is suitable when it can:
+The configured Google Drive runtime is suitable when it can:
 
 1. resolve a configured store root;
 2. list and locate expected objects;
