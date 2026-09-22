@@ -4,7 +4,7 @@ description: Erzeugt aus einem evidenzgebundenen Visual-Plan und dem aktiven DES
 userFacing: true
 implicitInvocation: true
 category: workflow
-version: 0.1.0
+version: 0.2.0
 status: candidate
 owners:
   - White Label Maintainer
@@ -14,7 +14,7 @@ requires:
 outputs:
   - learning-image-manifest.json
   - learning-image-assets
-lastEvaluated: 2026-08-28
+lastEvaluated: 2026-09-22
 ---
 
 # Learning Image Generator
@@ -51,8 +51,14 @@ Jedes generierte Bild ist `illustrative-only`, außer es ist ausdrücklich ein u
 - `prohibitedInterpretations`;
 - `dimensions/aspectRatio`;
 - `targetSurfaces`;
-- `evidenceRole`.
+- `evidenceRole`;
+- observed `driveFileId`, `driveUrl` and storage verification status after persistence.
 
+## Drive Storage and Delivery Gate
+
+Erzeugte Nicht-Code-Artefakte folgen `docs/DRIVE-STORAGE-AND-DELIVERY-CONTRACT.md`: in Drive persistieren, read-back-verifizieren und über beobachtete Drive-Links referenzieren. Lokale/Sandbox-Dateien bleiben Build-Zwischenstände; ohne Drive-Write ist der Handoff `pending|blocked`.
+
+Bilddateien und Manifest werden im owning Brain Drive oder tenantweiten `Deliveries`-Root gespeichert. Das Manifest referenziert die persistierten Drive-Objekte.
 ## Copyright / Quellvideo
 
 Ein Lernbild soll das **Konzept neu visualisieren**, nicht den visuellen Ausdruck des Quellvideos möglichst exakt kopieren. Originalframes bleiben gesondert provenance-geführte Source Assets.
@@ -69,4 +75,4 @@ Ein Lernbild soll das **Konzept neu visualisieren**, nicht den visuellen Ausdruc
 
 ## Abschluss
 
-Abgeschlossen, wenn Bilder und Manifest als erklärende Assets sicher in HTML, PPTX und DOCX/PDF wiederverwendet werden können.
+Abgeschlossen, wenn Bilder und Manifest als erklärende Assets sicher in HTML, PPTX und DOCX/PDF wiederverwendet werden können und die persistierten Drive-Objekte read-back-verifiziert sind.
