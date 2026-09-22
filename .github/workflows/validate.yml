@@ -17,6 +17,26 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Diagnose changed hashes
+        shell: bash
+        continue-on-error: true
+        run: |
+          python - <<'PY'
+          import hashlib, json, subprocess
+          from pathlib import Path
+          root=Path(".")
+          sums=json.loads((root/"release/SHA256SUMS.json").read_text())
+          changed=subprocess.check_output(["git","diff","--name-only","origin/main...HEAD"], text=True).splitlines()
+          bad=[]
+          for rel in changed:
+              if rel not in sums: continue
+              p=root/rel
+              if not p.is_file(): bad.append(f"missing:{rel}"); continue
+              actual=hashlib.sha256(p.read_bytes()).hexdigest()
+              if actual != sums[rel]: bad.append(f"mismatch:{rel}")
+          assert not bad, "\n".join(bad)
+          PY
+
       - name: Verify release hash targets
         shell: bash
         run: |
@@ -28,12 +48,9 @@ jobs:
           bad=[]
           for rel, expected in sums.items():
               p=root/rel
-              if not p.is_file():
-                  bad.append(f"missing:{rel}")
-                  continue
+              if not p.is_file(): bad.append(f"missing:{rel}"); continue
               actual=hashlib.sha256(p.read_bytes()).hexdigest()
-              if actual != expected:
-                  bad.append(f"mismatch:{rel}")
+              if actual != expected: bad.append(f"mismatch:{rel}")
           assert not bad, "\n".join(bad)
           PY
 
