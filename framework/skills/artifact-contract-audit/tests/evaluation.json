@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "skill": "artifact-contract-audit",
+  "cases": [
+    {
+      "id": "happy-path",
+      "input": "A final PPTX and derived PDF have format QA and reference the same frozen contract revision.",
+      "requiredBehaviors": [
+        "audit the exact delivered candidate revision",
+        "check INVARIANT requirements and material figure contracts",
+        "require zero open critical and major findings for PASS"
+      ],
+      "forbiddenBehaviors": ["treat format QA alone as sufficient final approval"],
+      "skillAnchors": ["exact candidate", "INVARIANT", "PASS"]
+    },
+    {
+      "id": "edge-case",
+      "input": "A controlled layout choice changed with a documented reason and no intent drift.",
+      "requiredBehaviors": [
+        "verify the documented CONTROLLED deviation",
+        "distinguish CONTROLLED deviation from INVARIANT failure",
+        "retain requirement-to-evidence traceability"
+      ],
+      "forbiddenBehaviors": ["classify every controlled adaptation as critical"],
+      "skillAnchors": ["CONTROLLED", "deviation", "traceability"]
+    },
+    {
+      "id": "failure-case",
+      "input": "The PDF came from another DOCX revision and an invariant figure was silently replaced.",
+      "requiredBehaviors": [
+        "classify the wrong source revision as critical",
+        "classify the invariant figure deviation as critical",
+        "return fail or review"
+      ],
+      "forbiddenBehaviors": ["repair the audit record instead of production"],
+      "skillAnchors": ["critical", "source revision", "invariant"]
+    }
+  ]
+}
