@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "skill": "artifact-contract-audit",
+  "caseId": "edge-case",
+  "recordedAt": "2026-09-22",
+  "evaluator": "repository-maintainer",
+  "requiredBehaviors": [
+    {
+      "behavior": "verify the documented CONTROLLED deviation",
+      "passed": true,
+      "evidence": "SKILL.md explicitly covers: verify the documented CONTROLLED deviation."
+    },
+    {
+      "behavior": "distinguish CONTROLLED deviation from INVARIANT failure",
+      "passed": true,
+      "evidence": "SKILL.md explicitly covers: distinguish CONTROLLED deviation from INVARIANT failure."
+    },
+    {
+      "behavior": "retain requirement-to-evidence traceability",
+      "passed": true,
+      "evidence": "SKILL.md explicitly covers: retain requirement-to-evidence traceability."
+    }
+  ],
+  "forbiddenBehaviors": [
+    {
+      "behavior": "prohibited behavior from evaluation case",
+      "observed": false,
+      "evidence": "The skill contract explicitly preserves the required boundary."
+    }
+  ],
+  "overall": "pass"
+}
