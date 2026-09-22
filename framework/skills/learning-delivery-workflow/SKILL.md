@@ -3,7 +3,7 @@ name: learning-delivery-workflow
 description: Orchestriert die formatübergreifende Auslieferung eines bereits kanonischen Learning-Content-, Multi-Source- oder Course-Modells über DESIGN.md, Visualplanung, SVG/Bild-Assets, Landingpage, Präsentation, DOCX/PDF und finales Cross-Format-QA, ohne fachliche Learning-Semantik neu zu autorieren. Verwenden als interne gemeinsame Delivery-Schicht für Learning-Orchestratoren.
 userFacing: false
 implicitInvocation: true
-version: 0.1.0
+version: 0.2.0
 status: candidate
 owners:
   - White Label Maintainer
@@ -161,6 +161,14 @@ Vor PASS prüfen:
 - **Asset-Fehler:** wenn semantisch verzichtbar, dokumentiert ohne Asset fortfahren; wenn für Verständnis oder Traceability erforderlich, Delivery auf `review|fail` setzen.
 - **QA-Finding:** betroffenen Worker korrigieren lassen und danach erneut rendern/prüfen.
 - **Designkonflikt:** verbindliche Corporate-/Template-Autorität respektieren; keine lokale Designabweichung als Fix erfinden.
+
+## Canonical Drive Delivery Gate
+
+Alle tatsächlich erzeugten human-facing Worker-Artefakte und das finale Delivery-Bundle unterliegen `docs/DOCUMENT-ARTIFACT-DELIVERY-CONTRACT.md`.
+
+Das Bundle darf einen Worker-Pfad wie `presentation.pptx` intern referenzieren, aber ein erfolgreicher finaler Delivery-Eintrag benötigt zusätzlich den beobachteten kanonischen Drive-Locator der exakt geprüften Revision. HTML/PPTX/DOCX/PDF/SVG/Bilder und vergleichbare tenant-owned Outputs werden in den owning project/Brain Drive-Kontext persistiert und read-back-verifiziert.
+
+Cross-Format-QA ist damit **nicht** der letzte Schritt: nach QA folgt canonical Drive persistence -> registration -> Drive-link handoff. Bei fehlender Drive-Schreibfähigkeit bleibt der Run `pending|blocked`, nicht `complete`.
 
 ## Übergabe
 
