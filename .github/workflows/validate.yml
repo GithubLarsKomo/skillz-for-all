@@ -35,7 +35,49 @@ jobs:
           PY
 
       - name: Validate release contracts
+        continue-on-error: true
         run: python tools/validate_white_label_release.py .
+      - name: Probe required release files
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import sys
+          sys.path.insert(0, "tools")
+          import validate_white_label_release as v
+          missing=[p for p in v.REQUIRED if not Path(p).is_file()]
+          assert not missing, missing
+          PY
+      - name: Probe release metadata
+        run: |
+          python - <<'PY'
+          import json
+          m=json.load(open("release/manifest.json"))
+          d=json.load(open("deployment-manifest.json"))
+          i=open("instance.yaml").read()
+          checks=[
+            ("manifest.storageProvider",m.get("storageProvider")=="google-drive"),
+            ("manifest.rebindRequired",m.get("rebindRequired") is True),
+            ("manifest.runtimeStoragePolicy",m.get("runtimeStoragePolicy")=="drive-only"),
+            ("manifest.sourceExclusion",m.get("sourceExclusionPolicyApplied") is True),
+            ("manifest.artifactDelivery",m.get("artifactDeliveryPolicy")=="drive-link-first"),
+            ("deployment.provider",d.get("storage",{}).get("provider")=="google-drive"),
+            ("deployment.runtimePolicy",d.get("storage",{}).get("runtimePolicy")=="drive-only"),
+            ("deployment.generatedArtifacts",d.get("storage",{}).get("generatedNonCodeArtifacts")=="google-drive-required"),
+            ("deployment.linkFirst",d.get("storage",{}).get("linkFirstDelivery") is True),
+            ("deployment.noOwnerRuntime",d.get("runtimeDependencyOnSourceOwner") is False),
+            ("privacy.noOwnerKnowledge",d.get("privacy",{}).get("containsSourceOwnerKnowledge") is False),
+            ("privacy.noOrgContent",d.get("privacy",{}).get("containsOrganizationSpecificContent") is False),
+            ("privacy.emptyRegistry",d.get("privacy",{}).get("starterRegistryMustBeEmpty") is True),
+            ("instance.driveOnly","runtimeStoragePolicy: drive-only" in i),
+            ("instance.provider","provider: google-drive" in i),
+            ("instance.requireWrite","requireDriveWrite: true" in i),
+            ("instance.returnLinks","returnStoredLinks: true" in i),
+          ]
+          bad=[n for n,ok in checks if not ok]
+          assert not bad,bad
+          PY
+      - name: Probe starter registry
+        run: python -c 'import json; assert json.load(open("second-brain/super-second-brain/docs/super-memory/registry.json")).get("brains")==[]'
 
       - name: Verify portable skill set
         shell: bash
