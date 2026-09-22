@@ -124,9 +124,13 @@ Do not present sandbox/download links as the final result when the Drive write s
 
 ## Relationship to other contracts
 
-This contract is normative for Skillz-for-All runtime storage and delivery and is referenced by:
+This contract is the **framework-wide storage envelope** for Skillz-for-All runtime state and generated non-code artifacts. For human-facing authored artifacts, `DOCUMENT-ARTIFACT-DELIVERY-CONTRACT.md` is the specialized delivery contract and must be applied together with this envelope.
+
+This contract is referenced by:
 
 - `KNOWLEDGE-STORE-CONTRACT.md`;
+- `DOCUMENT-ARTIFACT-DELIVERY-CONTRACT.md`;
+- `ARTIFACT-PRODUCTION-CONTRACT.md`;
 - `project-second-brain`;
 - `second-brain-federation-workflow`;
 - document, presentation, EPUB, learning and report delivery workflows.
