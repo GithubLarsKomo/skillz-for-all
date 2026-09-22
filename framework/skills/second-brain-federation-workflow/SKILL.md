@@ -1,10 +1,10 @@
 ---
 name: second-brain-federation-workflow
-description: Verbindet mehrere Project und Collection Second Brains provider-neutral mit einem privaten Super Second Brain als verifizierten Registry-, Routing- und Discoverability-Layer. Prüft Knowledge-Store-Verfügbarkeit und Freshness, registriert nur stabile Locators und Metadaten statt fachliche Inhalte zu duplizieren und konsolidiert überlappende Brains auf eine eindeutige Source of Truth.
+description: Verbindet mehrere Google-Drive-native Project und Collection Second Brains mit einem privaten Super Second Brain als verifizierten Registry-, Routing- und Discoverability-Layer. Prüft Drive-Verfügbarkeit und Freshness, registriert nur stabile Drive-Locators und Metadaten statt fachliche Inhalte zu duplizieren und konsolidiert überlappende Brains auf eine eindeutige Source of Truth.
 userFacing: true
 implicitInvocation: true
 category: workflow
-version: 0.4.0
+version: 0.5.0
 status: candidate
 owners:
   - White Label Maintainer
@@ -88,7 +88,7 @@ Das Super Brain besitzt ausschließlich:
 
 Es besitzt **keine Kopie** der fachlichen Child-Inhalte.
 
-Der Storage-Provider wird durch `docs/KNOWLEDGE-STORE-CONTRACT.md` abstrahiert. Im White-Label-Default ist Google Drive der Provider.
+Skillz for All verwendet nach Claim/Rebind **ausschließlich recipient-owned Google Drive** als Federation-/Brain-Runtime-Store. `docs/KNOWLEDGE-STORE-CONTRACT.md` definiert Drive-Identität und Rebind; `docs/DRIVE-STORAGE-AND-DELIVERY-CONTRACT.md` definiert die Artefaktablage.
 
 ## Private-by-default Gate
 
@@ -133,7 +133,7 @@ docs/super-memory/
 - `domains/` gruppiert Brains optional nach Domäne/Workflow-Familie.
 - `events/` dokumentiert strukturelle Federation-Änderungen append-orientiert.
 
-Im Google-Drive-Adapter ist die Super-Brain-Root-Folder-ID die kanonische Speicheridentität. Der logische Pfad bleibt provider-portabel.
+Die Super-Brain-Root-Folder-ID ist die kanonische Speicheridentität. Der logische Pfad bleibt eine lesbare/exportierbare Projektion.
 
 ## Child-Brain-Modi
 
@@ -155,7 +155,7 @@ projects/<project-or-matter-id>/docs/project-memory/
 
 Das Super Brain registriert den Collection Brain als Einheit und darf aktive Child Roots referenzieren. Es kopiert deren Inhalt nicht.
 
-Die physische Ablage kann ein Drive-Ordner, Repository oder anderer gültiger Knowledge Store sein.
+Die physische Ablage eines aktiven Skillz-for-All Child Brains ist ein recipient-owned Drive-Ordner. Repository-Locators dürfen Producer-Systeme referenzieren, sind aber kein Brain-Runtime-Store.
 
 ## Canonical-Ownership- und SSOT-Regel
 
@@ -209,7 +209,7 @@ Bei regulatorischen, rechtlichen, normativen oder sonst volatilen Wissensdomäne
 
 ## Registry Contract
 
-Neue provider-neutrale Registry-Einträge verwenden bevorzugt Schema-Version 2:
+Neue Registry-Einträge verwenden den Drive-basierten Vertrag:
 
 ```json
 {
@@ -248,7 +248,7 @@ Ein superseded Brain wird aus dem aktiven Routing entfernt und historisch refere
 
 Knowledge-Store-Verfügbarkeit und Memory-Root-Verfügbarkeit werden getrennt behandelt.
 
-Legacy Registry-Einträge mit Repository-Feldern bleiben lesbar, sollen bei bewusster Migration aber in Knowledge-Store-Locators überführt werden.
+Legacy Registry-Einträge mit Repository-/Nicht-Drive-Storagefeldern bleiben nur für Import/Migration lesbar. Ein aktiver Skillz-for-All Brain gilt erst nach Rebind auf recipient-owned Drive als `available`.
 
 ## Initial Bootstrap
 
@@ -374,7 +374,7 @@ Jede Relation nennt beide `brainId`-Werte und einen kurzen, nicht-sensitiven Gru
 
 ## Failure Handling
 
-- **Super Brain fehlt:** Bootstrap-Manifest vorbereiten, Federation `pending`; Child Brains funktionieren unabhängig weiter.
+- **Super Brain fehlt:** Bootstrap-Manifest vorbereiten, Federation `pending`; keinen GitHub-/Local-Fallback als kanonischen Runtime-Store einsetzen.
 - **Brain-Root existiert, Memory fehlt:** `bootstrap-needed`.
 - **Child vorübergehend nicht erreichbar:** letzten Registry-Eintrag behalten, `unavailable` und Freshness markieren.
 - **Rename/Move:** stabile `brainId` und Provider-ID beibehalten, lesbare Pfade aktualisieren.
@@ -388,7 +388,7 @@ Jede Relation nennt beide `brainId`-Werte und einen kurzen, nicht-sensitiven Gru
 
 ## Handoff
 
-Nach erfolgreicher Federation kann ein provider-neutraler Handoff enthalten:
+Nach erfolgreicher Federation enthält der Handoff Drive-Locators:
 
 ```json
 {
@@ -421,9 +421,9 @@ Federation persistiert keine fachlichen Inhalte und nutzt den persönlichen Memo
 
 Der Workflow ist abgeschlossen, wenn:
 
-- der Super-Brain-Knowledge-Store geschützt und erreichbar ist oder explizit `pending` bleibt;
+- der recipient-owned Google-Drive-Super-Brain geschützt und erreichbar ist oder explizit `pending` bleibt;
 - alle bekannten Child-Brain-Kandidaten klassifiziert wurden;
-- jeder registrierte Brain stabile `brainId`, Scope, Modus und verifizierte Knowledge-Store-Locators besitzt;
+- jeder registrierte Brain stabile `brainId`, Scope, Modus und verifizierte Google-Drive-Locators besitzt;
 - keine fachliche Wahrheit aus Child Brains dupliziert wurde;
 - für erkannte Überlappungen eindeutige kanonische Ownership festgelegt ist;
 - superseded Brains nicht mehr aktive Routingziele sind, ihre Historie aber erhalten bleibt;
