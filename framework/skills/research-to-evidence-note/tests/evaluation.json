@@ -8,6 +8,7 @@
       "requiredBehaviors": [
         "separate atomic claims from sources and synthesis",
         "classify source quality and freshness relative to the question",
+        "include a stable direct source URL in the source record and rendered citation whenever one is available",
         "assign claim confidence from evidence quality and conflict state",
         "produce decision-relevant open questions only"
       ],
