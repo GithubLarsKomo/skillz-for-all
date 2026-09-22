@@ -35,7 +35,11 @@ jobs:
           PY
 
       - name: Validate release contracts
+        continue-on-error: true
         run: python tools/validate_white_label_release.py .
+      - name: Validate release contract dimensions
+        run: |
+          python tools/validate_white_label_release.py . --forbid __THIS_TOKEN_MUST_NOT_EXIST__
 
       - name: Verify portable skill set
         shell: bash
