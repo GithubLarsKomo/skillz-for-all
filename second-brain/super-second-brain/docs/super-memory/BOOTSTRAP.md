@@ -26,6 +26,8 @@ Resolve these logical files below the bound tenant Skillz framework root:
 
 - `docs/KNOWLEDGE-STORE-CONTRACT.md`
 - `docs/DRIVE-STORAGE-AND-DELIVERY-CONTRACT.md`
+- `docs/DOCUMENT-ARTIFACT-DELIVERY-CONTRACT.md`
+- `docs/ARTIFACT-PRODUCTION-CONTRACT.md`
 - `skills/second-brain-federation-workflow/SKILL.md`
 - `skills/project-second-brain/SKILL.md`
 - `docs/SECOND-BRAIN-OPERATING-CYCLE.md`
