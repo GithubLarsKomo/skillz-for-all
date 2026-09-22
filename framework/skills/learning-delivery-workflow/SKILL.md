@@ -3,7 +3,7 @@ name: learning-delivery-workflow
 description: Orchestriert die formatübergreifende Auslieferung eines bereits kanonischen Learning-Content-, Multi-Source- oder Course-Modells über DESIGN.md, Visualplanung, SVG/Bild-Assets, Landingpage, Präsentation, DOCX/PDF und finales Cross-Format-QA, ohne fachliche Learning-Semantik neu zu autorieren. Verwenden als interne gemeinsame Delivery-Schicht für Learning-Orchestratoren.
 userFacing: false
 implicitInvocation: true
-version: 0.1.0
+version: 0.2.0
 status: candidate
 owners:
   - White Label Maintainer
@@ -39,7 +39,7 @@ consumes:
 outputs:
   - learning-delivery-bundle.json
   - learning-delivery-run.json
-lastEvaluated: 2026-08-28
+lastEvaluated: 2026-09-22
 ---
 
 # Learning Delivery Workflow
@@ -130,17 +130,30 @@ Minimaler Vertrag:
   "visualPlanRef": "...",
   "requestedFormats": ["html", "pptx", "docx", "pdf"],
   "artifacts": [
-    {"format": "html", "ref": "...", "producer": "learning-landingpage-renderer"},
-    {"format": "pptx", "ref": "...", "producer": "template-presentation-workflow"}
+    {"format": "html", "ref": "drive://observed-file-id", "driveUrl": "observed-drive-url", "producer": "learning-landingpage-renderer"},
+    {"format": "pptx", "ref": "drive://observed-file-id", "driveUrl": "observed-drive-url", "producer": "template-presentation-workflow"}
   ],
   "assetManifests": [],
   "qaRef": "learning-artifact-qa.json",
+  "storageStatus": "verified|pending|blocked",
   "status": "pass|review|fail"
 }
 ```
 
 `learning-delivery-run.json` dokumentiert Routing, ausgeführte Worker, ausgelassene Formate, Warnings, Render-Coverage und Abschlussstatus.
 
+## Drive Storage and Delivery Gate
+
+Alle erzeugten Nicht-Code-Artefakte folgen dem framework-weiten `docs/DRIVE-STORAGE-AND-DELIVERY-CONTRACT.md`.
+
+- lokale/Sandbox-Dateien sind nur Build-Zwischenstände;
+- finale Artefakte werden in den owning Child-Brain-Drive-Root geschrieben; ohne passenden Brain in den tenantweiten `Deliveries`-Root;
+- nach dem Write werden Drive-ID, URL, Parent und soweit verfügbar Revision/Modified State read-back-verifiziert;
+- Projektartefakte werden über `project-second-brain` in `ASSETS.md`/`state.json` registriert;
+- ein erfolgreicher Nutzer-Handoff liefert die verifizierten Drive-Links;
+- fehlende Drive-Schreibfähigkeit bedeutet `pending|blocked`, nicht erfolgreiche Delivery und keinen GitHub-/Sandbox-Fallback.
+
+Das gilt auch für HTML, SVGs, Rasterbilder und die beiden Run-/Bundle-Manifeste; Producer-Ownership bleibt unverändert, aber die persistierte Instanz liegt in Drive.
 ## Prüfungen
 
 Vor PASS prüfen:
