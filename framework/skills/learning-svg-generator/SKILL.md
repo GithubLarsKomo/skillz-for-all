@@ -4,7 +4,7 @@ description: Erzeugt aus einem evidenzgebundenen Visual-Plan und dem aktiven DES
 userFacing: true
 implicitInvocation: true
 category: workflow
-version: 0.1.0
+version: 0.2.0
 status: candidate
 owners:
   - White Label Maintainer
@@ -14,7 +14,7 @@ requires:
 outputs:
   - learning-svg-manifest.json
   - learning-svg-assets
-lastEvaluated: 2026-08-28
+lastEvaluated: 2026-09-22
 ---
 
 # Learning SVG Generator
@@ -48,6 +48,11 @@ Jedes SVG:
 - nutzt keine externen Remote-Assets ohne explizite Freigabe;
 - besitzt ein Manifest mit Quellclaims, Timestampbezug und Zieloberflächen.
 
+## Drive Storage and Delivery Gate
+
+Erzeugte Nicht-Code-Artefakte folgen `docs/DRIVE-STORAGE-AND-DELIVERY-CONTRACT.md`: in Drive persistieren, read-back-verifizieren und über beobachtete Drive-Links referenzieren. Lokale/Sandbox-Dateien bleiben Build-Zwischenstände; ohne Drive-Write ist der Handoff `pending|blocked`.
+
+SVGs, Raster-Fallbacks und Manifest werden in Drive persistiert; lokale Rendererpfade sind keine finalen Asset-Referenzen.
 ## Fachliche Grenze
 
 - Keine Zahl, Beziehung, Reihenfolge oder Komponentenbezeichnung ergänzen, die nicht im Visual-Plan verankert ist.
@@ -67,4 +72,4 @@ Vor Freigabe mindestens prüfen:
 
 ## Abschluss
 
-Abgeschlossen, wenn Asset(s) und `learning-svg-manifest.json` fachlich fidel, DESIGN.md-konform und auf den vorgesehenen Medien lesbar sind.
+Abgeschlossen, wenn Asset(s) und `learning-svg-manifest.json` fachlich fidel, DESIGN.md-konform, auf den vorgesehenen Medien lesbar und als verifizierte Drive-Objekte registriert sind.
