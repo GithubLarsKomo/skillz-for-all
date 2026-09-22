@@ -37,6 +37,13 @@ jobs:
           assert not bad, "\n".join(bad)
           PY
 
+      - name: Diagnose unchanged framework hashes
+        continue-on-error: true
+        run: python -c 'import hashlib,json,pathlib,subprocess; s=json.load(open("release/SHA256SUMS.json")); ch=set(subprocess.check_output(["git","diff","--name-only","origin/main...HEAD"],text=True).splitlines()); b=[p for p,h in s.items() if p.startswith("framework/") and p not in ch and (not pathlib.Path(p).is_file() or hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()!=h)]; assert not b, b'
+      - name: Diagnose unchanged non-framework hashes
+        continue-on-error: true
+        run: python -c 'import hashlib,json,pathlib,subprocess; s=json.load(open("release/SHA256SUMS.json")); ch=set(subprocess.check_output(["git","diff","--name-only","origin/main...HEAD"],text=True).splitlines()); b=[p for p,h in s.items() if not p.startswith("framework/") and p not in ch and (not pathlib.Path(p).is_file() or hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()!=h)]; assert not b, b'
+
       - name: Verify release hash targets
         shell: bash
         run: |
