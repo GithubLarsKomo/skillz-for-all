@@ -19,7 +19,6 @@ jobs:
 
       - name: Diagnose changed hashes
         shell: bash
-        continue-on-error: true
         run: |
           python - <<'PY'
           import hashlib, json, subprocess
