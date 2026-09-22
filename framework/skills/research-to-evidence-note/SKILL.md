@@ -42,7 +42,7 @@ Vor der Synthese fixieren:
 
 1. Forschungsfrage und beabsichtigte Entscheidung beziehungsweise Nutzung,
 2. zeitlichen Geltungsbereich, falls Aktualität relevant ist,
-3. verfügbare Quellen mit stabilen Referenzen oder nachvollziehbaren Herkunftsangaben,
+3. verfügbare Quellen mit stabilen Referenzen oder nachvollziehbaren Herkunftsangaben; soweit verfügbar zusätzlich die direkte, stabile URL zur Original-/Primärquelle,
 4. bekannte Einschränkungen des Zugriffs oder der Datenbasis.
 
 Wenn die Frage zu breit ist, enger formulieren. Fehlende Evidenz nicht durch plausible Annahmen ersetzen.
@@ -78,7 +78,7 @@ Formuliere die Forschungsfrage in einem Satz und notiere, wofür die Evidenz ver
 
 ### 2. Quellen inventarisieren
 
-Erzeuge für jede verwendete Quelle einen kurzen Record mit Referenz, Typ, Datum, Qualitätsklasse, relevanter Aussage und erkennbaren Einschränkungen. Quellen, die nur gefunden, aber nicht für einen Claim verwendet wurden, müssen nicht künstlich aufgeführt werden.
+Erzeuge für jede verwendete Quelle einen kurzen Record mit Referenz, Typ, Datum, Qualitätsklasse, relevanter Aussage und erkennbaren Einschränkungen. **Soweit eine stabile direkte URL verfügbar ist, muss sie im Quellenrecord mitgeführt und in zitierfähigen Ausgaben als anklickbarer Link zur Quelle ausgegeben werden.** Bevorzuge die Original-/Primärquelle (z. B. DOI-/Publisher-Seite, Behörden-/Standardseite, offizielles Register, Originaldokument) gegenüber Suchtreffern oder Aggregatoren; wenn nur ein Aggregator tatsächlich als Quelle verwendet wurde, verlinke diesen transparent als solchen. Fehlt eine stabile URL oder ist sie nicht zugänglich/zulässig, bleibt die vollständige bibliographische bzw. Herkunftsreferenz maßgeblich. Quellen, die nur gefunden, aber nicht für einen Claim verwendet wurden, müssen nicht künstlich aufgeführt werden.
 
 ### 3. Claims extrahieren
 
@@ -148,6 +148,7 @@ Liste nur offene Fragen auf, deren Beantwortung die Entscheidung oder die Confid
     {
       "id": "S1",
       "reference": "...",
+      "url": "https://...",
       "sourceClass": "primary",
       "date": "YYYY-MM-DD",
       "freshness": "current",
@@ -163,7 +164,7 @@ Liste nur offene Fragen auf, deren Beantwortung die Entscheidung oder die Confid
 }
 ```
 
-`evidence-note.md` enthält dieselben Inhalte lesbar gegliedert in Frage, Kurzantwort, Claims/Evidenz, Konflikte, offene Punkte und Quellen.
+`evidence-note.md` enthält dieselben Inhalte lesbar gegliedert in Frage, Kurzantwort, Claims/Evidenz, Konflikte, offene Punkte und Quellen. In Quellenangaben und Zitaten wird die Quellenreferenz soweit möglich direkt mit der stabilen URL verknüpft; die URL ist Teil der Provenance und soll downstream bei Report-, Memo-, Präsentations- und PDF-Erzeugung erhalten bleiben.
 
 ## Datenschutz und Persistenz
 
@@ -175,6 +176,7 @@ Vor Übergabe prüfen:
 
 - jeder relevante Synthesesatz ist durch mindestens einen Claim abgedeckt,
 - jeder `direct`/`derived` Claim verweist auf existierende Quellen,
+- jede verwendete Quelle führt soweit verfügbar eine stabile direkte URL, und zitierfähige Ausgaben machen diese Quelle anklickbar,
 - widersprechende Evidenz ist sichtbar und nicht stillschweigend entfernt,
 - Aktualität ist bei zeitabhängigen Fragen bewertet,
 - Confidence folgt Evidenzqualität und Konfliktlage,
