@@ -77,7 +77,6 @@
   "framework/skills/architecture-deepening-review/tests/results/edge-case.json": "1dea0ec8622c7c8e42cf52864b7a25c4eecdf196864b464bdf2b0bd5788adacb",
   "framework/skills/architecture-deepening-review/tests/results/failure-case.json": "7f33aabd0248282d4ff62925e9232cf8627e54daddce0934fe7ea9cedd47d71a",
   "framework/skills/architecture-deepening-review/tests/results/happy-path.json": "d206497b8b1e2ce5735df5e9cccc0440f3be63fe790da675c54f99b3d8def8d8",
-  "framework/skills/artifact-contract-audit/SKILL.md": "cdd12a5cf5e9a9fb0e276c2d89ddf8f4af355d98029e55db3d823b21b5f5510a",
   "framework/skills/artifact-contract-normalizer/SKILL.md": "f6b8c859c022681d6c48b3fe66858d23d1d82edc01106c546777ffa1a8154cc6",
   "framework/skills/artifact-contract-normalizer/agents/openai.yaml": "6ed8e15b17e063cd089c3bca4829eb34f503e6ae3790328d9e0e49f003fa0908",
   "framework/skills/artifact-contract-normalizer/tests/evaluation.json": "422f8e09f81d365758fa8c5b28d9b190d6c1241ea0c3183b3e2f01e6bbf51c8f",
