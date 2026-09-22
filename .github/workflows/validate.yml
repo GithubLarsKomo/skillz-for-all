@@ -17,6 +17,39 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Verify release hash targets
+        shell: bash
+        run: |
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          root=Path(".")
+          sums=json.loads((root/"release/SHA256SUMS.json").read_text())
+          bad=[]
+          for rel, expected in sums.items():
+              p=root/rel
+              if not p.is_file():
+                  bad.append(f"missing:{rel}")
+                  continue
+              actual=hashlib.sha256(p.read_bytes()).hexdigest()
+              if actual != expected:
+                  bad.append(f"mismatch:{rel}")
+          assert not bad, "\n".join(bad)
+          PY
+
+      - name: Verify skill dependency graph
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import sys
+          sys.path.insert(0, "tools")
+          import validate_white_label_release as v
+          errors=[]
+          v.validate_skill_graph(Path("."), errors)
+          assert not errors, "\n".join(errors)
+          PY
+
       - name: Validate release contracts
         run: python tools/validate_white_label_release.py .
 
