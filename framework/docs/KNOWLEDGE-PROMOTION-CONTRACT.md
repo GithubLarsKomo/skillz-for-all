@@ -129,6 +129,8 @@ over a parallel duplicate.
 
 ### 5. Persist only the abstraction
 
+**Skillz-for-All storage rule:** durable Brain/framework writes use the recipient-owned Google Drive runtime defined by `KNOWLEDGE-STORE-CONTRACT.md`. A non-Drive Brain target is not an active canonical owner in a claimed Skillz-for-All tenant. If the Drive target is not writable, classify the write `blocked-no-target`/pending rather than falling back to GitHub or local storage.
+
 Write a concise durable note, fact, learning card or update. Link back to evidence rather than copying the evidence corpus.
 
 For regulated or otherwise volatile knowledge, preserve authority class, `asOf`, and review/expiry semantics.
