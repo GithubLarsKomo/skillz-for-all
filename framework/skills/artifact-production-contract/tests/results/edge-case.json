@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "skill": "artifact-production-contract",
+  "caseId": "edge-case",
+  "recordedAt": "2026-09-22",
+  "evaluator": "repository-maintainer",
+  "requiredBehaviors": [
+    {
+      "behavior": "reuse the active frozen contract",
+      "passed": true,
+      "evidence": "SKILL.md explicitly covers: reuse the active frozen contract."
+    },
+    {
+      "behavior": "avoid redundant Grilling",
+      "passed": true,
+      "evidence": "SKILL.md explicitly covers: avoid redundant Grilling."
+    },
+    {
+      "behavior": "preserve the canonical source relation",
+      "passed": true,
+      "evidence": "SKILL.md explicitly covers: preserve the canonical source relation."
+    }
+  ],
+  "forbiddenBehaviors": [
+    {
+      "behavior": "prohibited behavior from evaluation case",
+      "observed": false,
+      "evidence": "The skill contract explicitly preserves the required boundary."
+    }
+  ],
+  "overall": "pass"
+}
