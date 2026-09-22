@@ -65,7 +65,7 @@
     },
     {
       "path": "framework/docs/SECOND-BRAIN-OPERATING-CYCLE.md",
-      "sha256": "8b523827354dd8b550a6d8efb71abaf3feeb7f7d716a424fdf06b38eea58b0e1"
+      "sha256": "ea949eab975de6c62b25fcd391ae2844d89cc467c1d557b211cd31513c057b67"
     },
     {
       "path": "framework/schemas/candidate-role-fit-v1.schema.json",
@@ -309,7 +309,7 @@
     },
     {
       "path": "framework/skills/artifact-contract-normalizer/SKILL.md",
-      "sha256": "bb28fd44adea7fdb5732122a059a32d436837833011cfa7534ed38c0bc7ee271"
+      "sha256": "f6b8c859c022681d6c48b3fe66858d23d1d82edc01106c546777ffa1a8154cc6"
     },
     {
       "path": "framework/skills/artifact-contract-normalizer/tests/evaluation.json",
@@ -337,7 +337,7 @@
     },
     {
       "path": "framework/skills/audio-tutorial-workflow/SKILL.md",
-      "sha256": "f2ce45d31bf912359b72f8bb2d253426c4ce2340dc5786974f6aec89a05fcf6b"
+      "sha256": "f43007f62fb58da12625e73fcb7859d7f4a68e6ea81b769c4aad702679df1444"
     },
     {
       "path": "framework/skills/audio-tutorial-workflow/tests/evaluation.json",
@@ -1085,11 +1085,11 @@
     },
     {
       "path": "framework/skills/creative-writing-epub-delivery/SKILL.md",
-      "sha256": "60c03afb4156c2c44996d985a1cbec087662980849f8079b7f3034feca85d2bc"
+      "sha256": "52861e08a6c899e18e310ff3d41a9eee68397fd755981b4ae3b2595e1a076822"
     },
     {
       "path": "framework/skills/creative-writing-epub-delivery/tests/evaluation.json",
-      "sha256": "8ebc5857838c545b99cec951e122e8fe81b81d5c791d55fd48dcfca8cdb2c84a"
+      "sha256": "97b745d069acbe28f6aa5bfd3290a641611a9d01af30b47883957e11c1105e4d"
     },
     {
       "path": "framework/skills/creative-writing-epub-delivery/tests/results/edge-case.json",
@@ -1109,7 +1109,7 @@
     },
     {
       "path": "framework/skills/creative-writing-workflow/SKILL.md",
-      "sha256": "dc47e09d0e96220aedb02e4cd79f0ee61ab68aa549dac4799b3db90938e3b2d0"
+      "sha256": "97df65cb9a9d6f09d6cc85ebd305e76c7f2a74d90f5e9b7b1a8b90605df1ef5b"
     },
     {
       "path": "framework/skills/creative-writing-workflow/tests/evaluation.json",
@@ -1641,7 +1641,7 @@
     },
     {
       "path": "framework/skills/epub3-publication-renderer/SKILL.md",
-      "sha256": "83afc410635912d5ca556f9442c959ec493671b05b998070fd5f6b148661cf3a"
+      "sha256": "5456fe26367e85d9792fb24fc0da2ee6f79b53e00eb72909b9efc5cb42c0e6cd"
     },
     {
       "path": "framework/skills/epub3-publication-renderer/tests/evaluation.json",
