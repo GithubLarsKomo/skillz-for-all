@@ -4,7 +4,7 @@ description: Überführt ein kanonisches Learning-Content-Modell und seine Visua
 userFacing: true
 implicitInvocation: true
 category: workflow
-version: 0.1.0
+version: 0.2.0
 status: candidate
 owners:
   - White Label Maintainer
@@ -14,7 +14,7 @@ outputs:
   - learning-handout.docx
   - learning-handout.pdf
   - learning-document-qa.json
-lastEvaluated: 2026-08-28
+lastEvaluated: 2026-09-22
 ---
 
 # Learning Document Delivery
@@ -86,6 +86,18 @@ Nach DOCX-PASS:
 - sichtbare Parität zum kanonischen DOCX;
 - Corporate Design Gate zusätzlich PASS, wenn anwendbar.
 
+## Drive Storage and Delivery Gate
+
+Alle erzeugten Nicht-Code-Artefakte folgen dem framework-weiten `docs/DRIVE-STORAGE-AND-DELIVERY-CONTRACT.md`.
+
+- lokale/Sandbox-Dateien sind nur Build-Zwischenstände;
+- finale Artefakte werden in den owning Child-Brain-Drive-Root geschrieben; ohne passenden Brain in den tenantweiten `Deliveries`-Root;
+- nach dem Write werden Drive-ID, URL, Parent und soweit verfügbar Revision/Modified State read-back-verifiziert;
+- Projektartefakte werden über `project-second-brain` in `ASSETS.md`/`state.json` registriert;
+- ein erfolgreicher Nutzer-Handoff liefert die verifizierten Drive-Links;
+- fehlende Drive-Schreibfähigkeit bedeutet `pending|blocked`, nicht erfolgreiche Delivery und keinen GitHub-/Sandbox-Fallback.
+
+
 ## Abschluss
 
-Abgeschlossen, wenn DOCX editierbar, PDF visuell vollständig geprüft und beide inhaltlich identisch zur kanonischen Learning-Basis sind.
+Abgeschlossen, wenn DOCX editierbar, PDF visuell vollständig geprüft und beide inhaltlich identisch zur kanonischen Learning-Basis sind, beide angeforderten Formate in Drive read-back-verifiziert wurden und ihre Drive-Links im Delivery-Handoff stehen.
