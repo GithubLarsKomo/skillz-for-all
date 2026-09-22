@@ -1,0 +1,5 @@
+interface:
+  display_name: "Artifact Contract Audit"
+  short_description: "Audit the exact candidate artifact against the frozen production and figure contracts."
+policy:
+  allow_implicit_invocation: true
