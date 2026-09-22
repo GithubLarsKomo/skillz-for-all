@@ -1,11 +1,11 @@
 # Third-Party Deployment and Handoff
 
 Status: draft deployment contract  
-Version: 0.1.0
+Version: 0.2.0
 
 ## Goal
 
-Transfer a complete white-label Skillz + Second-Brain architecture to another person or organization so that the recipient becomes operationally independent of the source owner.
+Transfer a complete white-label Skillz + Second-Brain architecture to another person or organization so that the recipient becomes operationally independent of the source owner and runs the claimed framework, Brains and generated non-code artifacts from recipient-owned Google Drive.
 
 The handoff transfers **architecture and selected portable framework content**, not the source owner's private accumulated knowledge.
 
@@ -121,7 +121,8 @@ Rebind resolves all logical components to recipient-owned Drive IDs:
 - bootstrap file;
 - registry file;
 - state file;
-- Child-Brain template root.
+- Child-Brain template root;
+- tenant Deliveries root used only when no owning Child Brain is appropriate.
 
 No real Child Brains are registered automatically.
 
@@ -183,6 +184,8 @@ Supported models:
 
 Updates modify framework content only. They MUST NOT overwrite tenant Brain knowledge, tenant registry, tenant state or tenant configuration without an explicit migration contract.
 
+After Claim/Rebind, GitHub remains an upstream release/update source only. Tenant runtime state and generated non-code delivery artifacts do not fall back to GitHub or sandbox storage.
+
 ## Deployment manifest
 
 See `templates/deployment-package/deployment-manifest.example.json`.
@@ -211,7 +214,8 @@ A third-party deployment is complete when:
 - bootstrap resolves;
 - federation starts with expected state;
 - smoke test succeeds;
-- recipient receives the final system-prompt hook and operational instructions.
+- recipient receives the final system-prompt hook and operational instructions;
+- a document/media smoke test writes an artifact to recipient-owned Drive, reads it back and returns the observed Drive link.
 
 
 ## Reference build command
