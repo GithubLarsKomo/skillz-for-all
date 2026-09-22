@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "releaseVersion": "0.1.1",
+  "releaseVersion": "0.2.0",
   "profile": "full-portable",
   "storageProvider": "google-drive",
   "rebindRequired": true,
@@ -9,11 +9,11 @@
   "files": [
     {
       "path": "00-START-HERE.md",
-      "sha256": "ad66afda6a754f8c4011520771dc4d379cb11b51cd0df3dd3ee66346b8789986"
+      "sha256": "f156c7577ab3a3254b528f4dabdfc84f65bf973c22cc37255cac846ef4fb6923"
     },
     {
       "path": "deployment-manifest.json",
-      "sha256": "fb85280f56fff9718607bdc8df1b0600d485809f4e2df33ea093b10d294407ed"
+      "sha256": "ea5f5885e49e845874501fb9384d2e9b97ed8a628e00cd2694672df9206e8e0e"
     },
     {
       "path": "framework/config/tool-capabilities.json",
@@ -36,20 +36,24 @@
       "sha256": "241e1329a67e9bb41cb37d8fcdf0d19c5c2afe842f6e4dfdb50ffaba89756125"
     },
     {
+      "path": "framework/docs/DRIVE-STORAGE-AND-DELIVERY-CONTRACT.md",
+      "sha256": "25e38ccc84ea4be04bf368e38d4b3122296fbf5aefbb466473b95b6061a81a08"
+    },
+    {
       "path": "framework/docs/EVALUATION.md",
       "sha256": "c9c5cf5e023c2893a780f439ae929d5ea933a83d6af085f50ff3f4592c475375"
     },
     {
       "path": "framework/docs/GOVERNANCE.md",
-      "sha256": "d83b505a3751b4aa4fe3e4339a90a3347a1b044c960c6d6130f6a0112bd368ca"
+      "sha256": "9fecaba5a7bec872c3e64e5b9ab723ba4d353fe4baa328409193d98ca188f119"
     },
     {
       "path": "framework/docs/KNOWLEDGE-PROMOTION-CONTRACT.md",
-      "sha256": "c68598834b6369258db6cc5b1842f1a34b7163afefc16c639c3ad5000de36c9e"
+      "sha256": "505e99f7892248a412616258a32b9704951bbfdd68759be9e758116c944eb30a"
     },
     {
       "path": "framework/docs/KNOWLEDGE-STORE-CONTRACT.md",
-      "sha256": "21c56b9e8ceb65b0e9e50ad68f85eb12c36ea9827262479d7439800e9db04508"
+      "sha256": "c787781476a4e524b15e9deab871493c87f1546c18ee098b51bd911161ad7293"
     },
     {
       "path": "framework/docs/MEMORY-PATH-CONTRACT.md",
@@ -57,7 +61,7 @@
     },
     {
       "path": "framework/docs/SECOND-BRAIN-LINT-CONTRACT.md",
-      "sha256": "54e2b074982d4ac7b8c0ffdeea0958505e1adc72dba2c9113eec3fddd351504f"
+      "sha256": "313467b5a7604d29e0e413cd9b3851753e3a133314c78349eda66e8cfe5f24da"
     },
     {
       "path": "framework/docs/SECOND-BRAIN-OPERATING-CYCLE.md",
@@ -8975,5 +8979,7 @@
       "path": "tools/validate_white_label_release.py",
       "sha256": "33434c3097ba845d2961ef129efe0920f54a19181c42333d84271354cb5e6594"
     }
-  ]
+  ],
+  "runtimeStoragePolicy": "drive-only",
+  "artifactDeliveryPolicy": "drive-link-first"
 }
