@@ -12,6 +12,8 @@ requires:
   - document-template-profiler
   - document-layout-qa
   - document-render-verifier
+  - artifact-production-contract
+  - artifact-contract-audit
 consumes:
   - document-template-profile.json
   - document-layout-qa.json
@@ -146,9 +148,13 @@ Vor PASS:
 - **Renderer/PDF-Export fehlt:** DOCX kann separat geliefert werden, aber visuelle/PDF-Paritätsclaims bleiben `not-run`.
 - **Fachlicher Konflikt im Input:** upstream zurückgeben; nicht beim Layouten lösen.
 
+## Artifact Production Contract Gate
+
+Bei substantieller Neuerstellung oder materieller Überarbeitung zuerst den gemeinsamen `artifact-production-contract` aus angemessenem Grilling erzeugen bzw. einen gültigen gefrorenen Vertrag wiederverwenden. Dieser Workflow führt den gefrorenen Vertrag aus und darf INVARIANT-Festlegungen nicht neu interpretieren. Vor Release prüft `artifact-contract-audit` die exakt auszuliefernde Revision. Ein Audit-PASS ist Voraussetzung für den anschließenden Drive-Delivery-Gate; reine deterministische Konvertierungen dürfen den bestehenden Vertrag erben.
+
 ## Drive Storage and Delivery Gate
 
-Alle erzeugten Nicht-Code-Artefakte folgen dem framework-weiten `docs/DRIVE-STORAGE-AND-DELIVERY-CONTRACT.md`.
+Alle erzeugten Nicht-Code-Artefakte folgen dem framework-weiten `docs/DOCUMENT-ARTIFACT-DELIVERY-CONTRACT.md`.
 
 - lokale/Sandbox-Dateien sind nur Build-Zwischenstände;
 - finale Artefakte werden in den owning Child-Brain-Drive-Root geschrieben; ohne passenden Brain in den tenantweiten `Deliveries`-Root;
