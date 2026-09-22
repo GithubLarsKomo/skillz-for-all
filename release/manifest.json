@@ -36,8 +36,16 @@
       "sha256": "241e1329a67e9bb41cb37d8fcdf0d19c5c2afe842f6e4dfdb50ffaba89756125"
     },
     {
+      "path": "framework/docs/ARTIFACT-PRODUCTION-CONTRACT.md",
+      "sha256": "4d7731bc8b03cda4ae7b1115409bdbd0a45c7a5c"
+    },
+    {
+      "path": "framework/docs/DOCUMENT-ARTIFACT-DELIVERY-CONTRACT.md",
+      "sha256": "d786c42b2f3f25c9c523a0cba0c5b1a398c1e408"
+    },
+    {
       "path": "framework/docs/DRIVE-STORAGE-AND-DELIVERY-CONTRACT.md",
-      "sha256": "25e38ccc84ea4be04bf368e38d4b3122296fbf5aefbb466473b95b6061a81a08"
+      "sha256": "911f4a79ec1ad0a68f7363daa66fa925f49a4b4b"
     },
     {
       "path": "framework/docs/EVALUATION.md",
@@ -304,6 +312,10 @@
       "sha256": "d206497b8b1e2ce5735df5e9cccc0440f3be63fe790da675c54f99b3d8def8d8"
     },
     {
+      "path": "framework/skills/artifact-contract-audit/SKILL.md",
+      "sha256": "05c5fe61819e4849b547689ad48c09faaf8df83d"
+    },
+    {
       "path": "framework/skills/artifact-contract-normalizer/agents/openai.yaml",
       "sha256": "6ed8e15b17e063cd089c3bca4829eb34f503e6ae3790328d9e0e49f003fa0908"
     },
@@ -326,6 +338,26 @@
     {
       "path": "framework/skills/artifact-contract-normalizer/tests/results/happy-path.json",
       "sha256": "a6c14717f01e4c454830c48e16a0d3cb3ffb96f2555166085f3ad571efa71b8a"
+    },
+    {
+      "path": "framework/skills/artifact-production-contract/SKILL.md",
+      "sha256": "28211ef2965a2287628992c71f3e6616dfe212b5"
+    },
+    {
+      "path": "framework/skills/artifact-production-contract/tests/evaluation.json",
+      "sha256": "df8bd1c7caf89bdd29404c2762b407525fa24a21"
+    },
+    {
+      "path": "framework/skills/artifact-production-contract/tests/results/edge-case.json",
+      "sha256": "c4e47005131201f8f4be6bb6b376cb6fe3e05a56"
+    },
+    {
+      "path": "framework/skills/artifact-production-contract/tests/results/failure-case.json",
+      "sha256": "aa234fe125163f8bb06a989f866387b33418a3a6"
+    },
+    {
+      "path": "framework/skills/artifact-production-contract/tests/results/happy-path.json",
+      "sha256": "a7d9c00340e89800c0733c0d7c01fcf7f01d01a9"
     },
     {
       "path": "framework/skills/audio-tutorial-workflow/agents/openai.yaml",
@@ -1085,7 +1117,7 @@
     },
     {
       "path": "framework/skills/creative-writing-epub-delivery/SKILL.md",
-      "sha256": "52861e08a6c899e18e310ff3d41a9eee68397fd755981b4ae3b2595e1a076822"
+      "sha256": "251f3b6f7a967e98484ec6571fa2a4e52c85bc3b"
     },
     {
       "path": "framework/skills/creative-writing-epub-delivery/tests/evaluation.json",
@@ -4165,7 +4197,7 @@
     },
     {
       "path": "framework/skills/learning-document-delivery/SKILL.md",
-      "sha256": "07db659504a4099c2d84752f8856a0385a393611fcbcd1f5a57bde404d564d7e"
+      "sha256": "c7c11059bcb08e1c55946190d9da14f6682a0236"
     },
     {
       "path": "framework/skills/learning-document-delivery/tests/evaluation.json",
@@ -5821,7 +5853,7 @@
     },
     {
       "path": "framework/skills/person-profile-document-delivery/SKILL.md",
-      "sha256": "767e97c4c8a395c69a8cfbb3053aa24dcf1aeb1fd018cf4591e405d04020859a"
+      "sha256": "9e5782bd51e2beef025cbd43a93b4d1892f0f1e2"
     },
     {
       "path": "framework/skills/person-profile-report/agents/openai.yaml",
@@ -8197,7 +8229,7 @@
     },
     {
       "path": "framework/skills/template-document-workflow/SKILL.md",
-      "sha256": "e98d18970e2d035a3fcfebfb97adb818fd821393da1d0c7412d595b61d9c1e5d"
+      "sha256": "c86a34cdf44ede0564fd9e5dbc3bc3af0a3354d6"
     },
     {
       "path": "framework/skills/template-document-workflow/tests/evaluation.json",
@@ -8221,7 +8253,7 @@
     },
     {
       "path": "framework/skills/template-presentation-workflow/SKILL.md",
-      "sha256": "90a8b3c0128948e3ad88047c2e2e3231dfdf751a1b872ca5375c82abf079ab9b"
+      "sha256": "bcd6ad64bf4b213133d2047a70d5cbb8153c30f3"
     },
     {
       "path": "framework/skills/template-presentation-workflow/tests/evaluation.json",
@@ -8945,7 +8977,7 @@
     },
     {
       "path": "second-brain/super-second-brain/docs/super-memory/BOOTSTRAP.md",
-      "sha256": "50c1e7a8bd91b20668b4cf8fbbbdd848b2387dad9baea5dc01de1b56d517e022"
+      "sha256": "940e03242acc8572d9474bbf30f8594536d13803"
     },
     {
       "path": "second-brain/super-second-brain/docs/super-memory/INDEX.md",
@@ -8985,7 +9017,7 @@
     },
     {
       "path": "tools/validate_white_label_release.py",
-      "sha256": "33434c3097ba845d2961ef129efe0920f54a19181c42333d84271354cb5e6594"
+      "sha256": "a350615a48d26bded9c70ffc8698b4992cde7b47"
     }
   ],
   "runtimeStoragePolicy": "drive-only",
