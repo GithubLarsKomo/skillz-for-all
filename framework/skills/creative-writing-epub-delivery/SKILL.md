@@ -4,7 +4,7 @@ description: Liefert final freigegebene Science-Storytelling- oder Fiction-Manus
 userFacing: true
 implicitInvocation: true
 category: workflow
-version: 0.1.0
+version: 0.2.0
 status: candidate
 owners:
   - White Label Maintainer
@@ -18,7 +18,7 @@ outputs:
   - creative-writing.epub
   - creative-epub-delivery.json
   - creative-voice-guidance.md
-lastEvaluated: 2026-09-06
+lastEvaluated: 2026-09-22
 ---
 
 # Creative Writing EPUB Delivery
@@ -84,6 +84,11 @@ Nach `structuralStatus=pass` darf das validierte Paket content-neutral als `crea
 
 **Nie structural-pass als import-pass ausgeben.**
 
+## Drive Storage and Delivery Gate
+
+Alle erzeugten Nicht-Code-Artefakte folgen `docs/DRIVE-STORAGE-AND-DELIVERY-CONTRACT.md`: lokal/Sandbox nur Build-Zwischenstand; finale Datei in den owning Child-Brain-Drive-Root oder ersatzweise tenantweiten `Deliveries`-Root schreiben; Write read-back-verifizieren; Projektartefakt registrieren; dem Nutzer den beobachteten Drive-Link ausgeben. Ohne erfolgreichen Drive-Write bleibt die Delivery `pending|blocked` und ist nicht final.
+
+Das gilt für EPUB, Delivery-Manifest und Voice Guidance. Ein `structural-pass` ohne Drive-Write ist noch keine abgeschlossene Auslieferung.
 ## Qualitätsgate
 
 - **Listener Gate vor EPUB Release.**
@@ -106,10 +111,13 @@ Nach `structuralStatus=pass` darf das validierte Paket content-neutral als `crea
   "epubStructuralStatus": "pass",
   "elevenReaderCompatibility": "structural-pass|import-pass|voice-smoke-pass|not-tested",
   "voiceGuidanceRef": "creative-voice-guidance.md",
+  "driveFileId": "observed-drive-file-id|null",
+  "driveUrl": "observed-drive-url|null",
+  "storageStatus": "verified|pending|blocked",
   "status": "pass|review|fail"
 }
 ```
 
 ## Abschluss
 
-Abgeschlossen, wenn Listener Gate und EPUB-Struktur bestanden sind, `creative-writing.epub` und Voice Guidance vorliegen und der ElevenReader-Status exakt die tatsächlich geprüfte Ebene beschreibt.
+Abgeschlossen, wenn Listener Gate und EPUB-Struktur bestanden sind, `creative-writing.epub` und Voice Guidance als verifizierte Drive-Objekte vorliegen und der ElevenReader-Status exakt die tatsächlich geprüfte Ebene beschreibt.
