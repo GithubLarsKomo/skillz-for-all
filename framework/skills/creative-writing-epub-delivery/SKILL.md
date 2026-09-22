@@ -4,14 +4,20 @@ description: Liefert final freigegebene Science-Storytelling- oder Fiction-Manus
 userFacing: true
 implicitInvocation: true
 category: workflow
-version: 0.1.0
+version: 0.2.0
 status: candidate
 owners:
   - White Label Maintainer
 requires:
   - narrative-audiobook-listener-review
   - epub3-publication-renderer
+  - artifact-production-contract
+  - artifact-contract-audit
 consumes:
+  - artifact-production-contract.json
+  - artifact-figure-contracts.json
+  - artifact-contract-audit.json
+  - artifact-contract-audit.md
   - narrative-listener-review.json
   - epub3-validation.json
 outputs:
@@ -109,6 +115,14 @@ Nach `structuralStatus=pass` darf das validierte Paket content-neutral als `crea
   "status": "pass|review|fail"
 }
 ```
+
+## Publication Contract und Drive-Release
+
+Die Manuskript-/Projektentscheidungen werden nicht neu erfunden. Für publikationsspezifische materielle Entscheidungen (z. B. Cover/Visuals, Metadaten, Format-/Editierbarkeits- oder Delivery-Anforderungen) gilt `docs/ARTIFACT-PRODUCTION-CONTRACT.md`; ein bereits bestätigter Projekt-/Publikationsvertrag wird wiederverwendet und nur bei Delta-Bedarf nachgegrillt.
+
+Vor Release wird die exakt zu publizierende EPUB-Revision mit `artifact-contract-audit` gegen den aktiven Vertrag geprüft.
+
+Danach gilt `docs/DOCUMENT-ARTIFACT-DELIVERY-CONTRACT.md`: `creative-writing.epub` ist erst final ausgeliefert, wenn die exakt geprüfte Datei im kanonischen recipient-owned Google Drive gespeichert, read-back-verifiziert und als beobachteter Drive-Link zurückgegeben wurde. Eine lokale/Sandbox-Datei ist nur Zwischenstand.
 
 ## Abschluss
 
