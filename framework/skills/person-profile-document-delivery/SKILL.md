@@ -10,6 +10,8 @@ owners:
   - White Label Maintainer
 requires:
   - precision-writing-revision
+  - artifact-production-contract
+  - artifact-contract-audit
 consumes:
   - final-revised-text
   - precision-writing-report.json
@@ -144,9 +146,13 @@ Bei PDF-Problemen die Ursache im DOCX/Template korrigieren und erneut konvertier
 }
 ```
 
+## Artifact Production Contract Gate
+
+Bei substantieller Neuerstellung oder materieller Überarbeitung zuerst den gemeinsamen `artifact-production-contract` aus angemessenem Grilling erzeugen bzw. einen gültigen gefrorenen Vertrag wiederverwenden. Dieser Workflow führt den gefrorenen Vertrag aus und darf INVARIANT-Festlegungen nicht neu interpretieren. Vor Release prüft `artifact-contract-audit` die exakt auszuliefernde Revision. Ein Audit-PASS ist Voraussetzung für den anschließenden Drive-Delivery-Gate; reine deterministische Konvertierungen dürfen den bestehenden Vertrag erben.
+
 ## Drive Storage and Delivery Gate
 
-Alle erzeugten Nicht-Code-Artefakte folgen dem framework-weiten `docs/DRIVE-STORAGE-AND-DELIVERY-CONTRACT.md`.
+Alle erzeugten Nicht-Code-Artefakte folgen dem framework-weiten `docs/DOCUMENT-ARTIFACT-DELIVERY-CONTRACT.md`.
 
 - lokale/Sandbox-Dateien sind nur Build-Zwischenstände;
 - finale Artefakte werden in den owning Child-Brain-Drive-Root geschrieben; ohne passenden Brain in den tenantweiten `Deliveries`-Root;
