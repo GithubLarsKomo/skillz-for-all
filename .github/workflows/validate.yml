@@ -24,7 +24,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test "$(find framework/skills -mindepth 1 -maxdepth 1 -type d | wc -l | tr -d ' ')" = "342"
+          test "$(find framework/skills -mindepth 1 -maxdepth 1 -type d | wc -l | tr -d ' ')" = "344"
 
       - name: Verify public privacy boundary
         shell: bash
