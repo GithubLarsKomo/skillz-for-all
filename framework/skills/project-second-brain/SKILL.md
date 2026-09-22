@@ -21,7 +21,7 @@ lastEvaluated: 2026-09-19
 
 ## Zweck
 
-Dieser Skill hält den vollständigen Projektweg **ab dem Grilling** als provider-neutrale, versionierbare Wissensspur zusammen. Der kanonische Project Memory kann in Google Drive, GitHub oder einem anderen Adapter liegen, sofern dieser den `docs/KNOWLEDGE-STORE-CONTRACT.md` erfüllt.
+Dieser Skill hält den vollständigen Projektweg **ab dem Grilling** als provider-neutrale, versionierbare Wissensspur zusammen. Im standardmäßigen, geclaimten Skillz-for-all-Profil wird der kanonische Project Memory ausschließlich im recipient-owned Google Drive Knowledge Store persistiert. Provider-Neutralität beschreibt das Daten-/Locator-Modell, nicht mehrere gleichrangige Tenant-Speicher.
 
 Er ersetzt keine fachlichen Producer-Artefakte, keine kontrollierten Records und keine externen Sources of Truth. Er verlinkt und projiziert deren verifizierten Zustand als nachvollziehbaren Projektgraphen.
 
@@ -252,7 +252,20 @@ Kernregeln:
 - `ASSETS.md` als menschenlesbares Asset-Register und `state.json` als maschinenlesbare Projektion führen;
 - freigegebene/frozen Artefakte nicht still überschreiben;
 - Provider-Ausfälle als `pending`/`unavailable` dokumentieren;
+- erzeugte human-facing Artefakte ausschließlich link-first aus dem verifizierten recipient-owned Drive ausliefern;
 - bei Copy/Handoff Rebind durchführen, weil Provider-IDs sich ändern können.
+
+## Drive-only Artifact- und Delivery-Gate
+
+Für erzeugte menschlich nutzbare Projektartefakte gilt verbindlich `docs/DOCUMENT-ARTIFACT-DELIVERY-CONTRACT.md` zusammen mit `references/drive-artifact-contract.md`.
+
+Kernregel:
+
+> **Erzeugen/prüfen ist nicht gleich ausliefern. Final ist ein Artefakt erst nach Write in den kanonischen recipient-owned Drive-Ort, Read-back-Verifikation, Registrierung und Rückgabe des beobachteten Drive-Links.**
+
+Das gilt insbesondere für PPTX, DOCX, PDF, XLSX, EPUB, Bilder, Audio/Video und Handoff-Bundles. Lokale/Sandbox-/Chat-Dateien sind nur Build-Zwischenstände. Bei nicht verfügbarem Drive bleibt der Status `pending|blocked`; ein temporärer Download darf nicht als kanonische Lieferung bezeichnet werden.
+
+Software-/Build-/Runtime-Artefakte verbleiben bei ihrem autoritativen Producer-System und werden aus dem Project Memory referenziert.
 
 ## Decision Records
 
