@@ -35,10 +35,7 @@ jobs:
           PY
 
       - name: Validate release contracts
-        continue-on-error: true
         run: python tools/validate_white_label_release.py .
-      - name: Probe release contract fields
-        run: python -c 'import json; m=json.load(open("release/manifest.json")); d=json.load(open("deployment-manifest.json")); i=open("instance.yaml").read(); assert m.get("storageProvider")=="google-drive"; assert m.get("rebindRequired") is True; assert m.get("runtimeStoragePolicy")=="drive-only"; assert m.get("sourceExclusionPolicyApplied") is True; assert m.get("artifactDeliveryPolicy")=="drive-link-first"; s=d.get("storage",{}); assert s.get("provider")=="google-drive"; assert s.get("runtimePolicy")=="drive-only"; assert s.get("generatedNonCodeArtifacts")=="google-drive-required"; assert s.get("linkFirstDelivery") is True; assert d.get("runtimeDependencyOnSourceOwner") is False; p=d.get("privacy",{}); assert p.get("containsSourceOwnerKnowledge") is False; assert p.get("containsOrganizationSpecificContent") is False; assert p.get("starterRegistryMustBeEmpty") is True; assert "runtimeStoragePolicy: drive-only" in i; assert "provider: google-drive" in i; assert "requireDriveWrite: true" in i; assert "returnStoredLinks: true" in i'
 
       - name: Verify portable skill set
         shell: bash
