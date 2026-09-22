@@ -2,181 +2,127 @@
 
 ## Purpose
 
-This contract defines how `project-second-brain` handles non-textual project artifacts without turning GitHub into a binary document store or creating a second source of truth.
+This contract defines how `project-second-brain` stores and registers durable project artifacts in the standard Skillz-for-all runtime.
 
-The Project Memory remains GitHub-versioned and Obsidian-compatible. Google Drive is an external artifact store for non-textual project, reference, and delivery files that are not required for repository build, test, runtime, or source control.
+The standard claimed deployment is **Drive-only for mutable tenant persistence**: Project Memory, durable project knowledge and ordinary human-facing artifacts live in recipient-owned Google Drive under stable observed Drive IDs.
+
+Software/source-control/runtime producer artifacts may remain in their authoritative producer system and are referenced from Project Memory; they are not copied into Drive merely because they are binary or external.
 
 ## Storage boundary
 
-### Keep in the repository
+### Canonical in recipient-owned Google Drive
 
-Keep an artifact in the project repository when at least one of the following is true:
+Persist ordinary durable project and delivery artifacts in the owning Brain/project Drive location, including:
 
-- it is source code or configuration,
-- it is required to build, test, package, deploy, or run the project,
-- it is a repository-native design/runtime asset such as an icon, fixture, embedded media file, model file, or other binary dependency,
-- the repository is already the authoritative producer location for that artifact.
+- Project-Memory Markdown/JSON/YAML;
+- PPT/PPTX;
+- DOC/DOCX;
+- XLS/XLSX;
+- PDF;
+- PNG/JPEG/TIFF and comparable review/export images;
+- EPUB and other publications;
+- audio/video;
+- ZIP and handoff bundles;
+- Google Docs, Sheets and Slides when they are the intended canonical business artifact;
+- delivery manifests, QA reports and artifact registers that belong to tenant project state.
 
-Repository-resident binary assets are referenced from Project Memory like any other canonical repository artifact. They are not copied to Drive merely because they are binary.
+### Remain at authoritative producer/source system
 
-### Store in Google Drive
+Do not move/copy an artifact into Drive as a competing Source of Truth when it is canonically owned by a producer system, for example:
 
-Use the documented project Drive folder for non-textual artifacts that are documentary, referential, review-oriented, distributable, or final-delivery material and are not required by the repository itself. Typical examples include:
+- software source/configuration;
+- CI/CD;
+- Docker/Compose;
+- database schemas/migrations;
+- build/test/runtime dependencies;
+- deployable services/images/packages;
+- controlled records whose authoritative system is external.
 
-- PPT/PPTX, DOC/DOCX, XLS/XLSX,
-- PDF,
-- PNG/JPEG/TIFF and other review/export images,
-- EPUB and other packaged publications,
-- audio and video,
-- ZIP or other packaged handoff bundles,
-- Google Docs, Sheets, and Slides that are the canonical external artifact.
+Project Memory records stable observed references, revision/freshness and concise status instead.
 
-Do not re-upload an artifact that already has an authoritative external location. Register and link the authoritative object instead.
+## Canonical project location
 
-## Project Drive folder
+Each Project/Child Brain uses one canonical recipient-owned Drive root, identified by stable folder ID.
 
-Each Project Memory has at most one canonical Drive project folder for externally stored artifacts.
+Resolution order:
 
-Preferred resolution order:
+1. reuse the root/folder ID already recorded in project state;
+2. reuse an explicitly established project folder from the current verified handoff;
+3. resolve an existing exact folder only after identity/suitability verification;
+4. otherwise create exactly one private project location below the configured tenant Drive root.
 
-1. Reuse the folder already recorded in `state.json`.
-2. Reuse an explicitly established project Drive folder from the current handoff or project documentation.
-3. Reuse an existing exact project folder only after verifying its identity and suitability.
-4. Otherwise create a private project folder below a configured Drive parent. If no parent has been configured, use a `Skillz Projects` container in My Drive and create `<projectId>` below it.
+Do not create a second folder simply because a workflow wants a different artifact type.
 
-After creation or discovery, persist the Drive folder ID and observed URL. From that point onward, identify the folder by ID rather than by name.
+Never use a source-owner Drive object after Claim/Rebind.
 
-Do not change sharing permissions merely to satisfy this contract. Preserve existing sharing state and keep newly created folders private unless the user explicitly requests other sharing.
+Preserve existing sharing state and keep newly created project folders private unless the tenant/user explicitly chooses otherwise.
 
-## Project Memory representation
+## Project-Memory representation
 
-`docs/project-memory/ASSETS.md` is the human-readable and Obsidian-compatible manifest. `state.json` carries the compact machine-readable projection.
+`ASSETS.md` is the human-readable artifact register; `state.json` is the compact machine-readable projection.
 
-Minimum `ASSETS.md` header:
+For each registered artifact record, where available:
 
-```markdown
-# External Assets
+- stable local asset ID;
+- role/purpose;
+- canonical file name;
+- observed Drive file ID and URL;
+- parent folder ID;
+- MIME/artifact type;
+- lifecycle state: `working|review|released|superseded|archived`;
+- producer/source;
+- related Project-Memory event;
+- provider revision/modified timestamp/checksum where useful;
+- last verified timestamp.
 
-- Provider: Google Drive
-- Project folder URL: `observed-drive-folder-url`
-- Folder ID: `observed-folder-id`
-- Last verified: `2026-09-10T12:00:00+02:00`
+Never invent provider values.
+
+## Link-first delivery policy
+
+All human-facing generated deliverables follow `docs/DOCUMENT-ARTIFACT-DELIVERY-CONTRACT.md`.
+
+Normal order:
+
+```text
+generate
+  -> QA/audit
+  -> write exact approved revision to canonical recipient-owned Drive
+  -> read-back verify
+  -> register/update state
+  -> return observed Drive link
 ```
 
-Each registered asset records at least:
+A local/sandbox/chat file is only an intermediate build artifact. It is not a completed Skillz-for-all delivery.
 
-- stable local asset ID, e.g. `ASSET-001`,
-- purpose/role,
-- canonical file name,
-- Drive file ID,
-- observed Drive URL,
-- MIME type or artifact type,
-- lifecycle state: `working`, `review`, `released`, `superseded`, or `archived`,
-- producing skill or source,
-- related Project Memory event,
-- last verified timestamp,
-- revision/checksum/modified time when available and materially useful.
+If Drive is unavailable, record `pending|blocked`; a temporary file may be exposed as an explicit fallback but not represented as canonical/final.
 
-Example:
+## Upload/update protocol
 
-```markdown
-| ID | Role | Artifact | Drive URL | State | Producer | Event | Verified |
-|---|---|---|---|---|---|---|---|
-| ASSET-004 | final presentation | NDD Review.pptx | `observed-drive-file-url` | released | presentation workflow | EVT-... | 2026-09-10 |
-```
+1. Resolve owning Brain/project and canonical Drive root by stable ID.
+2. Classify producer-owned exceptions before copying anything.
+3. Upload/create the artifact in the canonical project location, or update an intentionally mutable working artifact.
+4. Read back the stored object and capture observed ID/URL/parent/type/revision state.
+5. Update `ASSETS.md`, `state.json` and the relevant event/manifest consistently.
+6. For released/frozen outputs, prefer a versioned new object or auditable Drive revision rather than silent replacement.
+7. Return the observed canonical Drive link.
 
-Do not invent Drive IDs, URLs, revisions, checksums, or verification timestamps. Record only connector-observed or otherwise verified values.
+## Handoff
 
-## `state.json` projection
+Downstream workflows receive provider-neutral locators whose standard profile resolves to Google Drive, including Brain root, Project-Memory state and relevant asset IDs/URLs.
 
-When a Drive artifact store exists, use the additive `artifactStore` and `externalArtifacts` fields:
-
-```json
-{
-  "schemaVersion": 2,
-  "artifactStore": {
-    "provider": "google-drive",
-    "folderId": "observed-folder-id",
-    "folderUrl": "observed-folder-url",
-    "folderName": "project-id",
-    "lastVerifiedAt": "2026-09-10T12:00:00+02:00"
-  },
-  "externalArtifacts": [
-    {
-      "id": "ASSET-004",
-      "role": "final-presentation",
-      "name": "NDD Review.pptx",
-      "mimeType": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
-      "driveFileId": "observed-file-id",
-      "url": "observed-drive-file-url",
-      "status": "released",
-      "producer": "presentation-workflow",
-      "event": "docs/project-memory/events/EVT-....md",
-      "verifiedAt": "2026-09-10T12:00:00+02:00"
-    }
-  ]
-}
-```
-
-Existing Project Memory states without external assets may remain schema version 1. Upgrade to schema version 2 when `artifactStore` or `externalArtifacts` is first materialized; do not rewrite historical event notes solely for the schema upgrade.
-
-## Upload and update behavior
-
-1. Classify the artifact using the storage boundary above.
-2. Resolve and verify the canonical project Drive folder.
-3. Upload the new file or update the existing canonical Drive file only when that file is intentionally mutable.
-4. Read back metadata after a write and capture the observed file ID, URL, MIME type, parent, and modification state.
-5. Register or update the asset in `ASSETS.md` and `state.json`.
-6. Link the asset from the Project Memory event that produced, reviewed, released, superseded, or consumed it.
-7. Include the asset manifest and Drive folder reference in the next `projectMemory` handoff.
-
-For approved/frozen deliverables, prefer a new explicitly versioned file or an otherwise auditable version transition instead of silently replacing a released artifact. A superseded asset remains in the manifest with its prior relation intact.
-
-## Event linkage
-
-A Project Memory event may reference external assets in frontmatter or body. Use stable asset IDs plus observed Drive links, for example:
-
-```yaml
-external_outputs:
-  - asset_id: ASSET-004
-    drive_file_id: observed-file-id
-    manifest: ../ASSETS.md
-```
-
-The event remains an index/evidence record, not a duplicate of the binary artifact.
-
-## Handoff extension
-
-When the project has external assets, extend the normal handoff as follows:
-
-```json
-{
-  "projectMemory": {
-    "root": "docs/project-memory/INDEX.md",
-    "state": "docs/project-memory/state.json",
-    "latestEvent": "docs/project-memory/events/EVT-....md",
-    "assetIndex": "docs/project-memory/ASSETS.md",
-    "artifactStore": {
-      "provider": "google-drive",
-      "folderId": "observed-folder-id",
-      "folderUrl": "observed-folder-url"
-    }
-  }
-}
-```
-
-Downstream skills must reuse this folder rather than creating their own parallel project artifact folders.
+They must reuse the canonical root and must not create a parallel artifact folder.
 
 ## Failure rules
 
-Treat the artifact step as incomplete when:
+The artifact step is incomplete when:
 
-- the Drive write has not been read back or otherwise verified,
-- the recorded file/folder ID or URL is guessed rather than observed,
-- the artifact was uploaded outside the canonical project folder without an explicit documented reason,
-- a Drive copy duplicates another authoritative external source without need,
-- a repository runtime/build asset was moved out of the repository solely because it is binary,
-- a released/frozen artifact was silently overwritten without an auditable version transition,
-- a new parallel Drive project folder was created although a canonical one was already recorded.
+- Drive write/read-back is not verified;
+- recorded ID/URL/revision is guessed;
+- the object is outside the canonical recipient-owned project location without explicit authority;
+- a producer-owned artifact was duplicated as a competing truth;
+- a released/frozen artifact was silently overwritten;
+- a parallel Drive project root was created;
+- a source-owner/other-tenant Drive object is treated as canonical;
+- a local/sandbox/chat attachment is reported as final delivery.
 
-A Drive outage or unavailable connector is a pending external state, not a reason to claim that the artifact has been stored. Record the pending item and preserve the next action.
+A Drive outage is a pending external state, not evidence of successful persistence.
