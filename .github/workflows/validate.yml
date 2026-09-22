@@ -17,25 +17,16 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Diagnose changed hashes
-        shell: bash
-        run: |
-          python - <<'PY'
-          import hashlib, json, subprocess
-          from pathlib import Path
-          root=Path(".")
-          sums=json.loads((root/"release/SHA256SUMS.json").read_text())
-          changed=subprocess.check_output(["git","diff","--name-only","origin/main...HEAD"], text=True).splitlines()
-          bad=[]
-          for rel in changed:
-              if rel not in sums: continue
-              p=root/rel
-              if not p.is_file(): bad.append(f"missing:{rel}"); continue
-              actual=hashlib.sha256(p.read_bytes()).hexdigest()
-              if actual != sums[rel]: bad.append(f"mismatch:{rel}")
-          assert not bad, "\n".join(bad)
-          PY
-
+      - name: Diagnose changed hashes - framework skills
+        run: python -c 'import hashlib,json,pathlib,subprocess; s=json.load(open("release/SHA256SUMS.json")); ch=subprocess.check_output(["git","diff","--name-only","origin/main...HEAD"],text=True).splitlines(); b=[p for p in ch if p in s and (p.startswith("framework/skills/")) and (not pathlib.Path(p).is_file() or hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()!=s[p])]; assert not b, b'
+      - name: Diagnose changed hashes - framework docs-config
+        run: python -c 'import hashlib,json,pathlib,subprocess; s=json.load(open("release/SHA256SUMS.json")); ch=subprocess.check_output(["git","diff","--name-only","origin/main...HEAD"],text=True).splitlines(); b=[p for p in ch if p in s and (p.startswith("framework/") and not p.startswith("framework/skills/")) and (not pathlib.Path(p).is_file() or hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()!=s[p])]; assert not b, b'
+      - name: Diagnose changed hashes - handoff
+        run: python -c 'import hashlib,json,pathlib,subprocess; s=json.load(open("release/SHA256SUMS.json")); ch=subprocess.check_output(["git","diff","--name-only","origin/main...HEAD"],text=True).splitlines(); b=[p for p in ch if p in s and (p.startswith("handoff/")) and (not pathlib.Path(p).is_file() or hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()!=s[p])]; assert not b, b'
+      - name: Diagnose changed hashes - templates-second-brain
+        run: python -c 'import hashlib,json,pathlib,subprocess; s=json.load(open("release/SHA256SUMS.json")); ch=subprocess.check_output(["git","diff","--name-only","origin/main...HEAD"],text=True).splitlines(); b=[p for p in ch if p in s and (p.startswith("templates/") or p.startswith("second-brain/")) and (not pathlib.Path(p).is_file() or hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()!=s[p])]; assert not b, b'
+      - name: Diagnose changed hashes - root-tools
+        run: python -c 'import hashlib,json,pathlib,subprocess; s=json.load(open("release/SHA256SUMS.json")); ch=subprocess.check_output(["git","diff","--name-only","origin/main...HEAD"],text=True).splitlines(); b=[p for p in ch if p in s and (not (p.startswith("framework/") or p.startswith("handoff/") or p.startswith("templates/") or p.startswith("second-brain/"))) and (not pathlib.Path(p).is_file() or hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()!=s[p])]; assert not b, b'
       - name: Diagnose unchanged framework hashes
         continue-on-error: true
         run: python -c 'import hashlib,json,pathlib,subprocess; s=json.load(open("release/SHA256SUMS.json")); ch=set(subprocess.check_output(["git","diff","--name-only","origin/main...HEAD"],text=True).splitlines()); b=[p for p,h in s.items() if p.startswith("framework/") and p not in ch and (not pathlib.Path(p).is_file() or hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()!=h)]; assert not b, b'
