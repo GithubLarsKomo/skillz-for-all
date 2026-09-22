@@ -6,7 +6,7 @@ Status: active
 
 Stable startup contract for substantive work using this tenant's federated Second-Brain system.
 
-This bootstrap is provider-neutral. The standard white-label deployment stores it in recipient-owned Google Drive.
+This bootstrap uses provider-neutral locators, while the standard claimed Skillz-for-all runtime persists mutable tenant state exclusively in recipient-owned Google Drive.
 
 ## Startup sequence
 
@@ -25,6 +25,8 @@ This bootstrap is provider-neutral. The standard white-label deployment stores i
 Resolve these logical files below the bound tenant Skillz framework root:
 
 - `docs/KNOWLEDGE-STORE-CONTRACT.md`
+- `docs/ARTIFACT-PRODUCTION-CONTRACT.md`
+- `docs/DOCUMENT-ARTIFACT-DELIVERY-CONTRACT.md`
 - `skills/second-brain-federation-workflow/SKILL.md`
 - `skills/project-second-brain/SKILL.md`
 - `docs/SECOND-BRAIN-OPERATING-CYCLE.md`
