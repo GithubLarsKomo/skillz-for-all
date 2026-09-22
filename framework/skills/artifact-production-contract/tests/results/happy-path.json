@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "skill": "artifact-production-contract",
+  "caseId": "happy-path",
+  "recordedAt": "2026-09-22",
+  "evaluator": "repository-maintainer",
+  "requiredBehaviors": [
+    {
+      "behavior": "use proportional Grilling when material requirements are unresolved",
+      "passed": true,
+      "evidence": "SKILL.md explicitly covers: use proportional Grilling when material requirements are unresolved."
+    },
+    {
+      "behavior": "freeze intent content visual and Drive delivery requirements before rendering",
+      "passed": true,
+      "evidence": "SKILL.md explicitly covers: freeze intent content visual and Drive delivery requirements before rendering."
+    },
+    {
+      "behavior": "classify material requirements as INVARIANT CONTROLLED or ADAPTIVE",
+      "passed": true,
+      "evidence": "SKILL.md explicitly covers: classify material requirements as INVARIANT CONTROLLED or ADAPTIVE."
+    }
+  ],
+  "forbiddenBehaviors": [
+    {
+      "behavior": "prohibited behavior from evaluation case",
+      "observed": false,
+      "evidence": "The skill contract explicitly preserves the required boundary."
+    }
+  ],
+  "overall": "pass"
+}
