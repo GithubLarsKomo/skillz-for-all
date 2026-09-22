@@ -18,7 +18,7 @@ outputs:
   - super-second-brain-registry.json
   - second-brain-catalog.md
   - second-brain-registration.json
-lastEvaluated: 2026-09-19
+lastEvaluated: 2026-09-22
 ---
 
 # Second Brain Federation Workflow
