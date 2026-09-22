@@ -4,7 +4,7 @@ description: Orchestriert die Erstellung oder Überarbeitung editierbarer DOCX-D
 userFacing: true
 implicitInvocation: true
 category: workflow
-version: 0.1.0
+version: 0.2.0
 status: candidate
 owners:
   - White Label Maintainer
@@ -24,7 +24,7 @@ outputs:
   - document.pdf
   - document-qa.md
   - document-delivery-manifest.json
-lastEvaluated: 2026-08-28
+lastEvaluated: 2026-09-22
 ---
 
 # Template Document Workflow
@@ -104,11 +104,12 @@ Regeln:
   "contentFingerprint": "...",
   "templateProfileRef": "document-template-profile.json",
   "outputs": [
-    {"format": "docx", "ref": "document.docx"},
-    {"format": "pdf", "ref": "document.pdf"}
+    {"format": "docx", "ref": "drive://observed-file-id", "driveUrl": "observed-drive-url"},
+    {"format": "pdf", "ref": "drive://observed-file-id", "driveUrl": "observed-drive-url"}
   ],
   "layoutQaRef": "document-layout-qa.json",
   "renderQaRef": "document-render-qa.json",
+  "storageStatus": "verified|pending|blocked",
   "status": "pass|review|fail"
 }
 ```
@@ -145,9 +146,21 @@ Vor PASS:
 - **Renderer/PDF-Export fehlt:** DOCX kann separat geliefert werden, aber visuelle/PDF-Paritätsclaims bleiben `not-run`.
 - **Fachlicher Konflikt im Input:** upstream zurückgeben; nicht beim Layouten lösen.
 
+## Drive Storage and Delivery Gate
+
+Alle erzeugten Nicht-Code-Artefakte folgen dem framework-weiten `docs/DRIVE-STORAGE-AND-DELIVERY-CONTRACT.md`.
+
+- lokale/Sandbox-Dateien sind nur Build-Zwischenstände;
+- finale Artefakte werden in den owning Child-Brain-Drive-Root geschrieben; ohne passenden Brain in den tenantweiten `Deliveries`-Root;
+- nach dem Write werden Drive-ID, URL, Parent und soweit verfügbar Revision/Modified State read-back-verifiziert;
+- Projektartefakte werden über `project-second-brain` in `ASSETS.md`/`state.json` registriert;
+- ein erfolgreicher Nutzer-Handoff liefert die verifizierten Drive-Links;
+- fehlende Drive-Schreibfähigkeit bedeutet `pending|blocked`, nicht erfolgreiche Delivery und keinen GitHub-/Sandbox-Fallback.
+
+
 ## Übergabe
 
-Eigene Outputs sind `document.docx`, optional `document.pdf`, `document-qa.md` und `document-delivery-manifest.json`. Profiler- und QA-Artefakte bleiben bei ihren spezialisierten Producer-Skills und werden referenziert.
+Eigene Outputs sind `document.docx`, optional `document.pdf`, `document-qa.md` und `document-delivery-manifest.json`; als final ausgeliefert gelten sie erst mit verifiziertem Drive-Objekt/Link. Profiler- und QA-Artefakte bleiben bei ihren spezialisierten Producer-Skills und werden referenziert.
 
 ## Abschlusskriterien
 
