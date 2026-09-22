@@ -13,6 +13,7 @@ REQUIRED = [
     "release/manifest.json",
     "release/SHA256SUMS.json",
     "framework/docs/KNOWLEDGE-STORE-CONTRACT.md",
+    "framework/docs/DRIVE-STORAGE-AND-DELIVERY-CONTRACT.md",
     "framework/docs/KNOWLEDGE-PROMOTION-CONTRACT.md",
     "framework/docs/SECOND-BRAIN-LINT-CONTRACT.md",
     "framework/skills/project-second-brain/SKILL.md",
@@ -119,11 +120,22 @@ def main() -> int:
             errors.append("release manifest storageProvider must be google-drive")
         if manifest.get("rebindRequired") is not True:
             errors.append("release manifest must require rebind")
+        if manifest.get("runtimeStoragePolicy") != "drive-only":
+            errors.append("release manifest runtimeStoragePolicy must be drive-only")
         if manifest.get("sourceExclusionPolicyApplied") is not True:
             errors.append("release manifest must record applied source exclusion policy")
 
     if deployment_path.is_file():
         deployment = json.loads(deployment_path.read_text(encoding="utf-8"))
+        storage = deployment.get("storage", {})
+        if storage.get("provider") != "google-drive":
+            errors.append("deployment storage provider must be google-drive")
+        if storage.get("runtimePolicy") != "drive-only":
+            errors.append("deployment runtimePolicy must be drive-only")
+        if storage.get("generatedNonCodeArtifacts") != "google-drive-required":
+            errors.append("deployment must require generated non-code artifacts in Google Drive")
+        if storage.get("linkFirstDelivery") is not True:
+            errors.append("deployment must require link-first Drive delivery")
         if deployment.get("runtimeDependencyOnSourceOwner") is not False:
             errors.append("deployment retains source-owner runtime dependency")
         privacy = deployment.get("privacy", {})
@@ -133,6 +145,16 @@ def main() -> int:
             errors.append("deployment privacy flag allows organization-specific content")
         if privacy.get("starterRegistryMustBeEmpty") is not True:
             errors.append("starter deployment must require empty registry")
+
+    instance_path = root / "instance.yaml"
+    if instance_path.is_file():
+        instance_text = instance_path.read_text(encoding="utf-8")
+        if "runtimeStoragePolicy: drive-only" not in instance_text:
+            errors.append("instance runtimeStoragePolicy must be drive-only")
+        if "provider: google-drive" not in instance_text:
+            errors.append("instance primary Knowledge Store must be google-drive")
+        if "requireDriveWrite: true" not in instance_text or "returnStoredLinks: true" not in instance_text:
+            errors.append("instance delivery must require Drive write and stored-link handoff")
 
     validate_skill_graph(root, errors)
 
