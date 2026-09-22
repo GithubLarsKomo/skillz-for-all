@@ -5921,11 +5921,11 @@
     },
     {
       "path": "framework/skills/precision-writing-revision/SKILL.md",
-      "sha256": "a33dc1261ce84ba669d2719374e4716bea5b1c0222b777eca84e95bcf5b3f5b1"
+      "sha256": "40ecb1d8c77a6c1b9d4f8e302640b68c78df6aec50efbad2ee02d8eccb38e03f"
     },
     {
       "path": "framework/skills/precision-writing-revision/tests/evaluation.json",
-      "sha256": "6c34a5e922497dd75fb87863bff3d79ee1231e1cba7e338b9f0e89025553b024"
+      "sha256": "306915da2525ba05c03d77dd7d2668a258ce7000a46f13b70be832b7e137512a"
     },
     {
       "path": "framework/skills/precision-writing-revision/tests/results/edge-case.json",
@@ -6733,11 +6733,11 @@
     },
     {
       "path": "framework/skills/research-to-evidence-note/SKILL.md",
-      "sha256": "e4015faa607c21f4c61e9ee603d12b69654a451c1ccbc9347c21f947e60e5ec6"
+      "sha256": "89540e7518e365186f61d94d8a9723ee1c0efcc7bee840c148d63d838de94135"
     },
     {
       "path": "framework/skills/research-to-evidence-note/tests/evaluation.json",
-      "sha256": "fe474ee392b447b32b7a6a67845a64995c44bc48d0a6e7ee06a9222207c843f9"
+      "sha256": "c768f3b5d806d5c629271dd029aa3a3fa9211b6566e1a083585f3529179b541e"
     },
     {
       "path": "framework/skills/research-to-evidence-note/tests/results/edge-case.json",
