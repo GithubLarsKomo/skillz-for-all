@@ -4,7 +4,7 @@ description: Orchestriert die Erstellung oder Überarbeitung editierbarer Präse
 userFacing: true
 implicitInvocation: true
 category: workflow
-version: 0.1.0
+version: 0.2.0
 status: candidate
 owners:
   - White Label Maintainer
@@ -13,7 +13,13 @@ requires:
   - presentation-language-rewriter
   - presentation-layout-qa
   - presentation-render-verifier
+  - artifact-production-contract
+  - artifact-contract-audit
 consumes:
+  - artifact-production-contract.json
+  - artifact-figure-contracts.json
+  - artifact-contract-audit.json
+  - artifact-contract-audit.md
   - presentation-template-profile.json
   - presentation-revised-text
   - presentation-language-report.json
@@ -130,6 +136,19 @@ Marken- oder unternehmensspezifische Skills sollen dünne Wrapper bleiben. Sie l
 - Kein neues Corporate Design entwickeln, wenn die Aufgabe Template-Treue verlangt.
 - Keine Behauptung erfolgreicher visueller QA ohne tatsächlichen Render.
 - Kein PDF-only Ergebnis, wenn eine editierbare PPTX verlangt ist.
+
+## Gemeinsame Artifact-Governance und Drive-Delivery
+
+Dieser Workflow unterliegt verbindlich:
+
+- `docs/ARTIFACT-PRODUCTION-CONTRACT.md`;
+- `docs/DOCUMENT-ARTIFACT-DELIVERY-CONTRACT.md`.
+
+Vor materieller Produktion muss eine aktive `frozen` Revision des Artifact Production Contract vorliegen; bereits bestätigte Anforderungen werden nicht erneut erfragt. `INVARIANT`-Festlegungen dürfen nicht still verändert werden, `CONTROLLED`-Abweichungen brauchen dokumentierten Grund/Impact und `ADAPTIVE`-Entscheidungen dürfen Intent und Bedeutung nicht verändern.
+
+Nach Format-/Render-QA wird `artifact-contract-audit` auf die **exakt auszuliefernde Revision** angewendet. Erst danach wird genau diese Revision in den kanonischen recipient-owned Google-Drive-Ort geschrieben, read-back-verifiziert und über den beobachteten Drive-Link ausgeliefert.
+
+Ein lokales/sandboxed Ergebnis ist niemals der erfolgreiche Endzustand. Ist Drive nicht beschreibbar, bleibt die Delivery `pending|blocked`.
 
 ## Abschlusskriterien
 
