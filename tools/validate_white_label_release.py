@@ -128,6 +128,8 @@ def main() -> int:
             errors.append("release manifest runtimeStoragePolicy must be drive-only")
         if manifest.get("sourceExclusionPolicyApplied") is not True:
             errors.append("release manifest must record applied source exclusion policy")
+        if manifest.get("artifactDeliveryPolicy") != "drive-link-first":
+            errors.append("release manifest artifactDeliveryPolicy must be drive-link-first")
 
     if deployment_path.is_file():
         deployment = json.loads(deployment_path.read_text(encoding="utf-8"))
