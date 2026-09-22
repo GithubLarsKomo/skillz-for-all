@@ -37,15 +37,15 @@
     },
     {
       "path": "framework/docs/ARTIFACT-PRODUCTION-CONTRACT.md",
-      "sha256": "4d7731bc8b03cda4ae7b1115409bdbd0a45c7a5c"
+      "sha256": "c5a2849eca7de2ee604161bb31f110317c0f1049da0a9e9cbaf02369cf40e5ea"
     },
     {
       "path": "framework/docs/DOCUMENT-ARTIFACT-DELIVERY-CONTRACT.md",
-      "sha256": "d786c42b2f3f25c9c523a0cba0c5b1a398c1e408"
+      "sha256": "6c142abfd8016fddbace3b7122957cbf7dc86b04dc7828837e695e74266da512"
     },
     {
       "path": "framework/docs/DRIVE-STORAGE-AND-DELIVERY-CONTRACT.md",
-      "sha256": "911f4a79ec1ad0a68f7363daa66fa925f49a4b4b"
+      "sha256": "d6d659c194e18c7589fd46b95790f0100db1ad9771cb04497e6b186ce619f2db"
     },
     {
       "path": "framework/docs/EVALUATION.md",
@@ -313,7 +313,7 @@
     },
     {
       "path": "framework/skills/artifact-contract-audit/SKILL.md",
-      "sha256": "05c5fe61819e4849b547689ad48c09faaf8df83d"
+      "sha256": "cdd12a5cf5e9a9fb0e276c2d89ddf8f4af355d98029e55db3d823b21b5f5510a"
     },
     {
       "path": "framework/skills/artifact-contract-normalizer/agents/openai.yaml",
@@ -341,23 +341,23 @@
     },
     {
       "path": "framework/skills/artifact-production-contract/SKILL.md",
-      "sha256": "28211ef2965a2287628992c71f3e6616dfe212b5"
+      "sha256": "4d28e8987da51133fa532ce82f502031c4c353b0692001f3ec635d0e90427a8a"
     },
     {
       "path": "framework/skills/artifact-production-contract/tests/evaluation.json",
-      "sha256": "df8bd1c7caf89bdd29404c2762b407525fa24a21"
+      "sha256": "850ed40e25380df891257a38597ee1ac136cf7954bbfdafaa3f92af58b758fbc"
     },
     {
       "path": "framework/skills/artifact-production-contract/tests/results/edge-case.json",
-      "sha256": "c4e47005131201f8f4be6bb6b376cb6fe3e05a56"
+      "sha256": "2263138f05ad83d39bc5e4de2d48e3f4969f09cf04d9550219f873240da57fc3"
     },
     {
       "path": "framework/skills/artifact-production-contract/tests/results/failure-case.json",
-      "sha256": "aa234fe125163f8bb06a989f866387b33418a3a6"
+      "sha256": "7808fb0bcd7f33feb0dfd6b5f6fd9ac4c624ae1de7d783a1afd05595252fec92"
     },
     {
       "path": "framework/skills/artifact-production-contract/tests/results/happy-path.json",
-      "sha256": "a7d9c00340e89800c0733c0d7c01fcf7f01d01a9"
+      "sha256": "685be6d4a571df5256f4134d27bd963dc989e39e764ad92bb58dacdb44c5e5fb"
     },
     {
       "path": "framework/skills/audio-tutorial-workflow/agents/openai.yaml",
@@ -1117,7 +1117,7 @@
     },
     {
       "path": "framework/skills/creative-writing-epub-delivery/SKILL.md",
-      "sha256": "251f3b6f7a967e98484ec6571fa2a4e52c85bc3b"
+      "sha256": "6d4a4e3437e5c6c7f4e9f5e124c84cd98fc08e30152bcf0ace5917df74017e3b"
     },
     {
       "path": "framework/skills/creative-writing-epub-delivery/tests/evaluation.json",
@@ -4197,7 +4197,7 @@
     },
     {
       "path": "framework/skills/learning-document-delivery/SKILL.md",
-      "sha256": "c7c11059bcb08e1c55946190d9da14f6682a0236"
+      "sha256": "5f0a3a2404e90dd3d0b421fd4273e182a07b2880bd206840b22cedb548e29ac8"
     },
     {
       "path": "framework/skills/learning-document-delivery/tests/evaluation.json",
@@ -5853,7 +5853,7 @@
     },
     {
       "path": "framework/skills/person-profile-document-delivery/SKILL.md",
-      "sha256": "9e5782bd51e2beef025cbd43a93b4d1892f0f1e2"
+      "sha256": "09397b035049d582f65565d68d84fb2aba55e881f21d3cbcc35364bb0e4517e9"
     },
     {
       "path": "framework/skills/person-profile-report/agents/openai.yaml",
@@ -8229,7 +8229,7 @@
     },
     {
       "path": "framework/skills/template-document-workflow/SKILL.md",
-      "sha256": "c86a34cdf44ede0564fd9e5dbc3bc3af0a3354d6"
+      "sha256": "315d057ecbf83f384dfaaaae0a9dcef6a98642b150f7036233ba8eac00cdf7b8"
     },
     {
       "path": "framework/skills/template-document-workflow/tests/evaluation.json",
@@ -8253,7 +8253,7 @@
     },
     {
       "path": "framework/skills/template-presentation-workflow/SKILL.md",
-      "sha256": "bcd6ad64bf4b213133d2047a70d5cbb8153c30f3"
+      "sha256": "7dd761ad9a2db92f483d14619fc9158dcc112d96ce1e051305ceb6b85e7a6103"
     },
     {
       "path": "framework/skills/template-presentation-workflow/tests/evaluation.json",
@@ -8977,7 +8977,7 @@
     },
     {
       "path": "second-brain/super-second-brain/docs/super-memory/BOOTSTRAP.md",
-      "sha256": "940e03242acc8572d9474bbf30f8594536d13803"
+      "sha256": "c949672786f4328c96c66b7f5307d3339230b7d78fb6210c5af1afdf3fd608b0"
     },
     {
       "path": "second-brain/super-second-brain/docs/super-memory/INDEX.md",
@@ -9017,7 +9017,7 @@
     },
     {
       "path": "tools/validate_white_label_release.py",
-      "sha256": "a350615a48d26bded9c70ffc8698b4992cde7b47"
+      "sha256": "1d4da40830a28fecf46991fbef71e78ea880a725bd46268b48ca1cb7f4230892"
     }
   ],
   "runtimeStoragePolicy": "drive-only",
