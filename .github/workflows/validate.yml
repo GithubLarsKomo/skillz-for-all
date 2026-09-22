@@ -17,6 +17,10 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Diagnose release hash targets
+        continue-on-error: true
+        run: python -c 'import hashlib,json,pathlib; s=json.load(open("release/SHA256SUMS.json")); b=[p for p,h in s.items() if not pathlib.Path(p).is_file() or hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()!=h]; assert not b, b'
+
       - name: Verify release hash targets
         shell: bash
         run: |
