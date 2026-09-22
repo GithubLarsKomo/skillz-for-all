@@ -17,8 +17,10 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Diagnose changed hashes - skills A-L
-        run: python -c 'import hashlib,json,pathlib,subprocess; s=json.load(open("release/SHA256SUMS.json")); ch=subprocess.check_output(["git","diff","--name-only","origin/main...HEAD"],text=True).splitlines(); b=[p for p in ch if p in s and p.startswith("framework/skills/") and (p.split("/")[2][0].lower() < "m") and (not pathlib.Path(p).is_file() or hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()!=s[p])]; assert not b, b'
+      - name: Diagnose changed hashes - skills A-E
+        run: python -c 'import hashlib,json,pathlib,subprocess; s=json.load(open("release/SHA256SUMS.json")); ch=subprocess.check_output(["git","diff","--name-only","origin/main...HEAD"],text=True).splitlines(); b=[p for p in ch if p in s and p.startswith("framework/skills/") and (p.split("/")[2][0].lower() < "f") and (not pathlib.Path(p).is_file() or hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()!=s[p])]; assert not b, b'
+      - name: Diagnose changed hashes - skills F-L
+        run: python -c 'import hashlib,json,pathlib,subprocess; s=json.load(open("release/SHA256SUMS.json")); ch=subprocess.check_output(["git","diff","--name-only","origin/main...HEAD"],text=True).splitlines(); b=[p for p in ch if p in s and p.startswith("framework/skills/") and (p.split("/")[2][0].lower() >= "f" and p.split("/")[2][0].lower() < "m") and (not pathlib.Path(p).is_file() or hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()!=s[p])]; assert not b, b'
       - name: Diagnose changed hashes - skills M-Z
         run: python -c 'import hashlib,json,pathlib,subprocess; s=json.load(open("release/SHA256SUMS.json")); ch=subprocess.check_output(["git","diff","--name-only","origin/main...HEAD"],text=True).splitlines(); b=[p for p in ch if p in s and p.startswith("framework/skills/") and (p.split("/")[2][0].lower() >= "m") and (not pathlib.Path(p).is_file() or hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()!=s[p])]; assert not b, b'
       - name: Diagnose changed hashes - framework docs-config
