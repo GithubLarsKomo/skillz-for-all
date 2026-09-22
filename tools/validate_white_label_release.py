@@ -13,6 +13,8 @@ REQUIRED = [
     "release/manifest.json",
     "release/SHA256SUMS.json",
     "framework/docs/KNOWLEDGE-STORE-CONTRACT.md",
+    "framework/docs/ARTIFACT-PRODUCTION-CONTRACT.md",
+    "framework/docs/DOCUMENT-ARTIFACT-DELIVERY-CONTRACT.md",
     "framework/docs/KNOWLEDGE-PROMOTION-CONTRACT.md",
     "framework/docs/SECOND-BRAIN-LINT-CONTRACT.md",
     "framework/skills/project-second-brain/SKILL.md",
