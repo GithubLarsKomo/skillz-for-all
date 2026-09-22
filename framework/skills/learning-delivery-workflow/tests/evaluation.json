@@ -57,6 +57,24 @@
         "keine Inhalte aus Rohquellen improvisieren",
         "ohne simulierte Render-, Delivery- oder Freigabeerfolge"
       ]
+    },
+    {
+      "id": "drive-only-delivery",
+      "input": "Deliver HTML PPTX DOCX PDF SVG and image assets for a learning model in a claimed Skillz-for-All tenant.",
+      "requiredBehaviors": [
+        "preserve producer ownership while persisting every generated non-code artifact in Drive",
+        "record verified Drive locators in the delivery bundle",
+        "return stored Drive links for final user-facing artifacts"
+      ],
+      "forbiddenBehaviors": [
+        "leave generated images or HTML only in local temporary storage",
+        "use local refs as final bundle refs when Drive is writable"
+      ],
+      "skillAnchors": [
+        "Drive Storage and Delivery Gate",
+        "DRIVE-STORAGE-AND-DELIVERY-CONTRACT.md",
+        "Drive"
+      ]
     }
   ]
 }
