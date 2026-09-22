@@ -312,10 +312,6 @@
       "sha256": "d206497b8b1e2ce5735df5e9cccc0440f3be63fe790da675c54f99b3d8def8d8"
     },
     {
-      "path": "framework/skills/artifact-contract-audit/SKILL.md",
-      "sha256": "cdd12a5cf5e9a9fb0e276c2d89ddf8f4af355d98029e55db3d823b21b5f5510a"
-    },
-    {
       "path": "framework/skills/artifact-contract-normalizer/agents/openai.yaml",
       "sha256": "6ed8e15b17e063cd089c3bca4829eb34f503e6ae3790328d9e0e49f003fa0908"
     },
