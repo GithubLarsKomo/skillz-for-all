@@ -1,6 +1,7 @@
 {
   "00-START-HERE.md": "f156c7577ab3a3254b528f4dabdfc84f65bf973c22cc37255cac846ef4fb6923",
   "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+  "README.md": "79de380307cd0183bf4cb46b7abb029446c9e76adf9fe7e5287ba15bced13ca5",
   "deployment-manifest.json": "ea5f5885e49e845874501fb9384d2e9b97ed8a628e00cd2694672df9206e8e0e",
   "framework/config/tool-capabilities.json": "b8caa8693661b6593450ebe27334f14982e584817c6f61646999bb6475bacac4",
   "framework/contracts/compliance-traceability-v1.schema.json": "ee6f4af9e6c0d5a8b4ed7576a0068f76687fb25820d1b4926577f37e8f3d70aa",
@@ -2238,6 +2239,7 @@
   "second-brain/super-second-brain/docs/super-memory/registry.json": "2a53e1a09ce16814c00c847b72ea75aa08f2bf404a860819df453a4cde38d93c",
   "second-brain/super-second-brain/docs/super-memory/state.json": "7c457aa30dcffbd0548bd72ac12f05829098ac9cb305c037bf1a3a20701c59ba",
   "templates/child-brain/README.md": "6b832747b519c6f21ac2d792bfcf6ea447c632225a5767174409572516fd79b9",
+  "templates/child-brain/docs/project-memory/ASSETS.md": "cd46525015aa8783aa20a2444c81e648d23693ba94f53b1695029274dbcf35e6",
   "templates/child-brain/docs/project-memory/INDEX.md": "b6a7bf5fa449ce964cc51c12ce15435126305f8782a503f3b792a7d18df93621",
   "templates/child-brain/docs/project-memory/TIMELINE.md": "b75788a183fdfb7a043fe8a1eb4c44b0771e259d82ff39a02944f26779839dbe",
   "templates/child-brain/docs/project-memory/state.json": "de2d1e36ff2f995859793037fdf1075f49f6e687f02a9b9cffa03dfffc58f7ab",
