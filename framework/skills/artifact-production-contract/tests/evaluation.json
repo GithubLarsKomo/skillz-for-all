@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "skill": "artifact-production-contract",
+  "cases": [
+    {
+      "id": "happy-path",
+      "input": "A substantive presentation needs a precise audience, decision ask, approved template, material figures and editable PPTX/PDF delivery into the tenant Drive.",
+      "requiredBehaviors": [
+        "use proportional Grilling when material requirements are unresolved",
+        "freeze intent content visual and Drive delivery requirements before rendering",
+        "classify material requirements as INVARIANT CONTROLLED or ADAPTIVE"
+      ],
+      "forbiddenBehaviors": [
+        "allow a renderer to reinterpret the user brief or use a local download as canonical delivery"
+      ],
+      "skillAnchors": ["round-based-requirements-grilling", "Freeze gate", "Drive"]
+    },
+    {
+      "id": "edge-case",
+      "input": "A PDF is requested from an already approved frozen canonical DOCX with no new content or design requirement.",
+      "requiredBehaviors": [
+        "reuse the active frozen contract",
+        "avoid redundant Grilling",
+        "preserve the canonical source relation"
+      ],
+      "forbiddenBehaviors": ["create an independent PDF design brief"],
+      "skillAnchors": ["derivative", "reuse", "canonical"]
+    },
+    {
+      "id": "failure-case",
+      "input": "A renderer wants to replace an approved figure, change an invariant footer and deliver from a sandbox because the Drive upload was skipped.",
+      "requiredBehaviors": [
+        "block silent invariant changes",
+        "require contract revision and re-freeze",
+        "keep final delivery pending until canonical Drive persistence succeeds"
+      ],
+      "forbiddenBehaviors": ["treat sandbox output as final canonical delivery"],
+      "skillAnchors": ["INVARIANT", "re-freeze", "Drive"]
+    }
+  ]
+}
