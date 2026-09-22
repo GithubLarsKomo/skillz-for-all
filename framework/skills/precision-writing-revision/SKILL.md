@@ -30,7 +30,7 @@ Dieser Skill ist ein **dünner Orchestrator**. Er koordiniert vier Fach-Skills u
 1. **Kontext fixieren:** Sprache, Genre, Zielgruppe, Modus und bei Englisch Zielvariante bestimmen.
 2. **Audit:** `llm-prose-pattern-audit` ausführen.
 3. **Author Voice:** Nur bei `mode=author` ein vorhandenes belastbares `author-voice-profile.json` verwenden oder bei explizitem Auftrag `author-voice-profiler` ausführen. Fehlt ein Profil, dokumentiert auf Genre-/Sprachregeln zurückfallen.
-4. **Fidelity Lock:** Claims, Zahlen, Quellen, Negationen, Bedingungen, Zeitbezug, Modalität, geschützte Terminologie sowie Recommendation Ownership und Zitatstatus aus Quelle beziehungsweise vorhandener Evidence Note fixieren.
+4. **Fidelity Lock:** Claims, Zahlen, Quellen, vorhandene stabile Quellen-URLs, Negationen, Bedingungen, Zeitbezug, Modalität, geschützte Terminologie sowie Recommendation Ownership und Zitatstatus aus Quelle beziehungsweise vorhandener Evidence Note fixieren.
 5. **Rewrite:** `precision-language-rewriter` mit Audit, Profil und Fidelity Lock ausführen.
 6. **Verification:** `rewrite-fidelity-verifier` ausführen.
 7. **Korrekturschleife:** Bei `review` nur markierte Stellen nacharbeiten und erneut prüfen. Bei Hard Fail die betroffene Änderung zurücknehmen oder fachlich autorisieren lassen.
@@ -38,7 +38,7 @@ Dieser Skill ist ein **dünner Orchestrator**. Er koordiniert vier Fach-Skills u
 
 ## Integrationen
 
-Wenn eine Recherche bereits durch `research-to-evidence-note` strukturiert wurde, deren Claims und Confidence als bevorzugte Fidelity-Basis verwenden. Bei Dokumentproduktion wird nur der sprachlich verifizierte Endtext an DOCX/PDF-Renderer weitergereicht.
+Wenn eine Recherche bereits durch `research-to-evidence-note` strukturiert wurde, deren Claims und Confidence als bevorzugte Fidelity-Basis verwenden. Vorhandene direkte Quellen-URLs gehören zur Provenance: Soweit möglich werden sie in Zitaten/Quellenangaben als anklickbare Links erhalten und nicht bei Rewrite, Layout oder PDF-Rendering entfernt. Bei Dokumentproduktion wird nur der sprachlich verifizierte Endtext an DOCX/PDF-Renderer weitergereicht.
 
 Der Workflow folgt dem repositoryweiten `RECOMMENDATION-ATTRIBUTION-CONTRACT.md`: Er darf keine Empfehlung neu erzeugen, wenn sie nicht beauftragt war. Dritt-Empfehlungen bleiben attribuiert; als Zitat gekennzeichnete substantiierte Empfehlungen dürfen nicht in eigene Imperativsprache umgeschrieben werden.
 
@@ -72,6 +72,7 @@ Der Workflow folgt dem repositoryweiten `RECOMMENDATION-ATTRIBUTION-CONTRACT.md`
 - Kein Detector-Evasion-Ziel einführen.
 - Keine nicht autorisierte Empfehlung hinzufügen oder aus einer Implikation ableiten.
 - Recommendation Ownership und Zitatstatus externer Empfehlungen bleiben erhalten.
+- Vorhandene stabile direkte Quellen-URLs bleiben in Zitaten/Quellenangaben soweit technisch möglich als anklickbare Links erhalten.
 - Orchestrator bleibt dünn und verändert nicht selbst Fachlogik.
 
 ## Abschluss
