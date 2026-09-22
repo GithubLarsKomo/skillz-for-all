@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "releaseVersion": "0.1.1",
+  "releaseVersion": "0.1.2",
   "profile": "full-portable",
   "storageProvider": "google-drive",
   "rebindRequired": true,
@@ -13,7 +13,7 @@
     },
     {
       "path": "deployment-manifest.json",
-      "sha256": "fb85280f56fff9718607bdc8df1b0600d485809f4e2df33ea093b10d294407ed"
+      "sha256": "a637b8ca7b77bc7cffddea7f81472119339811136a75ad6b16a51bff10122bc6"
     },
     {
       "path": "framework/config/tool-capabilities.json",
@@ -36,6 +36,14 @@
       "sha256": "241e1329a67e9bb41cb37d8fcdf0d19c5c2afe842f6e4dfdb50ffaba89756125"
     },
     {
+      "path": "framework/docs/ARTIFACT-PRODUCTION-CONTRACT.md",
+      "sha256": "c5a2849eca7de2ee604161bb31f110317c0f1049da0a9e9cbaf02369cf40e5ea"
+    },
+    {
+      "path": "framework/docs/DOCUMENT-ARTIFACT-DELIVERY-CONTRACT.md",
+      "sha256": "6c142abfd8016fddbace3b7122957cbf7dc86b04dc7828837e695e74266da512"
+    },
+    {
       "path": "framework/docs/EVALUATION.md",
       "sha256": "c9c5cf5e023c2893a780f439ae929d5ea933a83d6af085f50ff3f4592c475375"
     },
@@ -49,7 +57,7 @@
     },
     {
       "path": "framework/docs/KNOWLEDGE-STORE-CONTRACT.md",
-      "sha256": "21c56b9e8ceb65b0e9e50ad68f85eb12c36ea9827262479d7439800e9db04508"
+      "sha256": "029f3692faf25b8a20ce0c33bceadcaec8cb2b74e0aad72941ff3d2fd6304b1d"
     },
     {
       "path": "framework/docs/MEMORY-PATH-CONTRACT.md",
@@ -6349,7 +6357,7 @@
     },
     {
       "path": "framework/skills/project-second-brain/SKILL.md",
-      "sha256": "c36be6ebbcbaa5ed3beae8994d85d34109bf8a99d10608760aacde4548f0a2a8"
+      "sha256": "b4758660786035d3d007f896060e0fd840c18962f47d373f13c1d89b5cae9b64"
     },
     {
       "path": "framework/skills/project-second-brain/tests/evaluation.json",
@@ -8897,7 +8905,7 @@
     },
     {
       "path": "handoff/claim.example.json",
-      "sha256": "031a4c11d34490fbdf6394c2b246d58ea2ce2c4aaddb26ecda62b4c37a1a8b5d"
+      "sha256": "39d7b33114bf221e5093bd02546e95a45d1c3bc6099195ae3acee7b8f12d0842"
     },
     {
       "path": "handoff/CLAIM.md",
@@ -8913,7 +8921,7 @@
     },
     {
       "path": "handoff/SUPPORT.md",
-      "sha256": "c06526916b688f9a82e88a54cfb7490cd6c8b6b26b63a7a52ffb0880ab63f1c3"
+      "sha256": "727b637f6ecb9d1eaa426cdf593185b576fa66a2e1fd79974e03b1e9e57dbb3a"
     },
     {
       "path": "handoff/SYSTEM-PROMPT.md",
@@ -8929,7 +8937,7 @@
     },
     {
       "path": "instance.yaml",
-      "sha256": "bafb2717f0baafd049841bd59fdfdfc1df7605f2e0f21b0e0d0ddf771f009f5d"
+      "sha256": "6aae0ecd605d1f904f3feb71595d152a3f99b5d066be33ab812676e3677c347d"
     },
     {
       "path": "LICENSE",
@@ -8937,7 +8945,7 @@
     },
     {
       "path": "second-brain/super-second-brain/docs/super-memory/BOOTSTRAP.md",
-      "sha256": "50c1e7a8bd91b20668b4cf8fbbbdd848b2387dad9baea5dc01de1b56d517e022"
+      "sha256": "3e894dc2ba439cbbd82f462d68db2a7d44ee04fa9d4c51487990ca636308822d"
     },
     {
       "path": "second-brain/super-second-brain/docs/super-memory/INDEX.md",
@@ -8973,7 +8981,7 @@
     },
     {
       "path": "tools/validate_white_label_release.py",
-      "sha256": "33434c3097ba845d2961ef129efe0920f54a19181c42333d84271354cb5e6594"
+      "sha256": "20543b9f6f66f25bfe2ded37773eaea37ff4e7b893d0c00f21e6633f8bb786d8"
     }
   ]
 }
